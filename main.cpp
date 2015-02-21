@@ -16,8 +16,8 @@ int main()
 	{
 		//destroyer.drawKapal(buff);
 		destroyer.clearKapal(buff);
-		destroyer.drawKapal(buff);
 		destroyer.setVelocity(i);
+		destroyer.drawKapal(buff);
 		
 		i++;
 		usleep(5000);
