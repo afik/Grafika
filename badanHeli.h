@@ -1,15 +1,13 @@
-#ifndef _HELIKOPTER_H
-#define _HELIKOPTER_H
+#ifndef _badanHeli_H
+#define _badanHeli_H
 
 #include "garis.h"
 #include "buffer.h"
-#include "badanHeli.h"
-#include "ekorHeli.h"
 
-class Helikopter{
+class badanHeli{
 	public:
-		Helikopter();
-		~Helikopter();
+		badanHeli();
+		~badanHeli();
 		
 		//setter
 		//void setN(int N);
@@ -23,16 +21,14 @@ class Helikopter{
 		Point getAnchorP1();
 		Point getAnchorP2();
 		
-		void drawHeli(Buffer buff);			// menggambar kapal
-		void clearHeli(Buffer buff);			// menghapus kapal
+		void drawbadanHeli(Buffer buff, int v);			// menggambar kapal
+		void clearbadanHeli(Buffer buff, int v);			// menghapus kapal
 		
 	private:
 		int N;			// jumlah titik/garis
 		int velocity;	// kecepatan kapal
 		Point P1, P2;	// anchor point (statis)
 		Point position;	// posisi awal kapal
-		badanHeli badan;
-		ekorHeli ekor;
 		//Garis *G;
 		
 };
