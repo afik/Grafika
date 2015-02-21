@@ -1,6 +1,7 @@
 #include <iostream>
 #include "pixel.h"
 #include "kapal.h"
+#include "helikopter.h"
 
 using namespace std;
 
@@ -8,6 +9,7 @@ int main()
 {
 	Buffer buff;
 	Kapal destroyer;
+	Helikopter falcon;
 	int i=1;
 	
 	system("clear");
@@ -18,6 +20,10 @@ int main()
 		destroyer.clearKapal(buff);
 		destroyer.setVelocity(i);
 		destroyer.drawKapal(buff);
+		
+		falcon.clearHeli(buff);
+		falcon.setVelocity(i);
+		falcon.drawHeli(buff);
 		
 		i++;
 		usleep(5000);
