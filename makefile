@@ -1,13 +1,13 @@
 all: grapika
 
-tesafik: maintes.o buffer.o kapal.o garis.o pixel.o point.o warna.o
-	g++ -o tesafik maintes.o buffer.o kapal.o garis.o pixel.o point.o warna.o
+tesafik: maintesbola.o buffer.o kapal.o garis.o pixel.o point.o warna.o
+	g++ -o tesafik maintesbola.o buffer.o kapal.o garis.o pixel.o point.o warna.o
 
 grapika: main.o buffer.o kapal.o garis.o pixel.o point.o warna.o
 	g++ -o grapika main.o buffer.o kapal.o garis.o pixel.o point.o warna.o
 
-maintes.o : maintes.cpp
-	g++ -c maintes.cpp
+maintes.o : maintesbola.cpp
+	g++ -c maintesbola.cpp
 	
 main.o: main.cpp
 	g++ -c main.cpp
@@ -32,3 +32,6 @@ warna.o: warna.cpp
 
 clean:
 	rm *o grapika
+
+ctesafik:
+	rm *o tesafik

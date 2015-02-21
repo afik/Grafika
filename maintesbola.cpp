@@ -14,10 +14,7 @@ int main()
 	Point posisi2(300,400);
 	int tempx=40, tempy=200, x,y=200,j;
 	int t= 400, c = 1;
-	//circle(200,200,20,buff,*Warna::kuning());
-	
-	//pixel.putPixel(*Warna::kuning(),posisi,buff);
-	//pixel.putPixel(*Warna::biru(),posisi2,buff);
+
 	for (x = 40; x<602; x++) {
 		circle(tempx,tempy,20,buff,*Warna::hitam());
 		circle(x,y,20,buff,*Warna::kuning());
