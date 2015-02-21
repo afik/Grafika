@@ -12,11 +12,14 @@ int main()
 	char x;
 	int sudut = 0;
 	//system("clear");
-	
-	while(i<1000)
+	Point center(200,200);
+	while(i<1000 && center.getX() < 1300)
 	{
 	// 	//destroyer.drawKapal(buff);
 		baling.clearBaling(sudut-10,buff);
+		center.setX(center.getX()+10);
+		center.setY(center.getY()+10);
+		baling.setCenter(center);
 		baling.rotasiBaling(sudut,buff);
 		i++;
 		sudut+=10;
