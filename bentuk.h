@@ -12,12 +12,12 @@ class Bentuk{
 		~Bentuk(){}
 
 		void circle(Point center, int Radius, Buffer buf, Warna w);
-		void persegi(Point pojok, int panjang, int lebar);
-		void setengah_lingkaran(Point center, int Radius, Buffer buf);
+		void circle(int x, int y, int Radius, Buffer buf, Warna w);
+		void setengah_lingkaran(Point center, int Radius, Buffer buf, Warna w);
+		void setengah_lingkaran(int x, int y, int Radius, Buffer buf, Warna w);
 		
 	private:
-		Warna putih;
-		Warna hitam;
+		
 };
 
 #endif
