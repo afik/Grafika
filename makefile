@@ -1,8 +1,14 @@
 all: grapika
 
+tesafik: maintes.o buffer.o kapal.o garis.o pixel.o point.o warna.o
+	g++ -o tesafik maintes.o buffer.o kapal.o garis.o pixel.o point.o warna.o
+
 grapika: main.o buffer.o kapal.o garis.o pixel.o point.o warna.o
 	g++ -o grapika main.o buffer.o kapal.o garis.o pixel.o point.o warna.o
 
+maintes.o : maintes.cpp
+	g++ -c maintes.cpp
+	
 main.o: main.cpp
 	g++ -c main.cpp
 	
