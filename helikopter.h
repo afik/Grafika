@@ -3,6 +3,8 @@
 
 #include "garis.h"
 #include "buffer.h"
+#include "badanHeli.h"
+#include "ekorHeli.h"
 
 class Helikopter{
 	public:
@@ -29,6 +31,8 @@ class Helikopter{
 		int velocity;	// kecepatan kapal
 		Point P1, P2;	// anchor point (statis)
 		Point position;	// posisi awal kapal
+		badanHeli badan;
+		ekorHeli ekor;
 		//Garis *G;
 		
 };

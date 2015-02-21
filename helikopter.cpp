@@ -49,68 +49,9 @@ Point Helikopter::getAnchorP2()
 
 void Helikopter::drawHeli(Buffer buff)
 {
-	int i;
-	int n = 4;
-	Point badan[n];
-	Point ekor[n];
-	Warna putih;
+	badan.drawbadanHeli(buff, this->getVelocity());
+	ekor.drawekorHeli(buff, this->getVelocity());
 	
-	/** badan helikopter */
-	badan[0].setX(700);
-	badan[0].setY(100);
-	badan[1].setX(800);
-	badan[1].setY(100);
-	badan[2].setX(800);
-	badan[2].setY(150);
-	badan[3].setX(700);
-	badan[3].setY(150);
-	
-	
-	for(i=0; i<n; i++)
-	{
-		if(i<3)
-		{
-			Garis g(badan[i].getX()-this->getVelocity(), badan[i].getY(),
-					badan[i+1].getX()-this->getVelocity(), badan[i+1].getY());
-			g.drawLine(buff, putih);
-		}
-		else
-		{
-			Garis g(badan[i].getX()-this->getVelocity(), badan[i].getY(),
-					badan[0].getX()-this->getVelocity(), badan[0].getY());
-			g.drawLine(buff, putih);
-		}
-	}
-	/** end of badan helikopter*/
-	
-	/** ekor helikopter */
-	ekor[0].setX(800);
-	ekor[0].setY(115);
-	ekor[1].setX(900);
-	ekor[1].setY(115);
-	ekor[2].setX(930);
-	ekor[2].setY(100);
-	ekor[3].setX(930);
-	ekor[3].setY(130);
-	ekor[4].setX(800);
-	ekor[4].setY(130);
-	
-	for(i=0; i<n; i++)
-	{
-		if(i<4)
-		{
-			Garis g(ekor[i].getX()-this->getVelocity(), ekor[i].getY(),
-					ekor[i+1].getX()-this->getVelocity(), ekor[i+1].getY());
-			g.drawLine(buff, putih);
-		}
-		else
-		{
-			Garis g(ekor[i].getX()-this->getVelocity(), ekor[i].getY(),
-					ekor[0].getX()-this->getVelocity(), ekor[0].getY());
-			g.drawLine(buff, putih);
-		}
-	}
-	/** end of ekor helikopter*/
 
 	/** set anchor point */
 	this->P1.setX(100+this->getVelocity());
@@ -121,69 +62,8 @@ void Helikopter::drawHeli(Buffer buff)
 
 void Helikopter::clearHeli(Buffer buff)
 {
-	int i;
-	int n = 4;
-	Point badan[n];
-	Point ekor[n];
-	Point anjungan[n];
-	Point meriam[n];
-	Warna putih(0,0,0);
-
-	/** badan helikopter */
-	badan[0].setX(700);
-	badan[0].setY(100);
-	badan[1].setX(800);
-	badan[1].setY(100);
-	badan[2].setX(800);
-	badan[2].setY(150);
-	badan[3].setX(700);
-	badan[3].setY(150);
-	
-	for(i=0; i<n; i++)
-	{
-		if(i<3)
-		{
-			Garis g(badan[i].getX()-this->getVelocity()+1, badan[i].getY(),
-					badan[i+1].getX()-this->getVelocity()+1, badan[i+1].getY());
-			g.drawLine(buff, putih);
-		}
-		else
-		{
-			Garis g(badan[i].getX()-this->getVelocity()+1, badan[i].getY(),
-					badan[0].getX()-this->getVelocity()+1, badan[0].getY());
-			g.drawLine(buff, putih);
-		}
-	}
-	/** end of badan helikopter*/
-	
-	/** ekor helikopter */
-	ekor[0].setX(800);
-	ekor[0].setY(115);
-	ekor[1].setX(900);
-	ekor[1].setY(115);
-	ekor[2].setX(930);
-	ekor[2].setY(100);
-	ekor[3].setX(930);
-	ekor[3].setY(130);
-	ekor[4].setX(800);
-	ekor[4].setY(130);
-	
-	for(i=0; i<n; i++)
-	{
-		if(i<3)
-		{
-			Garis g(ekor[i].getX()-this->getVelocity()+1, ekor[i].getY(),
-					ekor[i+1].getX()-this->getVelocity()+1, ekor[i+1].getY());
-			g.drawLine(buff, putih);
-		}
-		else
-		{
-			Garis g(ekor[i].getX()-this->getVelocity()+1, ekor[i].getY(),
-					ekor[0].getX()-this->getVelocity()+1, ekor[0].getY());
-			g.drawLine(buff, putih);
-		}
-	}
-	/** end of ekor helikopter*/
+	badan.clearbadanHeli(buff, this->getVelocity());
+	ekor.clearekorHeli(buff, this->getVelocity());
 	
 	/** set anchor point */
 	this->P1.setX(100+this->getVelocity());
