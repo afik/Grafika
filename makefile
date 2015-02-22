@@ -1,10 +1,10 @@
 all: grapika
 
 tesafik: maintesbola.o buffer.o kapal.o garis.o pixel.o point.o warna.o
-	g++ -o tesafik maintesbola.o buffer.o kapal.o garis.o pixel.o point.o warna.o
+	g++ -o tesafik maintesbola.o buffer.o kapal.o garis.o pixel.o point.o warna.o scanline.o
 
 grapika: main.o bentuk.o buffer.o kapal.o  badanHeli.o ekorHeli.o helikopter.o garis.o pixel.o point.o warna.o
-	g++ -o grapika main.o buffer.o kapal.o  badanHeli.o ekorHeli.o helikopter.o garis.o pixel.o point.o warna.o
+	g++ -o grapika main.o buffer.o kapal.o  badanHeli.o ekorHeli.o helikopter.o garis.o pixel.o point.o warna.o scanline.o
 
 maintes.o : maintesbola.cpp
 	g++ -c maintesbola.cpp
@@ -41,6 +41,9 @@ warna.o: warna.cpp
 	
 bentuk.o: bentuk.cpp 
 	g++ -c bentuk.cpp
+
+scanline.o: scanline.cpp
+	g++ -c scanline.cpp
 
 clean:
 	rm *o grapika
