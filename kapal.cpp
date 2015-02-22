@@ -55,7 +55,7 @@ void Kapal::drawKapal(Buffer buff)
 	Point geladak[n];
 	Point anjungan[n];
 	Point meriam[n];
-	Warna putih;
+	Warna putih(5, 174, 179);
 	Scanline S;
 
 	/** lambung kapal */

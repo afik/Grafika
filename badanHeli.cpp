@@ -52,7 +52,9 @@ void badanHeli::drawbadanHeli(Buffer buff, int v)
 	int i;
 	int n = 4;
 	Point badan[n];
+	Warna Biru(236, 228, 15);
 	Warna putih;
+	Scanline S;
 	
 	/** badan badanHeli */
 	badan[0].setX(900);
@@ -81,7 +83,11 @@ void badanHeli::drawbadanHeli(Buffer buff, int v)
 		}
 	}
 	/** end of badan badanHeli*/
+	Garis G1(badan[0].getX()-v, badan[0].getY(), badan[3].getX()-v, badan[3].getY());
+	Garis G2(badan[1].getX()-v, badan[1].getY(), badan[2].getX()-v, badan[2].getY());
 
+	S.drawScanline(900-v, 100, 990-v, 125, G1, G2, Biru);
+	
 }
 
 void badanHeli::clearbadanHeli(Buffer buff, int v)

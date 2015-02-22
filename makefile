@@ -6,7 +6,7 @@ tesafik: maintesbola.o buffer.o kapal.o garis.o pixel.o point.o warna.o scanline
 grapika: main.o bentuk.o buffer.o kapal.o  badanHeli.o ekorHeli.o helikopter.o garis.o pixel.o point.o warna.o scanline.o
 	g++ -o grapika main.o buffer.o kapal.o  badanHeli.o ekorHeli.o helikopter.o garis.o pixel.o point.o warna.o scanline.o
 
-maintes.o : maintesbola.cpp
+maintes.o: maintesbola.cpp
 	g++ -c maintesbola.cpp
 	
 main.o: main.cpp
