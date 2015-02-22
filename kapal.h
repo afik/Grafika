@@ -3,6 +3,7 @@
 
 #include "garis.h"
 #include "buffer.h"
+#include "scanline.h"
 
 class Kapal{
 	public:
