@@ -6,6 +6,7 @@
 #include "badanHeli.h"
 #include "ekorHeli.h"
 #include "scanline.h"
+#include "bentuk.h"
 
 class Helikopter{
 	public:
