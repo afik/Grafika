@@ -1,10 +1,10 @@
 all: grapika
 
-tesafik: maintesbola.o buffer.o kapal.o garis.o pixel.o point.o warna.o scanline.o
-	g++ -o tesafik maintesbola.o buffer.o kapal.o garis.o pixel.o point.o warna.o scanline.o
+tesafik: maintesbola.o buffer.o kapal.o garis.o pixel.o point.o warna.o scanline.o bentuk.o
+	g++ -o tesafik maintesbola.o buffer.o kapal.o garis.o pixel.o point.o warna.o scanline.o bentuk.o
 
-grapika: main.o bentuk.o buffer.o kapal.o  badanHeli.o ekorHeli.o helikopter.o garis.o pixel.o point.o warna.o parasut.o scanline.o baling.o
-	g++ -o grapika main.o bentuk.o buffer.o kapal.o  badanHeli.o ekorHeli.o helikopter.o garis.o pixel.o point.o warna.o parasut.o scanline.o baling.o
+grapika: main.o bentuk.o buffer.o kapal.o  badanHeli.o ekorHeli.o helikopter.o garis.o pixel.o point.o warna.o parasut.o scanline.o baling.o peluru.o
+	g++ -o grapika main.o bentuk.o buffer.o kapal.o  badanHeli.o ekorHeli.o helikopter.o garis.o pixel.o point.o warna.o parasut.o scanline.o baling.o peluru.o
 
 kopter : mainBaling.o buffer.o baling.o pixel.o point.o garis.o warna.o
 	g++ -o kopter mainBaling.o buffer.o baling.o pixel.o point.o garis.o warna.o
@@ -56,6 +56,9 @@ parasut.o: parasut.cpp
 
 scanline.o: scanline.cpp
 	g++ -c scanline.cpp
+	
+peluru.o: peluru.cpp
+	g++ -c peluru.cpp
 
 clean:
 	rm *o grapika

@@ -87,7 +87,7 @@ void Kapal::drawKapal(Buffer buff)
 	Garis G1(lambung[0].getX()+this->getVelocity(), lambung[0].getY(), lambung[1].getX()+this->getVelocity(), lambung[1].getY());
 	Garis G2(lambung[3].getX()+this->getVelocity(), lambung[3].getY(), lambung[2].getX()+this->getVelocity(), lambung[2].getY());
 
-	S.drawScanline(100+this->getVelocity(), 300, 300+this->getVelocity(), 325, G1, G2, putih);
+	//S.drawScanline(100+this->getVelocity(), 300, 300+this->getVelocity(), 325, G1, G2, putih);
 	/** end of lambung kapal*/
 	
 	/** geladak kapal */

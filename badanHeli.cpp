@@ -96,7 +96,7 @@ void badanHeli::drawbadanHeli(Buffer buff, int scale, int v)
 	Garis G1(badan[0].getX()-v, badan[0].getY(), badan[3].getX()-v, badan[3].getY());
 	Garis G2(badan[1].getX()-v, badan[1].getY(), badan[2].getX()-v, badan[2].getY());
 
-	S.drawScanline(900-v, 100, 990-v, 125, G1, G2, Biru);
+	//S.drawScanline(900-v, 100, 990-v, 125, G1, G2, Biru);
 	
 }
 
