@@ -21,10 +21,11 @@ class badanHeli{
 		Point getPosition();
 		Point getAnchorP1();
 		Point getAnchorP2();
+		badanHeli getBadan();
 		
-		void drawbadanHeli(Buffer buff, int v);			// menggambar kapal
-		void clearbadanHeli(Buffer buff, int v);			// menghapus kapal
-		
+		void drawbadanHeli(Buffer buff, int scale, int v);			// menggambar kapal
+		void clearbadanHeli(Buffer buff, int scale, int v);			// menghapus kapal
+
 	private:
 		int N;			// jumlah titik/garis
 		int velocity;	// kecepatan kapal

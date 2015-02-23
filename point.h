@@ -16,6 +16,10 @@ class Point{
 		void setY(int y);
 		int getX();
 		int getY();
+		int getHeight(Point p1);
+		int getWidth(Point p1);
+		Point setHeight(int scale, Point p1);
+		Point setWidth(int scale, Point p1);
 		
 	private:
 		int x;

@@ -9,6 +9,7 @@ using namespace std;
 int main()
 {
 	Buffer buff;
+	char c;
 	Kapal destroyer;
 	Helikopter falcon;
 	Baling baling;
@@ -19,24 +20,21 @@ int main()
 	Point center;
 	system("clear");
 	
-	
-	
 	while(!kena)
+	//falcon.drawHeli(buff,2);
 	{
 		//destroyer.drawKapal(buff);
 		destroyer.clearKapal(buff);
 		destroyer.setVelocity(i);
 		destroyer.drawKapal(buff);
 		
-		falcon.clearHeli(buff);
+		falcon.clearHeli(buff,1);
 		falcon.setVelocity(i);
-		falcon.drawHeli(buff);
+		falcon.drawHeli(buff,1);
 		
 		//set posisi baling"
 		center.setX((falcon.getAnchorP1().getX()+falcon.getAnchorP2().getX())/2);
 		center.setY(falcon.getAnchorP1().getY()-20);
-		
-		//center.setY(center.getY());
 		
 		baling.clearBaling(sudut-10,buff);
 		center.setX(center.getX()-1);
