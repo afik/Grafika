@@ -4,12 +4,10 @@
 #include "buffer.h"
 #include "garis.h"
 
-using namespace std;
-
 class Bentuk{
 	public:
 		Bentuk();
-		~Bentuk(){}
+		~Bentuk();
 
 		void circle(Point center, int Radius, Buffer buf, Warna w);
 		void circle(int x, int y, int Radius, Buffer buf, Warna w);

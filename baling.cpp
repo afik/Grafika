@@ -136,15 +136,13 @@ void Baling::rotasiBaling(int sudut, Buffer buf){
 Point Baling::getCenter(){
 	return center;
 }
-int Baling::getXCenter(){
-	return center.getX();
-}
-int Baling::getYCenter(){
-	return center.getY();
+void Baling::setCenter(Point _center){
+	center.setX(_center.getX());
+	center.setX(_center.getY());
 }
 void Baling::clearBaling(int sudut, Buffer buf){
 	int radius = 3;
-	circle(radius, buf, putih); 
+	circle(radius, buf, hitam); 
 	Point atas1(center.getX()+30,center.getY()-40);
 	Point bawah1(center.getX()+50,center.getY()-15);
 	Point jbawah1(center.getX()+radius,center.getY());
@@ -183,8 +181,8 @@ void Baling::clearBaling(int sudut, Buffer buf){
 Point Baling::rotasiTitik(Point p, int sudut){
 	Point rot;
 	float sudutrad = (float) sudut * 2 * PI / 360;
-	float xaksen = (p.getX() - center.getX()) * cos(sudutrad) + (p.getX() - center.getX()) * sin(sudutrad) + center.getX();
-	float yaksen = (p.getY() - center.getY())-1 * sin(sudutrad) + (p.getY() - center.getY()) * cos(sudutrad) + center.getY();
+	float xaksen = (p.getX() - center.getX()) * cos(sudutrad) - (p.getY() - center.getY()) * sin(sudutrad) + center.getX();
+	float yaksen = (p.getX() - center.getX()) * sin(sudutrad) + (p.getY() - center.getY()) * cos(sudutrad) + center.getY();
 	Point point(convertToInt(xaksen), convertToInt(yaksen));
 	return point;
 }

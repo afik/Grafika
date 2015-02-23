@@ -19,8 +19,7 @@ class Baling{
 		void baling(Buffer buf);
 		void rotasiBaling(int sudut, Buffer buf);
 		Point getCenter();
-		int getXCenter();
-		int getYCenter();
+		void setCenter(Point _center);
 		void clearBaling(int sudut, Buffer buf);
 	private:
 		Point rotasiTitik(Point p, int sudut);

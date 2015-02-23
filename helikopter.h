@@ -5,6 +5,7 @@
 #include "buffer.h"
 #include "badanHeli.h"
 #include "ekorHeli.h"
+#include "scanline.h"
 
 class Helikopter{
 	public:

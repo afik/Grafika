@@ -3,6 +3,9 @@
 Bentuk::Bentuk(){
 	
 }
+Bentuk::~Bentuk(){
+	
+}
 
 void Bentuk::circle(Point center, int Radius, Buffer buf, Warna w)
 {

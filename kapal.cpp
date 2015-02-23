@@ -55,8 +55,9 @@ void Kapal::drawKapal(Buffer buff)
 	Point geladak[n];
 	Point anjungan[n];
 	Point meriam[n];
-	Warna putih;
-	
+	Warna putih(5, 174, 179);
+	Scanline S;
+
 	/** lambung kapal */
 	lambung[0].setX(100);
 	lambung[0].setY(300);
@@ -82,6 +83,11 @@ void Kapal::drawKapal(Buffer buff)
 			g.drawLine(buff, putih);
 		}
 	}
+	//Garis g(230, 300, 350, 325);
+	Garis G1(lambung[0].getX()+this->getVelocity(), lambung[0].getY(), lambung[1].getX()+this->getVelocity(), lambung[1].getY());
+	Garis G2(lambung[3].getX()+this->getVelocity(), lambung[3].getY(), lambung[2].getX()+this->getVelocity(), lambung[2].getY());
+
+	S.drawScanline(100+this->getVelocity(), 300, 300+this->getVelocity(), 325, G1, G2, putih);
 	/** end of lambung kapal*/
 	
 	/** geladak kapal */
@@ -110,6 +116,7 @@ void Kapal::drawKapal(Buffer buff)
 		}
 	}
 	/** end of geladak kapal*/
+
 	
 	/** anjungan kapal */
 	anjungan[0].setX(120);
@@ -180,7 +187,7 @@ void Kapal::clearKapal(Buffer buff)
 	Point geladak[n];
 	Point anjungan[n];
 	Point meriam[n];
-	Warna hitam(0,0,0);
+	Warna putih(0,0,0);
 	
 	/** lambung kapal */
 	lambung[0].setX(100);
@@ -196,15 +203,15 @@ void Kapal::clearKapal(Buffer buff)
 	{
 		if(i<3)
 		{
-			Garis g(lambung[i].getX()+this->getVelocity(), lambung[i].getY(),
-					lambung[i+1].getX()+this->getVelocity(), lambung[i+1].getY());
-			g.drawLine(buff, hitam);
+			Garis g(lambung[i].getX()+this->getVelocity()-1, lambung[i].getY(),
+					lambung[i+1].getX()+this->getVelocity()-1, lambung[i+1].getY());
+			g.drawLine(buff, putih);
 		}
 		else
 		{
-			Garis g(lambung[i].getX()+this->getVelocity(), lambung[i].getY(),
-					lambung[0].getX()+this->getVelocity(), lambung[0].getY());
-			g.drawLine(buff, hitam);
+			Garis g(lambung[i].getX()+this->getVelocity()-1, lambung[i].getY(),
+					lambung[0].getX()+this->getVelocity()-1, lambung[0].getY());
+			g.drawLine(buff, putih);
 		}
 	}
 	/** end of lambung kapal*/
@@ -223,15 +230,15 @@ void Kapal::clearKapal(Buffer buff)
 	{
 		if(i<3)
 		{
-			Garis g(geladak[i].getX()+this->getVelocity(), geladak[i].getY(),
-					geladak[i+1].getX()+this->getVelocity(), geladak[i+1].getY());
-			g.drawLine(buff, hitam);
+			Garis g(geladak[i].getX()+this->getVelocity()-1, geladak[i].getY(),
+					geladak[i+1].getX()+this->getVelocity()-1, geladak[i+1].getY());
+			g.drawLine(buff, putih);
 		}
 		else
 		{
-			Garis g(geladak[i].getX()+this->getVelocity(), geladak[i].getY(),
-					geladak[0].getX()+this->getVelocity(), geladak[0].getY());
-			g.drawLine(buff, hitam);
+			Garis g(geladak[i].getX()+this->getVelocity()-1, geladak[i].getY(),
+					geladak[0].getX()+this->getVelocity()-1, geladak[0].getY());
+			g.drawLine(buff, putih);
 		}
 	}
 	/** end of geladak kapal*/
@@ -250,15 +257,15 @@ void Kapal::clearKapal(Buffer buff)
 	{
 		if(i<3)
 		{
-			Garis g(anjungan[i].getX()+this->getVelocity(), anjungan[i].getY(),
-					anjungan[i+1].getX()+this->getVelocity(), anjungan[i+1].getY());
-			g.drawLine(buff, hitam);
+			Garis g(anjungan[i].getX()+this->getVelocity()-1, anjungan[i].getY(),
+					anjungan[i+1].getX()+this->getVelocity()-1, anjungan[i+1].getY());
+			g.drawLine(buff, putih);
 		}
 		else
 		{
-			Garis g(anjungan[i].getX()+this->getVelocity(), anjungan[i].getY(),
-					anjungan[0].getX()+this->getVelocity(), anjungan[0].getY());
-			g.drawLine(buff, hitam);
+			Garis g(anjungan[i].getX()+this->getVelocity()-1, anjungan[i].getY(),
+					anjungan[0].getX()+this->getVelocity()-1, anjungan[0].getY());
+			g.drawLine(buff, putih);
 		}
 	}
 	/** end of anjungan kapal*/
@@ -277,15 +284,15 @@ void Kapal::clearKapal(Buffer buff)
 	{
 		if(i<3)
 		{
-			Garis g(meriam[i].getX()+this->getVelocity(), meriam[i].getY(),
-					meriam[i+1].getX()+this->getVelocity(), meriam[i+1].getY());
-			g.drawLine(buff, hitam);
+			Garis g(meriam[i].getX()+this->getVelocity()-1, meriam[i].getY(),
+					meriam[i+1].getX()+this->getVelocity()-1, meriam[i+1].getY());
+			g.drawLine(buff, putih);
 		}
 		else
 		{
-			Garis g(meriam[i].getX()+this->getVelocity(), meriam[i].getY(),
-					meriam[0].getX()+this->getVelocity(), meriam[0].getY());
-			g.drawLine(buff, hitam);
+			Garis g(meriam[i].getX()+this->getVelocity()-1, meriam[i].getY(),
+					meriam[0].getX()+this->getVelocity()-1, meriam[0].getY());
+			g.drawLine(buff, putih);
 		}
 	}
 	/** end of meriam kapal*/
