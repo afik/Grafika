@@ -138,7 +138,7 @@ Point Baling::getCenter(){
 }
 void Baling::setCenter(Point _center){
 	center.setX(_center.getX());
-	center.setX(_center.getY());
+	center.setY(_center.getY());
 }
 void Baling::clearBaling(int sudut, Buffer buf){
 	int radius = 3;

@@ -3,17 +3,26 @@ all: grapika
 tesafik: maintesbola.o buffer.o kapal.o garis.o pixel.o point.o warna.o scanline.o
 	g++ -o tesafik maintesbola.o buffer.o kapal.o garis.o pixel.o point.o warna.o scanline.o
 
-grapika: main.o bentuk.o buffer.o kapal.o  badanHeli.o ekorHeli.o helikopter.o garis.o pixel.o point.o warna.o parasut.o scanline.o
-	g++ -o grapika main.o bentuk.o buffer.o kapal.o  badanHeli.o ekorHeli.o helikopter.o garis.o pixel.o point.o warna.o parasut.o scanline.o
+grapika: main.o bentuk.o buffer.o kapal.o  badanHeli.o ekorHeli.o helikopter.o garis.o pixel.o point.o warna.o parasut.o scanline.o baling.o
+	g++ -o grapika main.o bentuk.o buffer.o kapal.o  badanHeli.o ekorHeli.o helikopter.o garis.o pixel.o point.o warna.o parasut.o scanline.o baling.o
 
+kopter : mainBaling.o buffer.o baling.o pixel.o point.o garis.o warna.o
+	g++ -o kopter mainBaling.o buffer.o baling.o pixel.o point.o garis.o warna.o
+	
 maintes.o: maintesbola.cpp
 	g++ -c maintesbola.cpp
+
+mainBaling.o: mainBaling.cpp
+	g++ -c mainBaling.cpp
 	
 main.o: main.cpp
 	g++ -c main.cpp
 	
 buffer.o: buffer.cpp
 	g++ -c buffer.cpp
+	
+baling.o: baling.cpp
+	g++ -c baling.cpp
 
 garis.o: garis.cpp
 	g++ -c garis.cpp
@@ -50,6 +59,9 @@ scanline.o: scanline.cpp
 
 clean:
 	rm *o grapika
+	
+clean_kopter:
+	rm *o kopter
 
 ctesafik:
 	rm *o tesafik

@@ -52,12 +52,8 @@ void Helikopter::drawHeli(Buffer buff)
 	badan.drawbadanHeli(buff, this->getVelocity());
 	ekor.drawekorHeli(buff, this->getVelocity());
 	
-
-	/** set anchor point */
-	this->P1.setX(100+this->getVelocity());
-	this->P1.setY(265);
-	this->P2.setX(230+this->getVelocity());
-	this->P2.setY(325);
+	this->P1 = badan.getAnchorP1();
+	this->P2 = badan.getAnchorP2();
 }
 
 void Helikopter::clearHeli(Buffer buff)
@@ -65,10 +61,7 @@ void Helikopter::clearHeli(Buffer buff)
 	badan.clearbadanHeli(buff, this->getVelocity());
 	ekor.clearekorHeli(buff, this->getVelocity());
 	
-	/** set anchor point */
-	this->P1.setX(100+this->getVelocity());
-	this->P1.setY(265);
-	this->P2.setX(230+this->getVelocity());
-	this->P2.setY(325);
+	this->P1 = badan.getAnchorP1();
+	this->P2 = badan.getAnchorP2();
 }
 

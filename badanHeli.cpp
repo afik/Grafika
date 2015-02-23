@@ -66,6 +66,11 @@ void badanHeli::drawbadanHeli(Buffer buff, int v)
 	badan[3].setX(900);
 	badan[3].setY(150);
 	
+	this->P1.setX(900-v);
+	this->P1.setY(100);
+	this->P2.setX(1000-v);
+	this->P2.setY(150);
+	
 	
 	for(i=0; i<n; i++)
 	{
@@ -106,6 +111,11 @@ void badanHeli::clearbadanHeli(Buffer buff, int v)
 	badan[2].setY(150);
 	badan[3].setX(900);
 	badan[3].setY(150);
+	
+	this->P1.setX(900-v);
+	this->P1.setY(100);
+	this->P2.setX(1000-v);
+	this->P2.setY(150);
 	
 	for(i=0; i<n; i++)
 	{

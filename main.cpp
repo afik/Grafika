@@ -2,6 +2,7 @@
 #include "pixel.h"
 #include "kapal.h"
 #include "helikopter.h"
+#include "baling.h"
 
 using namespace std;
 
@@ -10,11 +11,17 @@ int main()
 	Buffer buff;
 	Kapal destroyer;
 	Helikopter falcon;
+	Baling baling;
 	int i=1;
-	
+	bool kena = false;
+	//baling
+	int sudut = 0;
+	Point center;
 	system("clear");
 	
-	while(i<1000)
+	
+	
+	while(!kena)
 	{
 		//destroyer.drawKapal(buff);
 		destroyer.clearKapal(buff);
@@ -25,7 +32,19 @@ int main()
 		falcon.setVelocity(i);
 		falcon.drawHeli(buff);
 		
+		//set posisi baling"
+		center.setX((falcon.getAnchorP1().getX()+falcon.getAnchorP2().getX())/2);
+		center.setY(falcon.getAnchorP1().getY()-20);
+		
+		//center.setY(center.getY());
+		
+		baling.clearBaling(sudut-10,buff);
+		center.setX(center.getX()-1);
+		center.setY(center.getY());
+		baling.setCenter(center);
+		baling.rotasiBaling(sudut,buff);
 		i++;
+		sudut+=10;
 		usleep(5000);
 	}
 
