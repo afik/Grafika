@@ -33,7 +33,7 @@ class Parasut{
 		int radius;
 		Point P1, P2;	// anchor point (statis)
 		Point position;	// posisi awal parasut
-		Bentuk b;
+		//Bentuk b;
 		
 };
 

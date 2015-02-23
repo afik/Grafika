@@ -66,6 +66,7 @@ void Parasut::drawParasut(Buffer buff)
 	Warna putih;
 	int radius_kepala;
 	int radius_badan;
+	Bentuk b;
 	
 	/** Parasut */
 	b.setengah_lingkaran(this->getPosition().getX(), this->getPosition().getY()+this->getVelocity(), this->getRadius(), buff, putih);
@@ -141,6 +142,7 @@ void Parasut::clearParasut(Buffer buff)
 	Warna hitam(0,0,0);
 	int radius_kepala;
 	int radius_badan;
+	Bentuk b;
 	
 	/** Parasut */
 	b.setengah_lingkaran(this->getPosition().getX(), this->getPosition().getY()+this->getVelocity(), this->getRadius(), buff, hitam);
