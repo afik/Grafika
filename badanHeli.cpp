@@ -47,7 +47,8 @@ Point badanHeli::getAnchorP2()
 	return P2;
 }
 
-void badanHeli::drawbadanHeli(Buffer buff, int v)
+
+void badanHeli::drawbadanHeli(Buffer buff, int scale, int v)
 {
 	int i;
 	int n = 4;
@@ -64,6 +65,10 @@ void badanHeli::drawbadanHeli(Buffer buff, int v)
 	badan[3].setX(900);
 	badan[3].setY(150);
 	
+	badan[1] = badan[0].setWidth(scale, badan[1]);
+	badan[2] = badan[1].setHeight(scale, badan[2]);
+	badan[3] = badan[2].setWidth(scale, badan[3]);
+	badan[0] = badan[3].setHeight(scale, badan[0]);
 	
 	for(i=0; i<n; i++)
 	{
@@ -84,7 +89,7 @@ void badanHeli::drawbadanHeli(Buffer buff, int v)
 
 }
 
-void badanHeli::clearbadanHeli(Buffer buff, int v)
+void badanHeli::clearbadanHeli(Buffer buff, int scale, int v)
 {
 	int i;
 	int n = 4;
@@ -100,7 +105,12 @@ void badanHeli::clearbadanHeli(Buffer buff, int v)
 	badan[2].setY(150);
 	badan[3].setX(900);
 	badan[3].setY(150);
-	
+
+	badan[1] = badan[0].setWidth(scale, badan[1]);
+	badan[2] = badan[1].setHeight(scale, badan[2]);
+	badan[3] = badan[2].setWidth(scale, badan[3]);
+	badan[0] = badan[3].setHeight(scale, badan[0]);	
+
 	for(i=0; i<n; i++)
 	{
 		if(i<3)
@@ -115,7 +125,9 @@ void badanHeli::clearbadanHeli(Buffer buff, int v)
 					badan[0].getX()-v, badan[0].getY());
 			g.drawLine(buff, putih);
 		}
+		
 	}
 	/** end of badan helikopter*/
 }
+
 

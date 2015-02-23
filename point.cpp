@@ -1,4 +1,5 @@
 #include "point.h"
+#include <stdlib.h>
 
 Point::Point()
 {
@@ -44,4 +45,50 @@ int Point::getX()
 int Point::getY()
 {
 	return y;
+}
+
+int Point::getHeight(Point p1) {
+
+	int jarak;
+
+	jarak = abs(getY() - p1.getY());
+	return jarak;
+}
+
+int Point::getWidth(Point p1) {
+	int jarak;
+
+	jarak = abs(getX() - p1.getX());
+	return jarak;
+}
+
+Point Point::setHeight(int scale, Point p1) {
+
+
+	static int length = getHeight(p1);
+	if(getY()<p1.getY()) {
+
+		setY(getY() - (length*(scale - 1)/2));
+		p1.setY(p1.getY() + (length*(scale - 1)/2));
+	}
+	else {
+		setY(getY() + (length*(scale - 1)/2));
+		p1.setY(p1.getY() - (length*(scale - 1)/2)); 	
+	}
+	return p1;
+}
+		
+Point Point::setWidth(int scale, Point p1) {
+
+	static int length = getWidth(p1);
+	if(getX()<p1.getX()) {
+		setX(getX() - (length*(scale - 1)/2));
+		p1.setX(p1.getX() + (length*(scale - 1)/2));
+	}
+	else {
+		setX(getX() + (length*(scale - 1)/2));
+		p1.setX(p1.getX() - (length*(scale - 1)/2)); 	
+	}
+
+	return p1;
 }

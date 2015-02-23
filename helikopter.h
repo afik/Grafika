@@ -23,8 +23,8 @@ class Helikopter{
 		Point getAnchorP1();
 		Point getAnchorP2();
 		
-		void drawHeli(Buffer buff);			// menggambar kapal
-		void clearHeli(Buffer buff);			// menghapus kapal
+		void drawHeli(Buffer buff, int scale);			// menggambar kapal
+		void clearHeli(Buffer buff, int scale);			// menghapus kapal
 		
 	private:
 		int N;			// jumlah titik/garis

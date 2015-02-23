@@ -47,10 +47,11 @@ Point Helikopter::getAnchorP2()
 	return P2;
 }
 
-void Helikopter::drawHeli(Buffer buff)
+void Helikopter::drawHeli(Buffer buff, int scale)
 {
-	badan.drawbadanHeli(buff, this->getVelocity());
-	ekor.drawekorHeli(buff, this->getVelocity());
+	badan.drawbadanHeli(buff, scale, this->getVelocity());
+	//badan.zoom(buff, 2, this->getVelocity());
+	//ekor.drawekorHeli(buff, this->getVelocity());
 	
 
 	/** set anchor point */
@@ -60,9 +61,9 @@ void Helikopter::drawHeli(Buffer buff)
 	this->P2.setY(325);
 }
 
-void Helikopter::clearHeli(Buffer buff)
+void Helikopter::clearHeli(Buffer buff, int scale)
 {
-	badan.clearbadanHeli(buff, this->getVelocity());
+	badan.clearbadanHeli(buff, scale, this->getVelocity());
 	ekor.clearekorHeli(buff, this->getVelocity());
 	
 	/** set anchor point */
@@ -71,4 +72,3 @@ void Helikopter::clearHeli(Buffer buff)
 	this->P2.setX(230+this->getVelocity());
 	this->P2.setY(325);
 }
-
