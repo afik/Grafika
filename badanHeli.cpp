@@ -91,7 +91,7 @@ void badanHeli::drawbadanHeli(Buffer buff, int scale, int v)
 	Garis G1(badan[0].getX()-v, badan[0].getY(), badan[3].getX()-v, badan[3].getY());
 	Garis G2(badan[1].getX()-v, badan[1].getY(), badan[2].getX()-v, badan[2].getY());
 
-	S.drawScanline(900-v, 100, 990-v, 125, G1, G2, Biru);
+	//S.drawScanline(900-v, 100, 990-v, 125, G1, G2, Biru);
 	
 }
 
@@ -136,4 +136,95 @@ void badanHeli::clearbadanHeli(Buffer buff, int scale, int v)
 	/** end of badan helikopter*/
 }
 
+void badanHeli::drawbadanJatuh(Buffer buff, int scale, int v)
+{
+	int i;
+	int n = 4;
+	Point badan[n];
+	Warna Biru(236, 228, 15);
+	Warna putih;
+	Scanline S;
+	
+	/** badan badanHeli */
+	badan[0].setX(900);
+	badan[0].setY(100);
+	badan[1].setX(1000);
+	badan[1].setY(100);
+	badan[2].setX(1000);
+	badan[2].setY(150);
+	badan[3].setX(900);
+	badan[3].setY(150);
+	
+	badan[1] = badan[0].setWidth(scale, badan[1]);
+	badan[2] = badan[1].setHeight(scale, badan[2]);
+	badan[3] = badan[2].setWidth(scale, badan[3]);
+	badan[0] = badan[3].setHeight(scale, badan[0]);
+	
+	for(i=0; i<n; i++)
+	{
+		if(i<3)
+		{
+			Garis g(badan[i].getX(), badan[i].getY()+v,
+					badan[i+1].getX(), badan[i+1].getY()+v);
+			g.drawLine(buff, putih);
+		}
+		else
+		{
+			Garis g(badan[i].getX(), badan[i].getY()+v,
+					badan[0].getX(), badan[0].getY()+v);
+			g.drawLine(buff, putih);
+		}
+	}
+	/** end of badan badanHeli*/
+	Garis G1(badan[0].getX(), badan[0].getY()+v, badan[3].getX(), badan[3].getY()+v);
+	Garis G2(badan[1].getX(), badan[1].getY()+v, badan[2].getX(), badan[2].getY()+v);
 
+	//S.drawScanline(900-v, 100, 990-v, 125, G1, G2, Biru);
+	
+}
+
+void badanHeli::clearbadanJatuh(Buffer buff, int scale, int v)
+{
+	int i;
+	int n = 4;
+	Point badan[n];
+	Warna putih(0,0,0);
+	Scanline S;
+	
+	/** badan badanHeli */
+	badan[0].setX(900);
+	badan[0].setY(100);
+	badan[1].setX(1000);
+	badan[1].setY(100);
+	badan[2].setX(1000);
+	badan[2].setY(150);
+	badan[3].setX(900);
+	badan[3].setY(150);
+	
+	badan[1] = badan[0].setWidth(scale, badan[1]);
+	badan[2] = badan[1].setHeight(scale, badan[2]);
+	badan[3] = badan[2].setWidth(scale, badan[3]);
+	badan[0] = badan[3].setHeight(scale, badan[0]);
+	
+	for(i=0; i<n; i++)
+	{
+		if(i<3)
+		{
+			Garis g(badan[i].getX(), badan[i].getY()+v,
+					badan[i+1].getX(), badan[i+1].getY()+v);
+			g.drawLine(buff, putih);
+		}
+		else
+		{
+			Garis g(badan[i].getX(), badan[i].getY()+v,
+					badan[0].getX(), badan[0].getY()+v);
+			g.drawLine(buff, putih);
+		}
+	}
+	/** end of badan badanHeli*/
+	Garis G1(badan[0].getX(), badan[0].getY()+v, badan[3].getX(), badan[3].getY()+v);
+	Garis G2(badan[1].getX(), badan[1].getY()+v, badan[2].getX(), badan[2].getY()+v);
+
+	//S.drawScanline(900-v, 100, 990-v, 125, G1, G2, Biru);
+	
+}

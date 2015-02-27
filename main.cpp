@@ -23,9 +23,9 @@ int main()
 		destroyer.setVelocity(i);
 		destroyer.drawKapal(buff);
 		
-		falcon.clearHeli(buff,2);
+		falcon.clearJatuh(buff,1);
 		falcon.setVelocity(i);
-		falcon.drawHeli(buff,2);
+		falcon.drawJatuh(buff,1);
 		
 		i++;
 		usleep(5000);

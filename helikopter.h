@@ -26,6 +26,8 @@ class Helikopter{
 		
 		void drawHeli(Buffer buff, int scale);			// menggambar kapal
 		void clearHeli(Buffer buff, int scale);			// menghapus kapal
+		void drawJatuh(Buffer buff, int scale);
+		void clearJatuh(Buffer buff, int scale);
 		
 	private:
 		int N;			// jumlah titik/garis

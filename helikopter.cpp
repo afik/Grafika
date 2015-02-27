@@ -51,7 +51,7 @@ void Helikopter::drawHeli(Buffer buff, int scale)
 {
 	badan.drawbadanHeli(buff, scale, this->getVelocity());
 	//badan.zoom(buff, 2, this->getVelocity());
-	//ekor.drawekorHeli(buff, this->getVelocity());
+	ekor.drawekorHeli(buff, this->getVelocity());
 	
 
 	/** set anchor point */
@@ -71,4 +71,25 @@ void Helikopter::clearHeli(Buffer buff, int scale)
 	this->P1.setY(265);
 	this->P2.setX(230+this->getVelocity());
 	this->P2.setY(325);
+}
+
+void Helikopter::drawJatuh(Buffer buff, int scale) {
+	badan.drawbadanJatuh(buff, scale, this->getVelocity());
+	ekor.drawekorJatuh(buff, this->getVelocity());
+	/** set anchor point */
+	this->P1.setX(100+this->getVelocity());
+	this->P1.setY(265);
+	this->P2.setX(230+this->getVelocity());
+	this->P2.setY(325);
+}
+
+void Helikopter::clearJatuh(Buffer buff, int scale) {
+	badan.clearbadanJatuh(buff, scale, this->getVelocity());
+	ekor.clearekorJatuh(buff, this->getVelocity());
+	/** set anchor point */
+	this->P1.setX(100+this->getVelocity());
+	this->P1.setY(265);
+	this->P2.setX(230+this->getVelocity());
+	this->P2.setY(325);
+
 }

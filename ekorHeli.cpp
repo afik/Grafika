@@ -121,3 +121,76 @@ void ekorHeli::clearekorHeli(Buffer buff, int v)
 	/** end of ekor helikopter*/
 }
 
+void ekorHeli::drawekorJatuh(Buffer buff, int v)
+{
+	int i;
+	int n = 5;
+	Point ekor[n];
+	Warna putih;
+	
+	/** ekor helikopter */
+	ekor[0].setX(1030);
+	ekor[0].setY(115);
+	ekor[1].setX(1130);
+	ekor[1].setY(115);
+	ekor[2].setX(1160);
+	ekor[2].setY(100);
+	ekor[3].setX(1160);
+	ekor[3].setY(130);
+	ekor[4].setX(1030);
+	ekor[4].setY(130);
+	
+	for(i=0; i<n; i++)
+	{
+		if(i<4)
+		{
+			Garis g(ekor[i].getX(), ekor[i].getY()+v,
+					ekor[i+1].getX(), ekor[i+1].getY()+v);
+			g.drawLine(buff, putih);
+		}
+		else
+		{
+			Garis g(ekor[i].getX(), ekor[i].getY()+v,
+					ekor[0].getX(), ekor[0].getY()+v);
+			g.drawLine(buff, putih);
+		}
+	}
+	/** end of ekor helikopter*/
+}
+
+void ekorHeli::clearekorJatuh(Buffer buff, int v)
+{
+	int i;
+	int n = 5;
+	Point ekor[n];
+	Warna putih(0,0,0);
+	
+	/** ekor helikopter */
+	ekor[0].setX(1030);
+	ekor[0].setY(115);
+	ekor[1].setX(1130);
+	ekor[1].setY(115);
+	ekor[2].setX(1160);
+	ekor[2].setY(100);
+	ekor[3].setX(1160);
+	ekor[3].setY(130);
+	ekor[4].setX(1030);
+	ekor[4].setY(130);
+	
+	for(i=0; i<n; i++)
+	{
+		if(i<4)
+		{
+			Garis g(ekor[i].getX(), ekor[i].getY()+v,
+					ekor[i+1].getX(), ekor[i+1].getY()+v);
+			g.drawLine(buff, putih);
+		}
+		else
+		{
+			Garis g(ekor[i].getX(), ekor[i].getY()+v,
+					ekor[0].getX(), ekor[0].getY()+v);
+			g.drawLine(buff, putih);
+		}
+	}
+	/** end of ekor helikopter*/
+}

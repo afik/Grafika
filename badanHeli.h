@@ -25,6 +25,8 @@ class badanHeli{
 		
 		void drawbadanHeli(Buffer buff, int scale, int v);			// menggambar kapal
 		void clearbadanHeli(Buffer buff, int scale, int v);			// menghapus kapal
+		void drawbadanJatuh(Buffer buff, int scale, int v);			// badan heli jatuh
+		void clearbadanJatuh(Buffer buff, int scale, int v);			// hapus heli jatuh
 
 	private:
 		int N;			// jumlah titik/garis
