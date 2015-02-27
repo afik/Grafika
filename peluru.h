@@ -1,7 +1,7 @@
 #ifndef _PELURU_H
 #define _PELURU_H
 
-#include "garis.h"
+#include "bentuk.h"
 
 class Peluru {
 	public :

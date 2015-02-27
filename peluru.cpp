@@ -4,7 +4,7 @@ Peluru::Peluru(int posisiX, int posisiY)		// ctor
 {
 		titikPusatPeluru.setX(posisiX);
 		titikPusatPeluru.setY(posisiY);
-		radianPeluru = 10;
+		radianPeluru = 5;
 }
 Peluru::Peluru()											// ctor default
 {
@@ -16,47 +16,20 @@ Peluru::~Peluru()											// dtor
 }
 
 void Peluru::drawPeluru()									// prosedur untuk menggambar peluru di titik pusat peluru
-{
-	// Definisikan titik ujung peluru
-	Point titikKiriAtas (titikPusatPeluru.getX()-radianPeluru, titikPusatPeluru.getY()-radianPeluru);
-	Point titikKiriBawah (titikPusatPeluru.getX()-radianPeluru, titikPusatPeluru.getY()+radianPeluru);
-	Point titikKananAtas (titikPusatPeluru.getX()+radianPeluru, titikPusatPeluru.getY()-radianPeluru);
-	Point titikKananBawah (titikPusatPeluru.getX()+radianPeluru, titikPusatPeluru.getY()+radianPeluru);
-				
-	// Buat peluru berbentuk persegi (asumsi sementara) dari titik ujung peluru
-	Garis garisPeluru1(titikKiriAtas,titikKananAtas); 
-	Garis garisPeluru2(titikKiriAtas,titikKiriBawah);
-	Garis garisPeluru3(titikKananAtas,titikKananBawah);
-	Garis garisPeluru4(titikKananBawah,titikKiriBawah);
-	
-	garisPeluru1.drawLine(frameBuffer,warnaGarisPeluru);
-	garisPeluru2.drawLine(frameBuffer,warnaGarisPeluru);
-	garisPeluru3.drawLine(frameBuffer,warnaGarisPeluru);
-	garisPeluru4.drawLine(frameBuffer,warnaGarisPeluru);
+{	
+	warnaGarisPeluru.setRed(255);
+	warnaGarisPeluru.setGreen(255);
+	warnaGarisPeluru.setBlue(255);
+	Bentuk circleDrawer;
+	circleDrawer.circle(titikPusatPeluru, radianPeluru, frameBuffer, warnaGarisPeluru);
 }
 void Peluru::clearPeluru()  								// prosedur untuk menghilangkan gambar peluru dari layar
 {
-	// Definisikan titik ujung peluru
-	Point titikKiriAtas (titikPusatPeluru.getX()-radianPeluru, titikPusatPeluru.getY()-radianPeluru);
-	Point titikKiriBawah (titikPusatPeluru.getX()-radianPeluru, titikPusatPeluru.getY()+radianPeluru);
-	Point titikKananAtas (titikPusatPeluru.getX()+radianPeluru, titikPusatPeluru.getY()-radianPeluru);
-	Point titikKananBawah (titikPusatPeluru.getX()+radianPeluru, titikPusatPeluru.getY()+radianPeluru);
-	
-	// Set warna peluru jadi transparan
 	warnaGarisPeluru.setRed(0);
-	warnaGarisPeluru.setBlue(0);
 	warnaGarisPeluru.setGreen(0);
-				
-	// Gambar (seolah-olah) peluru dengan warna transparan
-	Garis garisPeluru1(titikKiriAtas,titikKananAtas); 
-	Garis garisPeluru2(titikKiriAtas,titikKiriBawah);
-	Garis garisPeluru3(titikKananAtas,titikKananBawah);
-	Garis garisPeluru4(titikKananBawah,titikKiriBawah);
-	
-	garisPeluru1.drawLine(frameBuffer,warnaGarisPeluru);
-	garisPeluru2.drawLine(frameBuffer,warnaGarisPeluru);
-	garisPeluru3.drawLine(frameBuffer,warnaGarisPeluru);
-	garisPeluru4.drawLine(frameBuffer,warnaGarisPeluru);
+	warnaGarisPeluru.setBlue(0);
+	Bentuk circleDrawer;
+	circleDrawer.circle(titikPusatPeluru, radianPeluru, frameBuffer, warnaGarisPeluru);
 }
 void Peluru::luncurkanPeluru(int posisiOrdinatPesawat)		// prosedur untuk meluncurkan peluru, asumsi gerak peluru konstan
 {
@@ -65,9 +38,6 @@ void Peluru::luncurkanPeluru(int posisiOrdinatPesawat)		// prosedur untuk melunc
 		clearPeluru();
 		setAbsisTitikPusatPeluru (titikPusatPeluru.getX() + 100);
 		setOrdinatTitikPusatPeluru (titikPusatPeluru.getY() - 100);
-		warnaGarisPeluru.setRed(255);
-		warnaGarisPeluru.setGreen(255);
-		warnaGarisPeluru.setBlue(255);
 		drawPeluru();
 		usleep(100000);
 	}
