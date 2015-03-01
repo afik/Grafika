@@ -21,12 +21,16 @@ class Baling{
 		Point getCenter();
 		void setCenter(Point _center);
 		void clearBaling(int sudut, Buffer buf);
+		
+		void setRadius(int radius);
+		int getRadius();
 	private:
 		Point rotasiTitik(Point p, int sudut);
 		int convertToInt(float f);
 		Point center;
 		Warna putih;
 		Warna hitam;
+		int radius;
 };
 
 #endif

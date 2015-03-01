@@ -14,16 +14,18 @@ void bolaPantul(Point center, int Radius);
 int main()
 {
 	Buffer buff;
-	char c;
-	Kapal destroyer;
-	Helikopter falcon;
-	Baling baling;
+	Kapal destroyer;			// kapal
+	Helikopter falcon;			// helikopter
+	Baling baling;				// baling-baling
 	Parasut para;
 	
+	Bentuk bentuk;				// roda baling-baling
+	int tempx, tempy, x, y, j;		// untuk pantulan
+	int t= 300, c = 1;
+	
 	int i=1;
-	bool kena = false;
-	//baling
-	int sudut = 0;
+	bool kena = false;			// cek collision
+	int sudut = 0;				// baling-baling
 	Point center, collision;
 	system("clear");
 	
@@ -31,13 +33,13 @@ int main()
 	para.setRadius(30);
 	while(1)
 	{
+		/** kapal */
 		destroyer.clearKapal(buff);
+		destroyer.setVelocity(i);
+		destroyer.drawKapal(buff);
+		/** end of kapal */
+		
 		if (!kena) {
-			/** kapal */
-			destroyer.setVelocity(i);
-			destroyer.drawKapal(buff);
-			/** end of kapal */
-			
 			/** helikopter */
 			falcon.clearHeli(buff,1);
 			falcon.setVelocity(i);
@@ -47,15 +49,13 @@ int main()
 			center.setX((falcon.getAnchorP1().getX()+falcon.getAnchorP2().getX())/2);
 			center.setY(falcon.getAnchorP1().getY()-20);
 			
-			baling.clearBaling(sudut-10,buff);
+			baling.clearBaling(sudut-100,buff);
 			center.setX(center.getX()-1);
 			center.setY(center.getY());
 			baling.setCenter(center);
 			baling.rotasiBaling(sudut,buff);
-			sudut+=10;
-			/** end of helikopter */
-			
-			i++;	// pertambahan kecepatan
+			sudut+=100;
+			/** end of helikopter */			
 			
 			/** Peluru */
 			if(misil.getOrdinatTitikPusatPeluru() > falcon.getAnchorP2().getY()){
@@ -73,61 +73,44 @@ int main()
 			}
 			/** end of peluru */
 			
+			/** set collision */
 			collision.setX(falcon.getAnchorP1().getX()-20);
 			collision.setY(falcon.getAnchorP2().getY()+20);
-			/*printf("misil : %d %d, collision : %d %d, anchor2 : %d %d\n", 
-					misil.getAbsisTitikPusatPeluru(),
-					misil.getOrdinatTitikPusatPeluru(),
-					collision.getX(), collision.getY(), falcon.getAnchorP2().getX(), falcon.getAnchorP2().getY());*/
 			if ((misil.getOrdinatTitikPusatPeluru() < collision.getY()) && 
 				((misil.getAbsisTitikPusatPeluru() > collision.getX())&&(misil.getAbsisTitikPusatPeluru() < falcon.getAnchorP2().getX()))) {
-				//	kena = true;
+					kena = true;
+					tempx = baling.getCenter().getX();
+					tempy = baling.getCenter().getY();
+					y = baling.getCenter().getY();
+					x = baling.getCenter().getX();
+					misil.clearPeluru();
 				}
 		}
-		else {
-			printf("kena\n");
+		else {	// kena = true
+			bentuk.circle(tempx, tempy, baling.getRadius(), buff, *Warna::hitam());
+			bentuk.circle(x, y, baling.getRadius(), buff, *Warna::kuning());
 			
-			break;
+			if(y >= 300) {
+				c = 0;
+				t -= 30;
+			}
+			if (y <=300-t) {
+				c=1;
+			}
+			tempy = y;
+			tempx = x;
+			
+			y = y + (c?15: -15);
+			if (y==center.getY()) {
+				c = 1;
+			}
+			x++;
 		}
+		i+=5;	// pertambahan kecepatan
 		
-		usleep(5000);
+		usleep(30000);
 	}
-	
-	bolaPantul(baling.getCenter(), 10);
 
 	buff.closeBuffer();
 	return 0;
-}
-
-void bolaPantul(Point center, int Radius)
-{
-	Buffer buff;
-	Warna warna;
-	Pixel pixel;
-	Bentuk bentuk;
-	int tempx=center.getX(), tempy=center.getY(), x,y=center.getY(),j;
-	int t= 300, c = 1;
-
-	for (x = center.getX(); x<center.getX()+200; x++) {
-		bentuk.circle(tempx,tempy,Radius,buff,*Warna::hitam());
-		bentuk.circle(x,y,Radius,buff,*Warna::kuning());
-		
-		if(y >= 300) {
-			c = 0;
-			t -= 30;
-		}
-		if (y <=300-t) {
-			c=1;
-		}
-		tempy = y;
-		tempx = x;
-		
-		y = y + (c?15: -15);
-		if (y==center.getY()) {
-			c = 1;
-		}
-		usleep(25000);
-	}
-	
-	buff.closeBuffer();
 }
