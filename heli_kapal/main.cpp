@@ -27,26 +27,37 @@ int main()
 	Point center, collision;
 	system("clear");
 	
-	//Peluru misil(destroyer.getAnchorP1().getX(),destroyer.getAnchorP1().getY());
 	Peluru misil(200,300);
 	para.setRadius(30);
 	while(1)
 	{
 		destroyer.clearKapal(buff);
 		if (!kena) {
+			/** kapal */
 			destroyer.setVelocity(i);
 			destroyer.drawKapal(buff);
+			/** end of kapal */
 			
-			
+			/** helikopter */
 			falcon.clearHeli(buff,1);
 			falcon.setVelocity(i);
 			falcon.drawHeli(buff,1);
 			
-			//para.clearParasut(buff);
-			//para.setVelocity(i);
-			//para.drawParasut(buff);
+			/* set posisi baling" */
+			center.setX((falcon.getAnchorP1().getX()+falcon.getAnchorP2().getX())/2);
+			center.setY(falcon.getAnchorP1().getY()-20);
 			
-			//peluru
+			baling.clearBaling(sudut-10,buff);
+			center.setX(center.getX()-1);
+			center.setY(center.getY());
+			baling.setCenter(center);
+			baling.rotasiBaling(sudut,buff);
+			sudut+=10;
+			/** end of helikopter */
+			
+			i++;	// pertambahan kecepatan
+			
+			/** Peluru */
 			if(misil.getOrdinatTitikPusatPeluru() > falcon.getAnchorP2().getY()){
 				misil.clearPeluru();
 				misil.setAbsisTitikPusatPeluru (misil.getAbsisTitikPusatPeluru() + 1);
@@ -60,18 +71,7 @@ int main()
 				misil.setOrdinatTitikPusatPeluru (destroyer.getAnchorP2().getY());
 				misil.drawPeluru();
 			}
-			
-			//set posisi baling"
-			center.setX((falcon.getAnchorP1().getX()+falcon.getAnchorP2().getX())/2);
-			center.setY(falcon.getAnchorP1().getY()-20);
-			
-			baling.clearBaling(sudut-10,buff);
-			center.setX(center.getX()-1);
-			center.setY(center.getY());
-			baling.setCenter(center);
-			baling.rotasiBaling(sudut,buff);
-			i++;
-			sudut+=10;
+			/** end of peluru */
 			
 			collision.setX(falcon.getAnchorP1().getX()-20);
 			collision.setY(falcon.getAnchorP2().getY()+20);
@@ -81,7 +81,7 @@ int main()
 					collision.getX(), collision.getY(), falcon.getAnchorP2().getX(), falcon.getAnchorP2().getY());*/
 			if ((misil.getOrdinatTitikPusatPeluru() < collision.getY()) && 
 				((misil.getAbsisTitikPusatPeluru() > collision.getX())&&(misil.getAbsisTitikPusatPeluru() < falcon.getAnchorP2().getX()))) {
-					kena = true;
+				//	kena = true;
 				}
 		}
 		else {

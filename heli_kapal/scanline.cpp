@@ -14,7 +14,7 @@ Scanline::Scanline(Garis G1, Garis G2){
 
 Scanline::~Scanline(){}
 
-boolean Scanline::isBerpotongan (int x, int y, Garis G){
+bool Scanline::isBerpotongan (int x, int y, Garis G){
 	return ((y-G.getPointP1().getY())*(G.getPointP2().getX()-G.getPointP1().getX()) == (x-G.getPointP1().getX())*(G.getPointP2().getY()-G.getPointP1().getY()));	
 }
 
