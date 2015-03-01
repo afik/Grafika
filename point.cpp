@@ -63,8 +63,6 @@ int Point::getWidth(Point p1) {
 }
 
 Point Point::setHeight(int scale, Point p1) {
-
-
 	static int length = getHeight(p1);
 	if(getY()<p1.getY()) {
 
