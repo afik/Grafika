@@ -13,7 +13,7 @@ void Peta::gambarPeta(int y, Buffer buff){
 	  pulauSulawesi(y,buff);
 }
 void Peta::pulauSumatra(int y, Buffer buff){
-	Point p1(2,22 + y);Point p2(2,7 + y);Point p3(68,21+y);Point p4(316,256+y);Point p5(303,205+y);Point p6(266, 337 + y);
+	Point p1(2,22+y);Point p2(2,7+y);Point p3(68,21+y);Point p4(316,205+y);Point p5(303,256+y);Point p6(266, 337 + y);
 	Garis g1(p1,p2); Garis g2(p2,p3); Garis g3(p3,p4); Garis g4(p4,p5); Garis g5(p5,p6); Garis g6(p6,p1);
 	g1.drawLine(buff,putih);g2.drawLine(buff,putih);g3.drawLine(buff,putih);g4.drawLine(buff,putih);g5.drawLine(buff,putih);g6.drawLine(buff,putih);
 }
