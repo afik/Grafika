@@ -15,7 +15,7 @@ int main()
 {
 	Buffer buff;
 	Kapal destroyer;			// kapal
-	Helikopter falcon;			// helikopter
+	Helikopter falcon, falconDestroy;			// helikopter
 	Baling baling;				// baling-baling
 	Parasut para;
 	
@@ -23,10 +23,11 @@ int main()
 	int tempx, tempy, x, y, j;		// untuk pantulan
 	int t= 300, c = 1;
 	
-	int i=1;
+	int vi=1;
+	int vj=1;
 	bool kena = false;			// cek collision
 	int sudut = 0;				// baling-baling
-	Point center, collision;
+	Point center, collision, posPara;
 	system("clear");
 	
 	Peluru misil(200,300);
@@ -35,14 +36,14 @@ int main()
 	{
 		/** kapal */
 		destroyer.clearKapal(buff);
-		destroyer.setVelocity(i);
+		destroyer.setVelocity(vi);
 		destroyer.drawKapal(buff);
 		/** end of kapal */
 		
 		if (!kena) {
 			/** helikopter */
 			falcon.clearHeli(buff,1);
-			falcon.setVelocity(i);
+			falcon.setVelocity(vi);
 			falcon.drawHeli(buff,1);
 			
 			/* set posisi baling" */
@@ -67,8 +68,8 @@ int main()
 			else
 			{
 				misil.clearPeluru();
-				misil.setAbsisTitikPusatPeluru (destroyer.getAnchorP2().getX());
-				misil.setOrdinatTitikPusatPeluru (destroyer.getAnchorP2().getY());
+				misil.setAbsisTitikPusatPeluru (destroyer.getAnchorP2().getX()-30);
+				misil.setOrdinatTitikPusatPeluru (destroyer.getAnchorP2().getY()-30);
 				misil.drawPeluru();
 			}
 			/** end of peluru */
@@ -83,10 +84,35 @@ int main()
 					tempy = baling.getCenter().getY();
 					y = baling.getCenter().getY();
 					x = baling.getCenter().getX();
+					
+					// hapus peluru
 					misil.clearPeluru();
+					
+					// hapus helikopter
+					falcon.clearHeli(buff,1);
+					falconDestroy.setP1(falcon.getAnchorP1());
+					falconDestroy.setP2(falcon.getAnchorP2());
+					
+					// hapus baling-baling
+					baling.clearBaling(sudut-100,buff);
+					
+					//set parasut
+					posPara.setX((falcon.getAnchorP1().getX()+falcon.getAnchorP2().getX())/2);
+					posPara.setY(falcon.getAnchorP2().getY());
+					para.setPosition(posPara);
 				}
 		}
 		else {	// kena = true
+			falconDestroy.clearpecahHeli(buff);
+			falconDestroy.setVelocity(vj);
+			falconDestroy.pecahHeli(buff);
+			
+			/** Parasut */
+			para.clearParasut(buff);
+			para.setVelocity(vj-0.5);
+			para.drawParasut(buff);
+			/** end of parasut */
+			
 			bentuk.circle(tempx, tempy, baling.getRadius(), buff, *Warna::hitam());
 			bentuk.circle(x, y, baling.getRadius(), buff, *Warna::kuning());
 			
@@ -100,13 +126,15 @@ int main()
 			tempy = y;
 			tempx = x;
 			
-			y = y + (c?15: -15);
+			if(y<320)
+				y = y + (c?15: -15);
 			if (y==center.getY()) {
 				c = 1;
 			}
-			x++;
+			
+			vj+=1;
 		}
-		i+=5;	// pertambahan kecepatan
+		vi+=5;	// pertambahan kecepatan
 		
 		usleep(30000);
 	}
