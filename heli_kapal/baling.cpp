@@ -9,8 +9,20 @@ Baling::Baling(){
 	putih.setBlue(255);
 	center.setX(200);
 	center.setY(200);
+	radius = 3;
 }
 Baling::~Baling(){}
+
+void Baling::setRadius(int radius)
+{
+	this->radius = radius;
+}
+
+int Baling::getRadius()
+{
+	return radius;
+}
+
 void Baling::circle(int Radius, Buffer buf, Warna w){
 	Pixel p;
 	int iCntr, x, y,p0;
@@ -55,7 +67,6 @@ void Baling::circle(int Radius, Buffer buf, Warna w){
     }
 }
 void Baling::baling(Buffer buf) {
-	int radius = 3;
 	circle(radius, buf, putih); 
 
 	//kuadran 1
@@ -96,7 +107,6 @@ void Baling::baling(Buffer buf) {
 
 }
 void Baling::rotasiBaling(int sudut, Buffer buf){
-	int radius = 3;
 	circle(radius, buf, putih); 
 	Point atas1(center.getX()+30,center.getY()-40);
 	Point bawah1(center.getX()+50,center.getY()-15);
@@ -141,7 +151,6 @@ void Baling::setCenter(Point _center){
 	center.setY(_center.getY());
 }
 void Baling::clearBaling(int sudut, Buffer buf){
-	int radius = 3;
 	circle(radius, buf, hitam); 
 	Point atas1(center.getX()+30,center.getY()-40);
 	Point bawah1(center.getX()+50,center.getY()-15);

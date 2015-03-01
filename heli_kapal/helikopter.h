@@ -7,6 +7,7 @@
 #include "ekorHeli.h"
 #include "scanline.h"
 #include "bentuk.h"
+#include "baling.h"
 
 class Helikopter{
 	public:
@@ -17,6 +18,8 @@ class Helikopter{
 		//void setN(int N);
 		void setVelocity(int velocity);
 		void setPosition(Point position);
+		void setP1(Point P1);
+		void setP2(Point P2);
 		
 		//getter
 		//int getN();
@@ -25,8 +28,10 @@ class Helikopter{
 		Point getAnchorP1();
 		Point getAnchorP2();
 		
-		void drawHeli(Buffer buff, int scale);			// menggambar kapal
-		void clearHeli(Buffer buff, int scale);			// menghapus kapal
+		void drawHeli(Buffer buff, int scale);			// menggambar helikopter
+		void clearHeli(Buffer buff, int scale);			// menghapus helikopter
+		void pecahHeli(Buffer buff);					// helikopter pecah
+		void clearpecahHeli(Buffer buff);					// helikopter pecah
 		
 	private:
 		int N;			// jumlah titik/garis
@@ -35,7 +40,6 @@ class Helikopter{
 		Point position;	// posisi awal kapal
 		badanHeli badan;
 		ekorHeli ekor;
-		//Garis *G;
 		
 };
 

@@ -147,4 +147,79 @@ void badanHeli::clearbadanHeli(Buffer buff, int scale, int v)
 	/** end of badan helikopter*/
 }
 
+void badanHeli::drawPecah(Buffer buff, Point P1, Point P2, int v)
+{
+	int i;
+	int n = 4;
+	Point badan[n];
+	Warna Biru(236, 228, 15);
+	Warna putih;
+	Scanline S;
+	
+	/** badan badanHeli */
+	badan[0].setX(P1.getX());
+	badan[0].setY(P1.getY());
+	badan[1].setX(P2.getX());
+	badan[1].setY(P1.getY()-20);
+	badan[2].setX(P2.getX()+20);
+	badan[2].setY(P2.getY()-20);
+	badan[3].setX(P1.getX()+20);
+	badan[3].setY(P2.getY());
+	
+	for(i=0; i<n; i++)
+	{
+		if(i<3)
+		{
+			Garis g(badan[i].getX()-v-0.5, badan[i].getY()+v,
+					badan[i+1].getX()-v-0.5, badan[i+1].getY()+v);
+			g.drawLine(buff, putih);
+		}
+		else
+		{
+			Garis g(badan[i].getX()-v-0.5, badan[i].getY()+v,
+					badan[0].getX()-v-0.5, badan[0].getY()+v);
+			g.drawLine(buff, putih);
+		}
+	}
+	/** end of badan badanHeli*/
 
+	//S.drawScanline(900-v, 100, 990-v, 125, G1, G2, Biru);
+	
+}
+
+void badanHeli::clearPecah(Buffer buff, Point P1, Point P2, int v)
+{
+	int i;
+	int n = 4;
+	Point badan[n];
+	Warna Biru(236, 228, 15);
+	Warna putih(0,0,0);
+	Scanline S;
+	
+	/** badan badanHeli */
+	badan[0].setX(P1.getX());
+	badan[0].setY(P1.getY());
+	badan[1].setX(P2.getX());
+	badan[1].setY(P1.getY()-20);
+	badan[2].setX(P2.getX()+20);
+	badan[2].setY(P2.getY()-20);
+	badan[3].setX(P1.getX()+20);
+	badan[3].setY(P2.getY());
+	
+	for(i=0; i<n; i++)
+	{
+		if(i<3)
+		{
+			Garis g(badan[i].getX()-v-0.5, badan[i].getY()+v,
+					badan[i+1].getX()-v-0.5, badan[i+1].getY()+v);
+			g.drawLine(buff, putih);
+		}
+		else
+		{
+			Garis g(badan[i].getX()-v-0.5, badan[i].getY()+v,
+					badan[0].getX()-v-0.5, badan[0].getY()+v);
+			g.drawLine(buff, putih);
+		}
+	}
+	/** end of badan badanHeli*/
+}
