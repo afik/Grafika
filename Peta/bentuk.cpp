@@ -174,3 +174,16 @@ void Bentuk::setengah_lingkaran(int x0, int y0, int Radius, Buffer buf, Warna w)
     Garis diameter(x0-Radius, y0,x0+Radius, y0);
     diameter.drawLine(buf,w);
 }
+
+void Bentuk::persegi(Point kiriatas, int panjang, int lebar, Buffer buf, Warna w){
+    Point P2(kiriatas.getX()+panjang, kiriatas.getY());
+    Point P3(kiriatas.getX(), kiriatas.getY()+lebar);
+    Point P4(kiriatas.getX()+panjang, kiriatas.getY()+lebar);
+
+    Garis g1(kiriatas,P2); g1.drawLine(buf, w);
+    Garis g2(P2,P4); g2.drawLine(buf, w);
+    Garis g3(P4,P3); g3.drawLine(buf, w);
+    Garis g4(P3,kiriatas); g4.drawLine(buf, w);
+    
+       
+}

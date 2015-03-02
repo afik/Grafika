@@ -1,22 +1,10 @@
-1. Biar ngga conflict, Kalo mau nyobain :
-  - bikin main sendiri, compilenya nambahin aja yang di makefile
-  - atau, jangan di add di git nya
-  
-2. Bikin kelas ngikutin template yg di kapal.h/.cpp
+Folder dipisah untuk mempermudah dalam pengerjaan.
+=================================================
+heli_kapal : transformasi, translasi, rotasi
+Peta : clipping
 
-3. Cara pakai warna :
-	bikin kelas warna (Warna warna)
-	buat ngakses perwarnanya gausah ngurusin RGB lagi, langsung panggil pake : *Warna::kuning()
-	
-4. Setiap bikin kelas masukkin ke makefile
+*note: buat menjalankan yang makefile di folder Peta, install dulu ncurses.h :
+	sudo apt-get install libncurses5-dev
+=================================================
 
-==================================================
-Cara ngejalanin makefile
-$ make
-
-nge-run program
-$ ./grapika
-
-sebelum di add/commit jangan lupa nge-clean
-$ make clean
-		
+Setiap pengerjaan tugas baru, dibuat folder baru.
