@@ -6,6 +6,7 @@
 #include "peluru.h"
 #include "parasut.h"
 #include "bentuk.h"
+#include "ledakan.h"
 
 using namespace std;
 
@@ -18,6 +19,7 @@ int main()
 	Helikopter falcon, falconDestroy;			// helikopter
 	Baling baling;				// baling-baling
 	Parasut para;
+	Ledakan ledakan;
 	
 	Bentuk bentuk;				// roda baling-baling
 	int tempx, tempy, x, y, j;		// untuk pantulan
@@ -100,6 +102,11 @@ int main()
 					posPara.setX((falcon.getAnchorP1().getX()+falcon.getAnchorP2().getX())/2);
 					posPara.setY(falcon.getAnchorP2().getY());
 					para.setPosition(posPara);
+					
+					//ledakan
+					ledakan.setAbsisTitikPusatLedakan((falcon.getAnchorP1().getX()+falcon.getAnchorP2().getX())/2);
+					ledakan.setOrdinatTitikPusatLedakan(falcon.getAnchorP2().getY());
+					ledakan.meledak();
 				}
 		}
 		else {	// kena = true
@@ -109,9 +116,21 @@ int main()
 			
 			/** Parasut */
 			para.clearParasut(buff);
-			para.setVelocity(vj-0.5);
+			para.setVelocity((vj*0.5));
 			para.drawParasut(buff);
 			/** end of parasut */
+			
+			/** Baling-baling */
+			center.setX(((falcon.getAnchorP1().getX()+falcon.getAnchorP2().getX())/2)-vj);
+			center.setY(falcon.getAnchorP1().getY()+(vj*2));
+			
+			baling.clearBaling(sudut-10,buff);
+			center.setX(center.getX());
+			center.setY(center.getY());
+			baling.setCenter(center);
+			baling.rotasiBaling(sudut,buff);
+			sudut+=10;
+			/** Baling-baling */
 			
 			bentuk.circle(tempx, tempy, baling.getRadius(), buff, *Warna::hitam());
 			bentuk.circle(x, y, baling.getRadius(), buff, *Warna::kuning());

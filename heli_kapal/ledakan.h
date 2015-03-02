@@ -1,7 +1,7 @@
 #ifndef _LEDAKAN_H
 #define _LEDAKAN_H
 
-#define PI 3.14159265
+#define PIx 3.14159265
 
 #include "garis.h"
 #include <stdio.h>

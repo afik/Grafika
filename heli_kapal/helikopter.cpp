@@ -119,10 +119,15 @@ void Helikopter::clearJatuh(Buffer buff, int scale) {
 void Helikopter::pecahHeli(Buffer buff)
 {
 	badan.drawPecah(buff, P1, P2, this->getVelocity());
+	ekor.drawPecah(buff, P1, P2, this->getVelocity());
 }
 
 void Helikopter::clearpecahHeli(Buffer buff)
 {
 	badan.clearPecah(buff, P1, P2, this->getVelocity());
+<<<<<<< HEAD
 >>>>>>> 973abda618a71a10e2d4faa5ab8c27cfd54a7899:heli_kapal/helikopter.cpp
+=======
+	ekor.clearPecah(buff, P1, P2, this->getVelocity());
+>>>>>>> 7aebf755cf033efee414ff4001b0241cdb899c07
 }
