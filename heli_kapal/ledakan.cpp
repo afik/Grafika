@@ -110,13 +110,13 @@ void Ledakan::clearLedakan()											// prosedur untuk menghapus gambar ledaka
 void Ledakan::meledak()															// prosedur untuk menggambar ledakan secara keseluruh
 {
 		system("clear");
-		for (int i=1;i<4;i++) {
+		for (int i=1;i<5;i++) {
 				clearLedakan();
-				setRadiusLedakan(i * this->getRadiusLedakan());
+				setRadiusLedakan(this->getRadiusLedakan()+(i*10));
 				drawLedakan();
 				usleep(100000);
 		}
-		clearLedakan();
+		//clearLedakan();
 }
 int Ledakan::absisHasilTrigonometri(double degrees)						// fungsi untuk menghitung proyeksi radius ledakan pada sumbu X dengan sudut degrees
 {
