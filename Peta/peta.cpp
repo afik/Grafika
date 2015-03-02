@@ -12,29 +12,29 @@ void Peta::gambarPeta(int y, Buffer buff){
 	  pulauKalimantan(y,buff);
 	  pulauSulawesi(y,buff);
 }
-Garis Peta::getGarisPulau(int pulauKe, int garisKe){
+Garis* Peta::getGarisPulau(int pulauKe, int garisKe){
 	switch(pulauKe){
 		case 1 :{
 			if(garisKe > 0 && garisKe < 6)
-				return petaSumatra[garisKe-1];
+				return &petaSumatra[garisKe-1];
 			else return NULL;
 			break;
 		}
 		case 2 :{
 			if(garisKe > 0 && garisKe < 5)
-				return petaJawa[garisKe-1];
+				return &petaJawa[garisKe-1];
 			else return NULL;
 			break;
 		}
 		case 3 :{
 			if(garisKe > 0 && garisKe < 8)
-				return petaKalimantan[garisKe-1];
+				return &petaKalimantan[garisKe-1];
 			else return NULL;
 			break;
 		}
 		case 4 :{
 			if(garisKe > 0 && garisKe <= 13)
-				return petaSulawesi[garisKe-1];
+				return &petaSulawesi[garisKe-1];
 			else return NULL;
 			break;
 		}
