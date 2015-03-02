@@ -10,7 +10,7 @@ class Peta{
 		Peta();
 		~Peta();
 		void gambarPeta(int y, Buffer buff);
-		Garis getGarisPulau(int pulauKe, int garisKe); // garis dimulai dari 1, pulau juga
+		Garis* getGarisPulau(int pulauKe, int garisKe); // garis dimulai dari 1, pulau juga
 	private:
 		void pulauSumatra(int y, Buffer buff);
 		void pulauJawa(int y, Buffer buff);
