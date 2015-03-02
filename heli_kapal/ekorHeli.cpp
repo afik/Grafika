@@ -131,7 +131,11 @@ void ekorHeli::clearekorHeli(Buffer buff, int v)
 	/** end of ekor helikopter*/
 }
 
+<<<<<<< HEAD
+void ekorHeli::drawekorJatuh(Buffer buff, int v)
+=======
 void ekorHeli::drawPecah(Buffer buff, Point P1, Point P2, int v)
+>>>>>>> 7aebf755cf033efee414ff4001b0241cdb899c07
 {
 	int i;
 	int n = 5;
@@ -139,6 +143,18 @@ void ekorHeli::drawPecah(Buffer buff, Point P1, Point P2, int v)
 	Warna putih;
 	
 	/** ekor helikopter */
+<<<<<<< HEAD
+	ekor[0].setX(1030);
+	ekor[0].setY(115);
+	ekor[1].setX(1130);
+	ekor[1].setY(115);
+	ekor[2].setX(1160);
+	ekor[2].setY(100);
+	ekor[3].setX(1160);
+	ekor[3].setY(130);
+	ekor[4].setX(1030);
+	ekor[4].setY(130);
+=======
 	ekor[0].setX(P1.getX()+100);		//P1x
 	ekor[0].setY(P1.getY()+15);		//P1y
 	ekor[1].setX(P1.getX()+200);		//P1x+100
@@ -149,6 +165,7 @@ void ekorHeli::drawPecah(Buffer buff, Point P1, Point P2, int v)
 	ekor[3].setY(P2.getY()-20);		//P2y
 	ekor[4].setX(P1.getX()+100);		//P1x
 	ekor[4].setY(P2.getY()-20);		//P2y
+>>>>>>> 7aebf755cf033efee414ff4001b0241cdb899c07
 	
 	for(i=0; i<n; i++)
 	{
@@ -168,7 +185,11 @@ void ekorHeli::drawPecah(Buffer buff, Point P1, Point P2, int v)
 	/** end of ekor helikopter*/
 }
 
+<<<<<<< HEAD
+void ekorHeli::clearekorJatuh(Buffer buff, int v)
+=======
 void ekorHeli::clearPecah(Buffer buff, Point P1, Point P2, int v)
+>>>>>>> 7aebf755cf033efee414ff4001b0241cdb899c07
 {
 	int i;
 	int n = 5;
@@ -176,6 +197,18 @@ void ekorHeli::clearPecah(Buffer buff, Point P1, Point P2, int v)
 	Warna putih(0,0,0);
 	
 	/** ekor helikopter */
+<<<<<<< HEAD
+	ekor[0].setX(1030);
+	ekor[0].setY(115);
+	ekor[1].setX(1130);
+	ekor[1].setY(115);
+	ekor[2].setX(1160);
+	ekor[2].setY(100);
+	ekor[3].setX(1160);
+	ekor[3].setY(130);
+	ekor[4].setX(1030);
+	ekor[4].setY(130);
+=======
 	ekor[0].setX(P1.getX()+100);		//P1x
 	ekor[0].setY(P1.getY()+15);		//P1y
 	ekor[1].setX(P1.getX()+200);		//P1x+100
@@ -186,6 +219,7 @@ void ekorHeli::clearPecah(Buffer buff, Point P1, Point P2, int v)
 	ekor[3].setY(P2.getY()-20);		//P2y
 	ekor[4].setX(P1.getX()+100);		//P1x
 	ekor[4].setY(P2.getY()-20);		//P2y
+>>>>>>> 7aebf755cf033efee414ff4001b0241cdb899c07
 	
 	for(i=0; i<n; i++)
 	{

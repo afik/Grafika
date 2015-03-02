@@ -147,7 +147,11 @@ void badanHeli::clearbadanHeli(Buffer buff, int scale, int v)
 	/** end of badan helikopter*/
 }
 
+<<<<<<< HEAD:badanHeli.cpp
+void badanHeli::drawbadanJatuh(Buffer buff, int scale, int v)
+=======
 void badanHeli::drawPecah(Buffer buff, Point P1, Point P2, int v)
+>>>>>>> 973abda618a71a10e2d4faa5ab8c27cfd54a7899:heli_kapal/badanHeli.cpp
 {
 	int i;
 	int n = 4;
@@ -157,6 +161,21 @@ void badanHeli::drawPecah(Buffer buff, Point P1, Point P2, int v)
 	Scanline S;
 	
 	/** badan badanHeli */
+<<<<<<< HEAD:badanHeli.cpp
+	badan[0].setX(900);
+	badan[0].setY(100);
+	badan[1].setX(1000);
+	badan[1].setY(100);
+	badan[2].setX(1000);
+	badan[2].setY(150);
+	badan[3].setX(900);
+	badan[3].setY(150);
+	
+	badan[1] = badan[0].setWidth(scale, badan[1]);
+	badan[2] = badan[1].setHeight(scale, badan[2]);
+	badan[3] = badan[2].setWidth(scale, badan[3]);
+	badan[0] = badan[3].setHeight(scale, badan[0]);
+=======
 	badan[0].setX(P1.getX());
 	badan[0].setY(P1.getY());
 	badan[1].setX(P2.getX());
@@ -165,38 +184,78 @@ void badanHeli::drawPecah(Buffer buff, Point P1, Point P2, int v)
 	badan[2].setY(P2.getY()-20);
 	badan[3].setX(P1.getX()+20);
 	badan[3].setY(P2.getY());
+>>>>>>> 973abda618a71a10e2d4faa5ab8c27cfd54a7899:heli_kapal/badanHeli.cpp
 	
 	for(i=0; i<n; i++)
 	{
 		if(i<3)
 		{
+<<<<<<< HEAD:badanHeli.cpp
+			Garis g(badan[i].getX(), badan[i].getY()+v,
+					badan[i+1].getX(), badan[i+1].getY()+v);
+=======
 			Garis g(badan[i].getX()-v-0.5, badan[i].getY()+v,
 					badan[i+1].getX()-v-0.5, badan[i+1].getY()+v);
+>>>>>>> 973abda618a71a10e2d4faa5ab8c27cfd54a7899:heli_kapal/badanHeli.cpp
 			g.drawLine(buff, putih);
 		}
 		else
 		{
+<<<<<<< HEAD:badanHeli.cpp
+			Garis g(badan[i].getX(), badan[i].getY()+v,
+					badan[0].getX(), badan[0].getY()+v);
+=======
 			Garis g(badan[i].getX()-v-0.5, badan[i].getY()+v,
 					badan[0].getX()-v-0.5, badan[0].getY()+v);
+>>>>>>> 973abda618a71a10e2d4faa5ab8c27cfd54a7899:heli_kapal/badanHeli.cpp
 			g.drawLine(buff, putih);
 		}
 	}
 	/** end of badan badanHeli*/
+<<<<<<< HEAD:badanHeli.cpp
+	Garis G1(badan[0].getX(), badan[0].getY()+v, badan[3].getX(), badan[3].getY()+v);
+	Garis G2(badan[1].getX(), badan[1].getY()+v, badan[2].getX(), badan[2].getY()+v);
+
+	//S.drawScanline(900-v, 100, 990-v, 125, G1, G2, Biru);
+	
+}
+
+void badanHeli::clearbadanJatuh(Buffer buff, int scale, int v)
+=======
 
 	//S.drawScanline(900-v, 100, 990-v, 125, G1, G2, Biru);
 	
 }
 
 void badanHeli::clearPecah(Buffer buff, Point P1, Point P2, int v)
+>>>>>>> 973abda618a71a10e2d4faa5ab8c27cfd54a7899:heli_kapal/badanHeli.cpp
 {
 	int i;
 	int n = 4;
 	Point badan[n];
+<<<<<<< HEAD:badanHeli.cpp
+=======
 	Warna Biru(236, 228, 15);
+>>>>>>> 973abda618a71a10e2d4faa5ab8c27cfd54a7899:heli_kapal/badanHeli.cpp
 	Warna putih(0,0,0);
 	Scanline S;
 	
 	/** badan badanHeli */
+<<<<<<< HEAD:badanHeli.cpp
+	badan[0].setX(900);
+	badan[0].setY(100);
+	badan[1].setX(1000);
+	badan[1].setY(100);
+	badan[2].setX(1000);
+	badan[2].setY(150);
+	badan[3].setX(900);
+	badan[3].setY(150);
+	
+	badan[1] = badan[0].setWidth(scale, badan[1]);
+	badan[2] = badan[1].setHeight(scale, badan[2]);
+	badan[3] = badan[2].setWidth(scale, badan[3]);
+	badan[0] = badan[3].setHeight(scale, badan[0]);
+=======
 	badan[0].setX(P1.getX());
 	badan[0].setY(P1.getY());
 	badan[1].setX(P2.getX());
@@ -205,21 +264,40 @@ void badanHeli::clearPecah(Buffer buff, Point P1, Point P2, int v)
 	badan[2].setY(P2.getY()-20);
 	badan[3].setX(P1.getX()+20);
 	badan[3].setY(P2.getY());
+>>>>>>> 973abda618a71a10e2d4faa5ab8c27cfd54a7899:heli_kapal/badanHeli.cpp
 	
 	for(i=0; i<n; i++)
 	{
 		if(i<3)
 		{
+<<<<<<< HEAD:badanHeli.cpp
+			Garis g(badan[i].getX(), badan[i].getY()+v,
+					badan[i+1].getX(), badan[i+1].getY()+v);
+=======
 			Garis g(badan[i].getX()-v-0.5, badan[i].getY()+v,
 					badan[i+1].getX()-v-0.5, badan[i+1].getY()+v);
+>>>>>>> 973abda618a71a10e2d4faa5ab8c27cfd54a7899:heli_kapal/badanHeli.cpp
 			g.drawLine(buff, putih);
 		}
 		else
 		{
+<<<<<<< HEAD:badanHeli.cpp
+			Garis g(badan[i].getX(), badan[i].getY()+v,
+					badan[0].getX(), badan[0].getY()+v);
+=======
 			Garis g(badan[i].getX()-v-0.5, badan[i].getY()+v,
 					badan[0].getX()-v-0.5, badan[0].getY()+v);
+>>>>>>> 973abda618a71a10e2d4faa5ab8c27cfd54a7899:heli_kapal/badanHeli.cpp
 			g.drawLine(buff, putih);
 		}
 	}
 	/** end of badan badanHeli*/
+<<<<<<< HEAD:badanHeli.cpp
+	Garis G1(badan[0].getX(), badan[0].getY()+v, badan[3].getX(), badan[3].getY()+v);
+	Garis G2(badan[1].getX(), badan[1].getY()+v, badan[2].getX(), badan[2].getY()+v);
+
+	//S.drawScanline(900-v, 100, 990-v, 125, G1, G2, Biru);
+	
+=======
+>>>>>>> 973abda618a71a10e2d4faa5ab8c27cfd54a7899:heli_kapal/badanHeli.cpp
 }
