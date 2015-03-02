@@ -80,9 +80,11 @@ void Helikopter::clearHeli(Buffer buff, int scale)
 void Helikopter::pecahHeli(Buffer buff)
 {
 	badan.drawPecah(buff, P1, P2, this->getVelocity());
+	ekor.drawPecah(buff, P1, P2, this->getVelocity());
 }
 
 void Helikopter::clearpecahHeli(Buffer buff)
 {
 	badan.clearPecah(buff, P1, P2, this->getVelocity());
+	ekor.clearPecah(buff, P1, P2, this->getVelocity());
 }

@@ -116,14 +116,15 @@ void Ledakan::meledak()															// prosedur untuk menggambar ledakan secar
 				drawLedakan();
 				usleep(100000);
 		}
+		clearLedakan();
 }
 int Ledakan::absisHasilTrigonometri(double degrees)						// fungsi untuk menghitung proyeksi radius ledakan pada sumbu X dengan sudut degrees
 {
-		return (radiusLedakan * cos (degrees * PI / 180));
+		return (radiusLedakan * cos (degrees * PIx / 180));
 }
 int Ledakan::ordinatHasilTrigonometri(double degrees)					// fungsi untuk menghitung proyeksi radius ledakan pada sumbu Y dengan sudut degrees
 {
-		return (radiusLedakan * sin (degrees * PI / 180));
+		return (radiusLedakan * sin (degrees * PIx / 180));
 }
 
 void Ledakan::setAbsisTitikPusatLedakan (int newAbsis) 

@@ -6,8 +6,8 @@ window: mainWindow.o buffer.o window.o garis.o point.o warna.o pixel.o bentuk.o
 bola: maintesbola.o buffer.o kapal.o garis.o pixel.o point.o warna.o scanline.o bentuk.o
 	g++ -o bola maintesbola.o buffer.o kapal.o garis.o pixel.o point.o warna.o scanline.o bentuk.o
 
-grapika: main.o bentuk.o buffer.o kapal.o  badanHeli.o ekorHeli.o helikopter.o garis.o pixel.o point.o warna.o parasut.o scanline.o baling.o peluru.o
-	g++ -o grapika main.o bentuk.o buffer.o kapal.o  badanHeli.o ekorHeli.o helikopter.o garis.o pixel.o point.o warna.o parasut.o scanline.o baling.o peluru.o
+grapika: main.o bentuk.o buffer.o kapal.o  badanHeli.o ekorHeli.o helikopter.o garis.o pixel.o point.o warna.o parasut.o scanline.o baling.o peluru.o ledakan.o
+	g++ -o grapika main.o bentuk.o buffer.o kapal.o  badanHeli.o ekorHeli.o helikopter.o garis.o pixel.o point.o warna.o parasut.o scanline.o baling.o peluru.o ledakan.o
 
 kopter : mainBaling.o buffer.o baling.o pixel.o point.o garis.o warna.o
 	g++ -o kopter mainBaling.o buffer.o baling.o pixel.o point.o garis.o warna.o
@@ -65,6 +65,9 @@ scanline.o: scanline.cpp
 	
 peluru.o: peluru.cpp
 	g++ -c peluru.cpp
+	
+ledakan.o: ledakan.cpp
+	g++ -c ledakan.cpp
 
 clean:
 	rm *o grapika
