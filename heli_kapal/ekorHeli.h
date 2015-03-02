@@ -23,13 +23,8 @@ class ekorHeli{
 		
 		void drawekorHeli(Buffer buff, int v);			// menggambar kapal
 		void clearekorHeli(Buffer buff, int v);			// menghapus kapal
-<<<<<<< HEAD
-		void drawekorJatuh(Buffer buff, int v);
-		void clearekorJatuh(Buffer buff, int v);
-=======
 		void drawPecah(Buffer buff, Point P1, Point P2, int v);
 		void clearPecah(Buffer buff, Point P1, Point P2, int v);
->>>>>>> 7aebf755cf033efee414ff4001b0241cdb899c07
 		
 	private:
 		int N;			// jumlah titik/garis
