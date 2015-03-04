@@ -204,3 +204,4 @@ void ekorHeli::clearPecah(Buffer buff, Point P1, Point P2, int v)
 	}
 	/** end of ekor helikopter*/
 }
+>>>>>>> 89d67ea23653560b473c76e0ad09c051d5706a08

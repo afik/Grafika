@@ -151,4 +151,3 @@ int Ledakan::getRadiusLedakan()
 {
 		return radiusLedakan;
 }
->>>>>>> 89d67ea23653560b473c76e0ad09c051d5706a08
