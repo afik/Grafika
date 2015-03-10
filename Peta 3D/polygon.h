@@ -1,13 +1,13 @@
 #include "point.h"
 #include "garis.h"
 
-Class polygon () {
+Class Polygon () {
 	// Atribut kelas
 	list<Point> kumpulanPointAlas;
 	Point centrePolygon;
 	
 	// Method Utama
-	polygon(Point centrePolygon); 								// assign point 2D alas
+	Polygon(Point centrePolygon); 								// assign point 2D alas
 	void drawPolygon();											// Gambar alas polygon 2D
 	void drawPolygon3D(int height);								// Gambar polygon 3D dari alas polygon
 	void addPoint(list<Point> listPoint);						// Tambah point-point ujung alas polygon  
