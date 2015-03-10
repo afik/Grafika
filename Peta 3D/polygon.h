@@ -12,7 +12,12 @@ private:
 
 	// Method Utama
 public:	
+	Polygon();
 	Polygon(Point centrePolygon); 								// assign point 2D alas
+	Polygon(const Polygon& poly);
+	Polygon& operator=(const Polygon& poly);
+	~Polygon();
+	
 	void drawPolygon();											// Gambar alas polygon 2D
 	void drawPolygon3D(int height);								// Gambar polygon 3D dari alas polygon
 	void addPoint(list<Point> listPoint);						// Tambah point-point ujung alas polygon  
@@ -28,6 +33,6 @@ public:
 	// Setter dan getter
 	int jumlahTitikPolygon();									// Hitung jumlah titik pembentuk polygon
 	Point getCentrePolygon();									// Ambil pusat dari alas 2D								 
-}
+};
 
 #endif
