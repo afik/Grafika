@@ -1,5 +1,4 @@
 #include "polygon.h"
-#include "point.h"
 
 Polygon::Polygon() {
 	centrePolygon.setX(200);
@@ -23,6 +22,50 @@ Polygon& Polygon::operator=(const Polygon& poly) {
 
 Polygon::~Polygon() {
 
+}
+
+void Polygon::drawPolygon() {
+
+}										// Gambar alas polygon 2D
+
+void Polygon::drawPolygon3D(int height) {
+
+}
+
+void Polygon::addPoint(list<Point> listPoint) {
+	kumpulanPointAlas = listPoint;
+}
+
+void Polygon::clearPolygon() {
+
+}										// Hapus polygon 
+
+void Polygon::fillPolygonColor() {
+
+}								// Isi polygon dengan warna tertentu
+
+void Polygon::fillPolygonPattern() {
+
+}									// Isi polygon dengan pattern tertentu
+
+void Polygon::moveUp() {
+
+}											// Geser polygon 2D/3D ke atas
+
+void Polygon::moveDown() {
+
+}											// Geser polygon 2D/3D ke bawah
+
+void Polygon::moveLeft() {
+
+}											// Geser polygon 2D/3D ke kiri
+
+void Polygon::moveRight() {
+
+}
+
+int Polygon::jumlahTitikPolygon() {
+	return kumpulanPointAlas.size();
 }
 
 void Polygon::setCentrePolygon(Point centrePolygon) {
