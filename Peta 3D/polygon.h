@@ -4,7 +4,7 @@
 #include "point.h"
 #include "garis.h"
 
-Class Polygon {
+class Polygon {
 	// Atribut kelas
 private:
 	list<Point> kumpulanPointAlas;
