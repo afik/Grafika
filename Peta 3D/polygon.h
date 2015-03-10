@@ -4,12 +4,14 @@
 #include "point.h"
 #include "garis.h"
 
-Class Polygon () {
+Class Polygon {
 	// Atribut kelas
+private:
 	list<Point> kumpulanPointAlas;
 	Point centrePolygon;
-	
+
 	// Method Utama
+public:	
 	Polygon(Point centrePolygon); 								// assign point 2D alas
 	void drawPolygon();											// Gambar alas polygon 2D
 	void drawPolygon3D(int height);								// Gambar polygon 3D dari alas polygon
