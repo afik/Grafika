@@ -1,3 +1,6 @@
+#ifndef _POLYGON_H
+#define _POLYGON_H
+
 #include "point.h"
 #include "garis.h"
 
@@ -24,3 +27,5 @@ Class Polygon () {
 	int jumlahTitikPolygon();									// Hitung jumlah titik pembentuk polygon
 	Point getCentrePolygon();									// Ambil pusat dari alas 2D								 
 }
+
+#endif
