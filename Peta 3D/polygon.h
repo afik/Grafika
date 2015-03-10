@@ -3,6 +3,7 @@
 
 #include "point.h"
 #include "garis.h"
+#include <list>
 
 class Polygon {
 	// Atribut kelas
@@ -33,6 +34,7 @@ public:
 	// Setter dan getter
 	int jumlahTitikPolygon();									// Hitung jumlah titik pembentuk polygon
 	Point getCentrePolygon();									// Ambil pusat dari alas 2D								 
+	void setCentrePolygon(Point centre);
 };
 
 #endif
