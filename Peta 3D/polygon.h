@@ -3,12 +3,15 @@
 
 #include "point.h"
 #include "garis.h"
-#include <list>
+#include "warna.h"
+#include "buffer.h"
+#include "pixel.h"
+#include <vector>
 
 class Polygon {
 	// Atribut kelas
 private:
-	list<Point> kumpulanPointAlas;
+	vector<Point> kumpulanPointAlas;
 	Point centrePolygon;
 
 	// Method Utama
@@ -19,9 +22,9 @@ public:
 	Polygon& operator=(const Polygon& poly);
 	~Polygon();
 	
-	void drawPolygon();											// Gambar alas polygon 2D
+	void drawPolygon(Buffer buff);											// Gambar alas polygon 2D
 	void drawPolygon3D(int height);								// Gambar polygon 3D dari alas polygon
-	void addPoint(list<Point> listPoint);						// Tambah point-point ujung alas polygon  
+	void addPoint(vector<Point> listPoint);						// Tambah point-point ujung alas polygon  
 	void clearPolygon();										// Hapus polygon 
 	void fillPolygonColor();									// Isi polygon dengan warna tertentu
 	void fillPolygonPattern();									// Isi polygon dengan pattern tertentu

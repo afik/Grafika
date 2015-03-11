@@ -24,15 +24,31 @@ Polygon::~Polygon() {
 
 }
 
-void Polygon::drawPolygon() {
+void Polygon::drawPolygon(Buffer buff) {
+	Warna putih(5, 174, 179);
 
+	for(int i=0; i<jumlahTitikPolygon(); i++)
+	{
+		if(i<jumlahTitikPolygon()-1)
+		{
+			Garis g(kumpulanPointAlas[i].getX(), kumpulanPointAlas[i].getY(),
+					kumpulanPointAlas[i+1].getX(), kumpulanPointAlas[i+1].getY());
+			g.drawLine(buff, putih);
+		}
+		else
+		{
+			Garis g(kumpulanPointAlas[i].getX(), kumpulanPointAlas[i].getY(),
+					kumpulanPointAlas[0].getX(), kumpulanPointAlas[0].getY());
+			g.drawLine(buff, putih);
+		}
+	}
 }										// Gambar alas polygon 2D
 
 void Polygon::drawPolygon3D(int height) {
 
 }
 
-void Polygon::addPoint(list<Point> listPoint) {
+void Polygon::addPoint(vector<Point> listPoint) {
 	kumpulanPointAlas = listPoint;
 }
 

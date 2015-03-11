@@ -20,19 +20,19 @@ int main() {
 	// cout << poly4.getCentrePolygon().getY() << endl;
 	// cout << poly4.getCentrePolygon().getX() << endl;
 
-	list<Point> lp;
-	Point p(100, 150);
-	Point p2(102, 152);
-	Point p3(103, 153);
-	Point p4(104, 154);
-	Point p5(105, 155);
+	vector<Point> lp;
+	Point p(100, 100);
+	Point p2(200, 100);
+	Point p3(200, 200);
+	Point p4(100, 200);
 	lp.push_back(p);
 	lp.push_back(p2);
 	lp.push_back(p3);
 	lp.push_back(p4);
-	lp.push_back(p5);
 	poly.addPoint(lp);
 	cout << poly.jumlahTitikPolygon() << endl;
+	Buffer buff;
+	poly.drawPolygon(buff);
 
 	return 0;
 }
