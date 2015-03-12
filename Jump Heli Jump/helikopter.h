@@ -32,6 +32,8 @@ class Helikopter{
 		void clearHeli(Buffer buff, int scale);			// menghapus helikopter
 		void pecahHeli(Buffer buff);					// helikopter pecah
 		void clearpecahHeli(Buffer buff);					// helikopter pecah
+		void moveUp(Buffer buf, int scale, int v);
+		void moveDown(Buffer buf, int scale, int v);
 		
 	private:
 		int N;			// jumlah titik/garis

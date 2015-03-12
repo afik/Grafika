@@ -223,3 +223,99 @@ void badanHeli::clearPecah(Buffer buff, Point P1, Point P2, int v)
 	}
 	/** end of badan badanHeli*/
 }
+
+void badanHeli::badanHeliUp(Buffer buff, int scale, int v) {
+
+	int i;
+	int n = 4;
+	Point badan[n];
+	Warna Biru(236, 228, 15);
+	Warna putih;
+	//Scanline S;
+	
+	/** badan badanHeli */
+	badan[0].setX(220);
+	badan[0].setY(100);
+	badan[1].setX(150);
+	badan[1].setY(100);
+	badan[2].setX(150);
+	badan[2].setY(150);
+	badan[3].setX(220);
+	badan[3].setY(150);
+	
+	this->P1.setX(220-v);
+	this->P1.setY(100);
+	this->P2.setX(150-v);
+	this->P2.setY(150);
+	
+	badan[1] = badan[0].setWidth(scale, badan[1]);
+	badan[2] = badan[1].setHeight(scale, badan[2]);
+	badan[3] = badan[2].setWidth(scale, badan[3]);
+	badan[0] = badan[3].setHeight(scale, badan[0]);
+	
+	for(i=0; i<n; i++)
+	{
+		if(i<3)
+		{
+			Garis g(badan[i].getX(), badan[i].getY()-v,
+					badan[i+1].getX(), badan[i+1].getY()-v);
+			g.drawLine(buff, putih);
+		}
+		else
+		{
+			Garis g(badan[i].getX(), badan[i].getY()-v,
+					badan[0].getX(), badan[0].getY()-v);
+			g.drawLine(buff, putih);
+		}
+	}
+	/** end of badan badanHeli*/
+
+}
+
+void badanHeli::clearHeliUp(Buffer buff, int scale, int v) {
+
+	int i;
+	int n = 4;
+	Point badan[n];
+	Warna Biru(236, 228, 15);
+	Warna putih(0,0,0);
+	//Scanline S;
+	
+	/** badan badanHeli */
+	badan[0].setX(220);
+	badan[0].setY(100);
+	badan[1].setX(150);
+	badan[1].setY(100);
+	badan[2].setX(150);
+	badan[2].setY(150);
+	badan[3].setX(220);
+	badan[3].setY(150);
+	
+	this->P1.setX(220-v);
+	this->P1.setY(100);
+	this->P2.setX(150-v);
+	this->P2.setY(150);
+	
+	badan[1] = badan[0].setWidth(scale, badan[1]);
+	badan[2] = badan[1].setHeight(scale, badan[2]);
+	badan[3] = badan[2].setWidth(scale, badan[3]);
+	badan[0] = badan[3].setHeight(scale, badan[0]);
+	
+	for(i=0; i<n; i++)
+	{
+		if(i<3)
+		{
+			Garis g(badan[i].getX(), badan[i].getY()-v,
+					badan[i+1].getX(), badan[i+1].getY()-v);
+			g.drawLine(buff, putih);
+		}
+		else
+		{
+			Garis g(badan[i].getX(), badan[i].getY()-v,
+					badan[0].getX(), badan[0].getY()-v);
+			g.drawLine(buff, putih);
+		}
+	}
+	/** end of badan badanHeli*/
+	
+}

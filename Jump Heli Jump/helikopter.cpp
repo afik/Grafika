@@ -89,3 +89,19 @@ void Helikopter::clearpecahHeli(Buffer buff)
 	ekor.clearPecah(buff, P1, P2, this->getVelocity());
 }
 
+void Helikopter::moveUp(Buffer buf, int scale, int v) {
+
+	ekor.clearEkorUp(buf, scale, v-5);
+	badan.clearHeliUp(buf, scale, v-5);
+	ekor.ekorHeliUp(buf, scale, v);
+	badan.badanHeliUp(buf, scale, v);
+}
+
+void Helikopter::moveDown(Buffer buf, int scale, int v) {
+
+	ekor.clearEkorUp(buf, scale, v+5);
+	badan.clearHeliUp(buf, scale, v+5);
+	ekor.ekorHeliUp(buf, scale, v);
+	badan.badanHeliUp(buf, scale, v);
+}
+
