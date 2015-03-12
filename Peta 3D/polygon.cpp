@@ -24,8 +24,7 @@ Polygon::~Polygon() {
 
 }
 
-void Polygon::drawPolygon(Buffer buff) {
-	Warna putih(5, 174, 179);
+void Polygon::drawPolygon(Buffer buff, Warna w) {
 
 	for(int i=0; i<jumlahTitikPolygon(); i++)
 	{
@@ -33,18 +32,18 @@ void Polygon::drawPolygon(Buffer buff) {
 		{
 			Garis g(kumpulanPointAlas[i].getX(), kumpulanPointAlas[i].getY(),
 					kumpulanPointAlas[i+1].getX(), kumpulanPointAlas[i+1].getY());
-			g.drawLine(buff, putih);
+			g.drawLine(buff, w);
 		}
 		else
 		{
 			Garis g(kumpulanPointAlas[i].getX(), kumpulanPointAlas[i].getY(),
 					kumpulanPointAlas[0].getX(), kumpulanPointAlas[0].getY());
-			g.drawLine(buff, putih);
+			g.drawLine(buff, w);
 		}
 	}
 }										// Gambar alas polygon 2D
 
-void Polygon::drawPolygon3D(int height) {
+void Polygon::drawPolygon3D(Buffer buff, int height) {
 
 }
 
@@ -53,7 +52,8 @@ void Polygon::addPoint(vector<Point> listPoint) {
 }
 
 void Polygon::clearPolygon() {
-
+	Buffer buff;
+	drawPolygon(buff, *Warna::hitam());
 }										// Hapus polygon 
 
 void Polygon::fillPolygonColor() {
@@ -65,19 +65,35 @@ void Polygon::fillPolygonPattern() {
 }									// Isi polygon dengan pattern tertentu
 
 void Polygon::moveUp() {
-
+	clearPolygon();
+	for(int i=0; i<kumpulanPointAlas.size(); i++) {
+		kumpulanPointAlas[i].setY(kumpulanPointAlas[i].getY()-5);
+	}
+	centrePolygon.setY(centrePolygon.getY()-5);
 }											// Geser polygon 2D/3D ke atas
 
 void Polygon::moveDown() {
-
+	clearPolygon();
+	for(int i=0; i<kumpulanPointAlas.size(); i++) {
+		kumpulanPointAlas[i].setY(kumpulanPointAlas[i].getY()+5);
+	}
+	centrePolygon.setY(centrePolygon.getY()+5);
 }											// Geser polygon 2D/3D ke bawah
 
 void Polygon::moveLeft() {
-
+	clearPolygon();
+	for(int i=0; i<kumpulanPointAlas.size(); i++) {
+		kumpulanPointAlas[i].setX(kumpulanPointAlas[i].getX()-5);
+	}
+	centrePolygon.setX(centrePolygon.getX()-5);
 }											// Geser polygon 2D/3D ke kiri
 
 void Polygon::moveRight() {
-
+	clearPolygon();
+	for(int i=0; i<kumpulanPointAlas.size(); i++) {
+		kumpulanPointAlas[i].setX(kumpulanPointAlas[i].getX()+5);
+	}
+	centrePolygon.setX(centrePolygon.getX()+5);
 }
 
 int Polygon::jumlahTitikPolygon() {
