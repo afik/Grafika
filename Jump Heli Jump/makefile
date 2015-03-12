@@ -13,14 +13,8 @@ peta: mainPeta.o buffer.o peta.o garis.o point.o warna.o pixel.o bentuk.o
 main: main.o buffer.o window.o garis.o point.o warna.o pixel.o bentuk.o peta.o
 	g++ -o main main.o buffer.o window.o garis.o point.o warna.o pixel.o bentuk.o peta.o
 
-city: main_city.o buffer.o garis.o point.o warna.o pixel.o bentuk.o ekorHeli.o badanHeli.o helikopter.o city_map.o
-	g++ -o city main_city.o buffer.o garis.o point.o warna.o pixel.o bentuk.o ekorHeli.o badanHeli.o helikopter.o city_map.o
-
-main1: mainTest.o buffer.o garis.o point.o warna.o pixel.o picker.o
-	g++ -o main1 mainTest.o buffer.o garis.o point.o warna.o pixel.o picker.o
-
-clean:
-	rm *o main1
+city: main_city.o buffer.o garis.o point.o warna.o pixel.o bentuk.o badanHeli.o ekorHeli.o helikopter.o city_map.o
+	g++ -o city main_city.o buffer.o garis.o point.o warna.o pixel.o bentuk.o badanHeli.o ekorHeli.o helikopter.o city_map.o
 
 clean_city:
 	rm *o city
