@@ -65,19 +65,31 @@ void Polygon::fillPolygonPattern() {
 }									// Isi polygon dengan pattern tertentu
 
 void Polygon::moveUp() {
-
+	for(int i=0; i<kumpulanPointAlas.size(); i++) {
+		kumpulanPointAlas[i].setY(kumpulanPointAlas[i].getY()-5);
+	}
+	centrePolygon.setY(centrePolygon.getY()-5);
 }											// Geser polygon 2D/3D ke atas
 
 void Polygon::moveDown() {
-
+	for(int i=0; i<kumpulanPointAlas.size(); i++) {
+		kumpulanPointAlas[i].setY(kumpulanPointAlas[i].getY()+5);
+	}
+	centrePolygon.setY(centrePolygon.getY()+5);
 }											// Geser polygon 2D/3D ke bawah
 
 void Polygon::moveLeft() {
-
+	for(int i=0; i<kumpulanPointAlas.size(); i++) {
+		kumpulanPointAlas[i].setX(kumpulanPointAlas[i].getX()-5);
+	}
+	centrePolygon.setX(centrePolygon.getX()-5);
 }											// Geser polygon 2D/3D ke kiri
 
 void Polygon::moveRight() {
-
+	for(int i=0; i<kumpulanPointAlas.size(); i++) {
+		kumpulanPointAlas[i].setX(kumpulanPointAlas[i].getX()+5);
+	}
+	centrePolygon.setX(centrePolygon.getX()+5);
 }
 
 int Polygon::jumlahTitikPolygon() {

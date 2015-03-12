@@ -1,6 +1,37 @@
 #include "polygon.h"
 #include <iostream>
+#include <ncurses.h>
+#include <termios.h>
+#include <unistd.h>
+#include <fcntl.h>
 using namespace std;
+
+int kbhit(void)
+{
+  struct termios oldt, newt;
+  int ch;
+  int oldf;
+ 
+  tcgetattr(STDIN_FILENO, &oldt);
+  newt = oldt;
+  newt.c_lflag &= ~(ICANON | ECHO);
+  tcsetattr(STDIN_FILENO, TCSANOW, &newt);
+  oldf = fcntl(STDIN_FILENO, F_GETFL, 0);
+  fcntl(STDIN_FILENO, F_SETFL, oldf | O_NONBLOCK);
+ 
+  ch = getchar();
+ 
+  tcsetattr(STDIN_FILENO, TCSANOW, &oldt);
+  fcntl(STDIN_FILENO, F_SETFL, oldf);
+ 
+  if(ch != EOF)
+  {
+    ungetc(ch, stdin);
+    return 1;
+  }
+ 
+  return 0;
+}
 
 int main() {
 	Polygon poly;
@@ -30,9 +61,28 @@ int main() {
 	lp.push_back(p3);
 	lp.push_back(p4);
 	poly.addPoint(lp);
-	cout << poly.jumlahTitikPolygon() << endl;
 	Buffer buff;
+	char input;
+	
 	poly.drawPolygon(buff);
-
+	while(true) {
+		if(kbhit()) {
+			input = getchar();
+			if(input == 'i') {
+				poly.moveUp();
+				poly.drawPolygon(buff);
+			} else if(input == 'j') {
+				poly.moveLeft();
+				poly.drawPolygon(buff);
+			} else if(input == 'k') {
+				poly.moveDown();
+				poly.drawPolygon(buff);
+			} else if(input == 'l') {
+				poly.moveRight();
+				poly.drawPolygon(buff);
+			} 
+		}
+	}
+	buff.closeBuffer();
 	return 0;
 }
