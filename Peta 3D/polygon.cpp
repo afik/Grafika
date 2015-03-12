@@ -43,7 +43,7 @@ void Polygon::drawPolygon(Buffer buff, Warna w) {
 	}
 }										// Gambar alas polygon 2D
 
-void Polygon::drawPolygon3D(int height) {
+void Polygon::drawPolygon3D(Buffer buff, int height) {
 
 }
 
