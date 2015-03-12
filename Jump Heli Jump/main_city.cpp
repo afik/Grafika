@@ -5,6 +5,7 @@
 #include "city_map.h"
 #include "garis.h"
 #include "buffer.h"
+#include "helikopter.h"
 
 
 using namespace std;
@@ -15,8 +16,10 @@ int main() {
 	Buffer buf;
 	int i, check;
 	bool move, on;
+	Helikopter falcon;
 
 	on = true;
+	falcon.drawHeli(buf, 1);
 
 	while (on) {
 
