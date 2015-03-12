@@ -13,6 +13,9 @@ peta: mainPeta.o buffer.o peta.o garis.o point.o warna.o pixel.o bentuk.o
 main: main.o buffer.o window.o garis.o point.o warna.o pixel.o bentuk.o peta.o
 	g++ -o main main.o buffer.o window.o garis.o point.o warna.o pixel.o bentuk.o peta.o
 
+city: main_city.o buffer.o garis.o point.o warna.o pixel.o bentuk.o city_map.o
+	g++ -o city main_city.o buffer.o garis.o point.o warna.o pixel.o bentuk.o city_map.o
+
 clean_win:
 	rm *o window
 
