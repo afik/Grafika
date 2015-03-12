@@ -63,23 +63,23 @@ int main() {
 	poly.addPoint(lp);
 	Buffer buff;
 	char input;
-	
-	poly.drawPolygon(buff);
+
+	poly.drawPolygon(buff, *Warna::putih());
 	while(true) {
 		if(kbhit()) {
 			input = getchar();
 			if(input == 'i') {
 				poly.moveUp();
-				poly.drawPolygon(buff);
+				poly.drawPolygon(buff, *Warna::putih());
 			} else if(input == 'j') {
 				poly.moveLeft();
-				poly.drawPolygon(buff);
+				poly.drawPolygon(buff, *Warna::putih());
 			} else if(input == 'k') {
 				poly.moveDown();
-				poly.drawPolygon(buff);
+				poly.drawPolygon(buff, *Warna::putih());
 			} else if(input == 'l') {
 				poly.moveRight();
-				poly.drawPolygon(buff);
+				poly.drawPolygon(buff, *Warna::putih());
 			} 
 		}
 	}

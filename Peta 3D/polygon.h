@@ -22,7 +22,7 @@ public:
 	Polygon& operator=(const Polygon& poly);
 	~Polygon();
 	
-	void drawPolygon(Buffer buff);											// Gambar alas polygon 2D
+	void drawPolygon(Buffer buff, Warna w);											// Gambar alas polygon 2D
 	void drawPolygon3D(int height);								// Gambar polygon 3D dari alas polygon
 	void addPoint(vector<Point> listPoint);						// Tambah point-point ujung alas polygon  
 	void clearPolygon();										// Hapus polygon 
