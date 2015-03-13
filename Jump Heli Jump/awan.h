@@ -7,9 +7,11 @@
 
 class Awan{
 	public:
-		Awan(Buffer buf, int x, int y, int rad);
+		Awan();
+		Awan(int x, int y, int rad);
 		~Awan();
 		void draw(Buffer buf);
+		void clear(Buffer buf);
 		int* getBoundary();
 		Point getPosisi();
 		int getRadius();
@@ -20,6 +22,7 @@ class Awan{
 		Point pos;
 		int jari;
 		Point sudut[];
+		Point hapus[];
 
 };
 
