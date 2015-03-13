@@ -11,6 +11,8 @@
 #include "awan.h"
 #include "city_map.h"
 #include "helikopter.h"
+#include "clip.h"
+#include "bentuk.h"
 
 using namespace std;
 
@@ -56,19 +58,33 @@ int main(){
 	city_map map;
 	Buffer buf; 
 	Pixel pixel;
+	Helikopter falcon;
+	
+	clip clip;
+	Point va(windowKiri,windowAtas);
+	clip.setViewSize(windowKanan-windowKiri);
+	clip.setViewAnchor(va);
+	
 	int radiusAwan, yAwan;
 	int i, check;
 	bool move, on;
-	Helikopter falcon;
 	char input;
-
-
+	int ln[100][4];
+	
 	int v = 0;
 	int phase = 1;
 	on = true;
 
 	system("clear");
 	falcon.drawHeli(buf, 1);
+	
+	pixel.putPixel(*Warna::merah(), falcon.getAnchorP1(), buf);
+	pixel.putPixel(*Warna::merah(), falcon.getAnchorP2(), buf);
+	clip.setXmin(falcon.getAnchorP1().getX());
+ 	clip.setXmax(falcon.getAnchorP2().getX());
+ 	clip.setYmin(falcon.getAnchorP1().getY());
+ 	clip.setYmax(falcon.getAnchorP2().getY());
+
 
 	//Garis boundary dan window
 	static Garis batasA(batasKiri,batasAtas,batasKanan,batasAtas); batasA.drawLine(buf,*Warna::hijau());
@@ -93,6 +109,7 @@ int main(){
 		
 		while (move) {
 			if(kbhit()){
+				pixel.putPixel(*Warna::hitam(), falcon.getPosition(), buf);
 				input = getchar();
 				if (input == 'i'){
 					v+=5;
@@ -102,8 +119,14 @@ int main(){
 			 		v-=5;
 					falcon.moveDown(buf,1,v);	
 			 	}
-			 	cout << v;	
+				pixel.putPixel(*Warna::kuning(), falcon.getPosition(), buf);
+				clip.setXmin(falcon.getAnchorP1().getX());
+			 	clip.setXmax(falcon.getAnchorP2().getX());
+ 				clip.setYmin(falcon.getAnchorP1().getY());
+ 				clip.setYmax(falcon.getAnchorP2().getY());
+			 	//cout << v;	
 			}
+
 
 			if(i < 720) {
 				i+=10;

@@ -40,6 +40,15 @@
 		return ymax;
 	}
 
+
+	int clip::getViewSize(){
+		return viewSize;
+	}
+
+	Point clip::getViewAnchor(){
+		return viewAnchor;
+	}
+
 	outcode clip::compute_outcode(int x, int y) {
 		outcode oc = 0;
 		if (y > ymax)
@@ -55,6 +64,14 @@
 		return oc;
 	}
 
+
+	void clip::setViewSize(int vs){
+		viewSize = vs;
+	}
+
+	void clip::setViewAnchor(Point p){
+		viewAnchor = p;
+	}
 
 void clip::cohen_sutherland (double x1, double y1, double x2, double y2, Buffer buff) {
 
@@ -115,10 +132,10 @@ void clip::cohen_sutherland (double x1, double y1, double x2, double y2, Buffer 
 	} while (!done);
 
 	if (accept) {
-		int x1v = (100/(xmax-xmin)*(x1-xmin))+800;
-		int y1v = (100/(xmax-xmin)*(y1-ymin))+500;
-		int x2v = (100/(xmax-xmin)*(x2-xmin))+800;
-		int y2v = (100/(xmax-xmin)*(y2-ymin))+500;
+		int x1v = (viewSize/(xmax-xmin)*(x1-xmin))+viewAnchor.getX();
+		int y1v = (viewSize/(xmax-xmin)*(y1-ymin))+viewAnchor.getY();
+		int x2v = (viewSize/(xmax-xmin)*(x2-xmin))+viewAnchor.getX();
+		int y2v = (viewSize/(xmax-xmin)*(y2-ymin))+viewAnchor.getY();
 		
 		Point p1(x1v,y1v);Point p2(x2v,y2v);
 		Garis g(x1v,y1v,x2v,y2v);

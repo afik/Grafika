@@ -17,13 +17,12 @@ class Awan{
 		int getRadius();
 		void setPosisi(int x, int y);
 		void setRadius(int rad);
+		Garis allLine[12];
 
 	private:
 		Point pos;
 		int jari;
-		Point sudut[];
-		Point hapus[];
-
+		
 };
 
 #endif

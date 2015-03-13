@@ -44,6 +44,20 @@ void Awan::draw(Buffer buf){
 	Garis g10(p10,p11); g10.drawLine(buf, w);
 	Garis g11(p11,p16); g11.drawLine(buf, w);
 	Garis g16(p16,p1); g16.drawLine(buf, w);
+
+	allLine[0] = g1;
+	allLine[1] = g2;
+	allLine[2] = g3;
+	allLine[3] = g4;
+	allLine[4] = g5;
+	allLine[5] = g6;
+	allLine[6] = g7;
+	allLine[7] = g8;
+	allLine[8] = g9;
+	allLine[9] = g10;
+	allLine[10] = g11;
+	allLine[11] = g16;
+	
 	// printf("out draw\n");
 	
 

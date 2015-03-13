@@ -6,6 +6,7 @@ using namespace std;
 city_map::city_map() {
 	pBuild.setX(1000);
 	pBuild.setY(469);
+	tempAwan = 1000;
 }
 
 city_map::~city_map() {
