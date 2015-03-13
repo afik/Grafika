@@ -12,6 +12,7 @@ class Picker{
 		~Picker();
 		
 		Warna getColour(Point P, Buffer buff);
+		Warna getColour(int x, int y, Buffer buff);
 		
 		void drawPicker(Buffer buff);
 	private:

@@ -3,7 +3,6 @@ all: window peta main
 clip: mainClip.o buffer.o window.o garis.o point.o warna.o pixel.o bentuk.o clip.o peta.o scanline.o fill.o
 	g++ -o clip mainClip.o buffer.o window.o garis.o point.o warna.o pixel.o bentuk.o clip.o peta.o scanline.o fill.o
 
-
 window: mainWindow.o buffer.o window.o garis.o point.o warna.o pixel.o bentuk.o
 	g++ -o window mainWindow.o buffer.o window.o garis.o point.o warna.o pixel.o bentuk.o
 
@@ -16,6 +15,12 @@ main: main.o buffer.o window.o garis.o point.o warna.o pixel.o bentuk.o peta.o
 city: main_city.o buffer.o garis.o point.o warna.o pixel.o bentuk.o badanHeli.o ekorHeli.o helikopter.o city_map.o
 	g++ -o city main_city.o buffer.o garis.o point.o warna.o pixel.o bentuk.o badanHeli.o ekorHeli.o helikopter.o city_map.o
 
+pik: mainPicker.o buffer.o garis.o point.o warna.o pixel.o bentuk.o badanHeli.o ekorHeli.o helikopter.o baling.o picker.o
+	g++ -o pik mainPicker.o buffer.o garis.o point.o warna.o pixel.o bentuk.o badanHeli.o ekorHeli.o helikopter.o baling.o picker.o
+
+clean_pik:
+	rm *o pik
+	
 clean_city:
 	rm *o city
 

@@ -36,6 +36,7 @@ int main()
 	para.setRadius(30);
 	while(1)
 	{
+		
 		/** kapal */
 		destroyer.clearKapal(buff);
 		destroyer.setVelocity(vi);
