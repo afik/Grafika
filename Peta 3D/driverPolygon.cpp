@@ -65,9 +65,27 @@ int main() {
 	lp.push_back(p5);
 	lp.push_back(p6);
 	poly.addPoint(lp);
+
+	/*Polygon poly2;
+	vector<Point> lp2;
+	Point p21(1000, 800);
+	Point p22(800, 900);
+	Point p32(900, 900);
+	Point p42(1100, 1000);
+	Point p52(1000, 1100);
+	Point p62(1150, 1100);
+	lp.push_back(p21);
+	lp.push_back(p22);
+	lp.push_back(p32);
+	lp.push_back(p42);
+	lp.push_back(p52);
+	lp.push_back(p62);
+	poly2.addPoint(lp2);*/
+
 	Buffer buff;
 	char input;
 
+	int heigth = 300;
 	Point* arrayPoint = poly.sortKumpulanPointHorizontal();
 	for (int i=0; i<6; i++) {
 		cout << "Absis point koordinat ke-" << i << " : " << arrayPoint[i].getX() << endl;
@@ -76,22 +94,31 @@ int main() {
 	cout << "Critical ordinat : " << poly.getCriticalOrdinatPoint(arrayPoint[0], arrayPoint[3]) << endl;
 	
 	//poly.drawPolygon(buff, *Warna::putih());
-	poly.drawPolygon3D(buff, 300, *Warna::putih());
+	poly.drawPolygon3D(buff, heigth, *Warna::putih());
+	// poly2.drawPolygon3D(buff, heigth, *Warna::putih());
 	while(true) {
 		if(kbhit()) {
 			input = getchar();
 			if(input == 'i') {
-				poly.moveUp();
-				poly.drawPolygon(buff, *Warna::putih());
+				poly.moveUp(heigth);
+				// poly2.moveUp(heigth);
+				poly.drawPolygon3D(buff, heigth, *Warna::putih());
+				// poly2.drawPolygon3D(buff, heigth, *Warna::putih());
 			} else if(input == 'j') {
-				poly.moveLeft();
-				poly.drawPolygon(buff, *Warna::putih());
+				poly.moveLeft(heigth);
+				// poly2.moveLeft(heigth);
+				poly.drawPolygon3D(buff, heigth, *Warna::putih());
+				// poly2.drawPolygon3D(buff, heigth, *Warna::putih());
 			} else if(input == 'k') {
-				poly.moveDown();
-				poly.drawPolygon(buff, *Warna::putih());
+				poly.moveDown(heigth);
+				// poly2.moveDown(heigth);
+				poly.drawPolygon3D(buff, heigth, *Warna::putih());
+				// poly2.drawPolygon3D(buff, heigth, *Warna::putih());
 			} else if(input == 'l') {
-				poly.moveRight();
-				poly.drawPolygon(buff, *Warna::putih());
+				poly.moveRight(heigth);
+				// poly2.moveRight(heigth);
+				poly.drawPolygon3D(buff, heigth, *Warna::putih());
+				// poly2.drawPolygon3D(buff, heigth, *Warna::putih());
 			} 
 		}
 	}
