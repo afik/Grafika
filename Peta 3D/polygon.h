@@ -7,13 +7,18 @@
 #include "buffer.h"
 #include "pixel.h"
 #include <vector>
+ 
+struct sisiPolygon {
+		Point p1;
+		Point p2;
+};
 
 class Polygon {
 	// Atribut kelas
 private:
 	vector<Point> kumpulanPointAlas;
 	Point centrePolygon;
-
+	vector<sisiPolygon> sisiVisiblePolygon;
 	// Method Utama
 public:	
 	Polygon();
