@@ -4,55 +4,86 @@
 using namespace std;
 
 city_map::city_map() {
-
+	pBuild.setX(1000);
+	pBuild.setY(469);
+	tempAwan = 1000;
 }
 
 city_map::~city_map() {
 
 }
 
-void city_map::addBuilding(Buffer buf, int height) {
+void city_map::addCloud(Buffer buf, int height){
+	posAwan = 1000;
+	tempAwan = 1000;
+	awan.setPosisi(posAwan,height);
+	awan.draw(buf);
+}
 
-	Point p(800,height);
-	b.persegi(p, 100, 500-height, buf, *Warna::putih());
+void city_map::addBuilding(Buffer buf, int height) {
+	pBuild.setX(1000);
+	pBuild.setY(469);
+	tempBuild = 1000;
+	b.persegiB(pBuild, lebarBuilding, height, buf, *Warna::putih());
+}
+
+Awan city_map::getCloud(){
+	return awan;
 }
 
 Bentuk city_map::getBuilding() {
 
 	return b;
 }
-
+		
 void city_map::setBuilding(int offset, Buffer buf, int height) {
-
-	Point p(800-offset,height);
-	b.persegi(p, 100, 500-height, buf, *Warna::putih());
+	pBuild.setX(1000-offset);
+	pBuild.setY(469);
+	tempBuild = 1000-offset;
+	b.persegiB(pBuild, lebarBuilding, height, buf, *Warna::putih());
 }
 
-void city_map::clearBuilding(int offset, Buffer buf, int height) {
-
-	Point p1(800-offset+10, height);
-	Point p2(800-offset+10, 500);
-	Point p3(900-offset+10, height);
-	Point p4(900-offset+10, 500);
-
-	Garis g1(p1, p2);
-	Garis g2(p3, p4);
-	g1.drawLine(buf, *Warna::hitam()); 
-	g2.drawLine(buf, *Warna::hitam());
-
-	Point p5(900-offset+1, height);
-	b.persegi(p5, 900-offset+10, 500-height, buf, *Warna::hitam());
+void city_map::clearCloud(Buffer buf){
+	awan.clear(buf);
 }
 
-void city_map::clearAll(Buffer buf, int height) {
+void city_map::clearBuilding(int x,Buffer buf, int height) {
+	pBuild.setX(1000-x);
+	pBuild.setY(469);
+	b.persegiB(pBuild, lebarBuilding, height, buf, *Warna::hitam());
 
-	Point p3(0, height);
-	b.persegi(p3, 100, 500-height, buf, *Warna::hitam());
 }
 
+void city_map::clearAll(int flag, Buffer buf, int height) {
+	if (flag ==1 ) {
+		pBuild.setX(posAwan-50);
+		pBuild.setY(469);
+		b.persegiB(pBuild, lebarBuilding, height, buf, *Warna::hitam());
+	}
+	else {
+		awan.setPosisi(tempAwan,height);
+		awan.clear(buf);
+	}
+}
 
+	
 void city_map::motion(int x, Buffer buf, int height) {
-
+	clearBuilding(1000-tempBuild,buf, height);
 	setBuilding(x, buf, height);
-	clearBuilding(x, buf, height);
 }
+
+void city_map::playCloud(int x, Buffer buf, int height){
+	//Pixel pixel;
+	awan.setPosisi(tempAwan,height);
+	awan.clear(buf);
+	// pixel.putPixel(*Warna::hitam(),awan.getBoundary()[0], awan.getBoundary()[1],buf);	
+	// pixel.putPixel(*Warna::hitam(),awan.getBoundary()[0], awan.getBoundary()[2],buf);	
+	posAwan = 1000-x;
+	tempAwan = posAwan;
+	awan.setPosisi(posAwan,height);
+	awan.draw(buf);
+	// pixel.putPixel(*Warna::kuning(),awan.getBoundary()[0], awan.getBoundary()[1],buf);	
+	// pixel.putPixel(*Warna::kuning(),awan.getBoundary()[0], awan.getBoundary()[2],buf);	
+
+}
+		
