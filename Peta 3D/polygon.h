@@ -23,7 +23,9 @@ public:
 	~Polygon();
 	
 	void drawPolygon(Buffer buff, Warna w);											// Gambar alas polygon 2D
-	void drawPolygon3D(Buffer buff, int height);								// Gambar polygon 3D dari alas polygon
+	void drawPolygon3D(Buffer buff, int height, Warna w);							// Gambar polygon 3D dari alas polygon
+	Point* sortKumpulanPointHorizontal();											// Urutkan secara membesar point pembentuk alas berdasarkan sumbu X
+	int getCriticalOrdinatPoint(Point terujungKiri, Point terujungKanan);			// Fungsi untuk mendapatkan ordinat minimal dari kedua ujung point kiri dan kanan
 	void addPoint(vector<Point> listPoint);						// Tambah point-point ujung alas polygon  
 	void clearPolygon();										// Hapus polygon 
 	void fillPolygonColor();									// Isi polygon dengan warna tertentu

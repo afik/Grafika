@@ -52,19 +52,31 @@ int main() {
 	// cout << poly4.getCentrePolygon().getX() << endl;
 
 	vector<Point> lp;
-	Point p(100, 100);
-	Point p2(200, 100);
-	Point p3(200, 200);
-	Point p4(100, 200);
+	Point p(100, 400);
+	Point p2(200, 300);
+	Point p3(300, 300);
+	Point p4(500, 400);
+	Point p5(400, 500);
+	Point p6(350, 500);
 	lp.push_back(p);
 	lp.push_back(p2);
 	lp.push_back(p3);
 	lp.push_back(p4);
+	lp.push_back(p5);
+	lp.push_back(p6);
 	poly.addPoint(lp);
 	Buffer buff;
 	char input;
 
-	poly.drawPolygon(buff, *Warna::putih());
+	Point* arrayPoint = poly.sortKumpulanPointHorizontal();
+	for (int i=0; i<6; i++) {
+		cout << "Absis point koordinat ke-" << i << " : " << arrayPoint[i].getX() << endl;
+		cout << "Ordinat point koordinat ke-" << i << " : " << arrayPoint[i].getY() << endl;
+	}
+	cout << "Critical ordinat : " << poly.getCriticalOrdinatPoint(arrayPoint[0], arrayPoint[3]) << endl;
+	
+	//poly.drawPolygon(buff, *Warna::putih());
+	poly.drawPolygon3D(buff, 300, *Warna::putih());
 	while(true) {
 		if(kbhit()) {
 			input = getchar();
