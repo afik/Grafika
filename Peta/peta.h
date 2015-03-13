@@ -9,7 +9,7 @@ class Peta{
 	public:
 		Peta();
 		~Peta();
-		void gambarPeta(int y, Buffer buff, Warna warna);
+		void gambarPeta(int y, Buffer buff, Warna putih);
 		Garis* getGarisPulau(int pulauKe, int garisKe); // garis dimulai dari 1, pulau juga
 		Garis* getPetaSumatra();
 		Garis* getPetaJawa();
