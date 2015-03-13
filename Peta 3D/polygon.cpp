@@ -136,9 +136,9 @@ void Polygon::addPoint(vector<Point> listPoint) {
 	kumpulanPointAlas = listPoint;
 }
 
-void Polygon::clearPolygon() {
+void Polygon::clearPolygon(int height) {
 	Buffer buff;
-	drawPolygon(buff, *Warna::hitam());
+	drawPolygon3D(buff, height, *Warna::hitam());
 }										// Hapus polygon 
 
 void Polygon::fillPolygonColor() {
@@ -149,32 +149,32 @@ void Polygon::fillPolygonPattern() {
 
 }									// Isi polygon dengan pattern tertentu
 
-void Polygon::moveUp() {
-	clearPolygon();
+void Polygon::moveUp(int height) {
+	clearPolygon(height);
 	for(int i=0; i<kumpulanPointAlas.size(); i++) {
 		kumpulanPointAlas[i].setY(kumpulanPointAlas[i].getY()-5);
 	}
 	centrePolygon.setY(centrePolygon.getY()-5);
 }											// Geser polygon 2D/3D ke atas
 
-void Polygon::moveDown() {
-	clearPolygon();
+void Polygon::moveDown(int height) {
+	clearPolygon(height);
 	for(int i=0; i<kumpulanPointAlas.size(); i++) {
 		kumpulanPointAlas[i].setY(kumpulanPointAlas[i].getY()+5);
 	}
 	centrePolygon.setY(centrePolygon.getY()+5);
 }											// Geser polygon 2D/3D ke bawah
 
-void Polygon::moveLeft() {
-	clearPolygon();
+void Polygon::moveLeft(int height) {
+	clearPolygon(height);
 	for(int i=0; i<kumpulanPointAlas.size(); i++) {
 		kumpulanPointAlas[i].setX(kumpulanPointAlas[i].getX()-5);
 	}
 	centrePolygon.setX(centrePolygon.getX()-5);
 }											// Geser polygon 2D/3D ke kiri
 
-void Polygon::moveRight() {
-	clearPolygon();
+void Polygon::moveRight(int height) {
+	clearPolygon(height);
 	for(int i=0; i<kumpulanPointAlas.size(); i++) {
 		kumpulanPointAlas[i].setX(kumpulanPointAlas[i].getX()+5);
 	}
