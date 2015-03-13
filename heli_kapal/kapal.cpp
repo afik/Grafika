@@ -47,6 +47,10 @@ Point Kapal::getAnchorP2()
 	return P2;
 }
 
+int Kapal::GetX(Garis G, int y){
+	return ((y - G.getPointP1().getY())*(G.getPointP2().getX() - G.getPointP1().getX())/(G.getPointP2().getY() - G.getPointP1().getY())) + G.getPointP1().getX();
+}
+
 void Kapal::drawKapal(Buffer buff)
 {
 	int i;
@@ -87,7 +91,13 @@ void Kapal::drawKapal(Buffer buff)
 	Garis G1(lambung[0].getX()+this->getVelocity(), lambung[0].getY(), lambung[1].getX()+this->getVelocity(), lambung[1].getY());
 	Garis G2(lambung[3].getX()+this->getVelocity(), lambung[3].getY(), lambung[2].getX()+this->getVelocity(), lambung[2].getY());
 
-	//S.drawScanline(100+this->getVelocity(), 300, 300+this->getVelocity(), 325, G1, G2, putih);
+	for(int j = 300; j < 325 ; j++){
+		Point Pi(GetX(G1,j) , j);
+		Point Pj(GetX(G2,j) , j);
+		Garis g(Pi, Pj);
+		g.drawLine(buff,putih);
+	}
+	
 	/** end of lambung kapal*/
 	
 	/** geladak kapal */
@@ -213,6 +223,16 @@ void Kapal::clearKapal(Buffer buff)
 					lambung[0].getX()+this->getVelocity(), lambung[0].getY());
 			g.drawLine(buff, putih);
 		}
+	}
+	
+	Garis G1(lambung[0].getX()+this->getVelocity(), lambung[0].getY(), lambung[1].getX()+this->getVelocity(), lambung[1].getY());
+	Garis G2(lambung[3].getX()+this->getVelocity(), lambung[3].getY(), lambung[2].getX()+this->getVelocity(), lambung[2].getY());
+	
+	for(int j = 300; j < 325 ; j++){
+		Point Pi(GetX(G1,j) , j);
+		Point Pj(GetX(G2,j) , j);
+		Garis g(Pi, Pj);
+		g.drawLine(buff,putih);
 	}
 	/** end of lambung kapal*/
 	
