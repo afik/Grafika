@@ -5,6 +5,7 @@
 #include "warna.h"
 #include "bentuk.h"
 #include "awan.h"
+#include "polygon.h"
 
 using namespace std;
 
@@ -28,6 +29,7 @@ class city_map
 	private:
 		static const int lebarBuilding = 75;
 
+		Polygon poly;
 		Bentuk b;
 		Awan awan;
 		int tempAwan, posAwan;
