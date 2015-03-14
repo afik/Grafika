@@ -13,6 +13,7 @@
 #include "helikopter.h"
 #include "clip.h"
 #include "bentuk.h"
+#include "fill_scan.h"
 
 using namespace std;
 

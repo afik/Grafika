@@ -21,10 +21,23 @@ void city_map::addCloud(Buffer buf, int height){
 }
 
 void city_map::addBuilding(Buffer buf, int height) {
-	pBuild.setX(1000);
-	pBuild.setY(469);
-	tempBuild = 1000;
-	b.persegiB(pBuild, lebarBuilding, height, buf, *Warna::putih());
+	vector<Point> alas;
+	Point p1(1000-lebarBuilding,500);
+	Point p2(1000,500);
+	Point p3(1025,480);
+	Point p4(1025-lebarBuilding,480);
+	alas.push_back(p1);
+	alas.push_back(p2);
+	alas.push_back(p3);
+	alas.push_back(p4);
+	poly.addPoint(alas);
+
+	poly.drawPolygon3D(buf,height, *Warna::putih());
+
+//	pBuild.setX(1000);
+//	pBuild.setY(469);
+//	tempBuild = 1000;
+//	b.persegiB(pBuild, lebarBuilding, height, buf, *Warna::putih());
 }
 
 Awan city_map::getCloud(){
