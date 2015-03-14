@@ -15,6 +15,7 @@ class Bentuk{
 		void setengah_lingkaran(int x, int y, int Radius, Buffer buf, Warna w);
 		void persegi(Point kiriatas, int panjang, int lebar, Buffer buf, Warna w);
 		void persegiB(Point kiribawah, int panjang, int lebar, Buffer buf, Warna w);
+		Garis allLine[4];		
 		
 	private:
 		

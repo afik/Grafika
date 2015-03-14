@@ -28,6 +28,8 @@ class ekorHeli{
 		void ekorHeliUp(Buffer buff, int scale, int v);
 		void clearEkorUp(Buffer buff, int scale, int v);
 
+		Garis allLine[5];
+
 	private:
 		int N;			// jumlah titik/garis
 		int velocity;	// kecepatan kapal
