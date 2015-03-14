@@ -21,6 +21,7 @@ class Kapal{
 		Point getPosition();
 		Point getAnchorP1();
 		Point getAnchorP2();
+		int GetX(Garis G, int y);
 		
 		void drawKapal(Buffer buff);			// menggambar kapal
 		void clearKapal(Buffer buff);			// menghapus kapal

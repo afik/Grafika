@@ -8,6 +8,8 @@ class Warna{
 	public:
 		Warna();
 		Warna(int R, int G, int B);
+		Warna(const Warna& w);
+		Warna& operator=(const Warna& w);
 		~Warna();
 		
 		void setRed(int R);
@@ -27,7 +29,15 @@ class Warna{
 		static Warna* coklat() {return wcoklat;}
 		static Warna* ungu() {return wungu;}
 		static Warna* oranye() {return woranye;}
-	
+		static Warna* birutoska() {return wbirutoska;}
+		static Warna* pink() {return wpink;}
+		static Warna* birulangit() {return wbirulangit;}
+		static Warna* softpink() {return wsoftpink;}
+		static Warna* orenmuda() {return worenmuda;}
+		static Warna* abu() {return wabu;}
+		static Warna* violet() {return wviolet;}
+		static Warna* shockpink() {return wshockpink;}
+
 	private:
 		static Warna* wputih;
 		static Warna* whitam;
@@ -38,6 +48,14 @@ class Warna{
 		static Warna* wcoklat;
 		static Warna* wungu;
 		static Warna* woranye;
+		static Warna* wbirutoska;
+		static Warna* wpink;
+		static Warna* wbirulangit;
+		static Warna* wsoftpink;
+		static Warna* worenmuda;
+		static Warna* wabu;
+		static Warna* wviolet;
+		static Warna* wshockpink;
 		int R;	//Red
 		int G;	//Green
 		int B;	//Blue
