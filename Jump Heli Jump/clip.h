@@ -32,7 +32,7 @@ public:
 	void setViewSize(int vs);
 	void setViewAnchor(Point p);
 	outcode compute_outcode(int x, int y);
-	void cohen_sutherland (double x1, double y1, double x2, double y2, Buffer buff);
+	void cohen_sutherland (double x1, double y1, double x2, double y2, Warna w, Buffer buff);
 	std::vector<Garis> cekGaris(Garis* input); 
 
 private:

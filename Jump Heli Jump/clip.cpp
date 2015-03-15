@@ -73,8 +73,8 @@
 		viewAnchor = p;
 	}
 
-void clip::cohen_sutherland (double x1, double y1, double x2, double y2, Buffer buff) {
-
+void clip::cohen_sutherland (double x1, double y1, double x2, double y2, Warna w, Buffer buff) {
+	//printf("%f %f %f %f \n", x1, y1, x2, y2);
 	bool accept;
 	bool done;
 	outcode outcode1, outcode2;
@@ -139,6 +139,7 @@ void clip::cohen_sutherland (double x1, double y1, double x2, double y2, Buffer 
 		
 		Point p1(x1v,y1v);Point p2(x2v,y2v);
 		Garis g(x1v,y1v,x2v,y2v);
-		g.drawLine(buff, *Warna::putih());
+		g.drawLine(buff, w);
+
 	}
 }
