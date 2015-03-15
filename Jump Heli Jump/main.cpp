@@ -14,6 +14,8 @@
 #include "clip.h"
 #include "bentuk.h"
 #include "fill_scan.h"
+#include "fill.h"
+
 
 using namespace std;
 
@@ -63,6 +65,7 @@ int main(){
 	Buffer buf; 
 	Pixel pixel;
 	Helikopter falcon;
+	Fill fill;
 	
 	clip clip;
 	Point va(windowKiri,windowAtas);
@@ -133,6 +136,8 @@ int main(){
 		sp = 0;
 		
 		while (move) {
+			fill.FloodFill(windowAtas+1, windowKiri+1, *Warna::hitam(), *Warna::hitam(), buf);
+
 			if(kbhit()){
 				pixel.putPixel(*Warna::hitam(), falcon.getPosition(), buf);
 				input = getchar();
