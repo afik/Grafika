@@ -6,7 +6,7 @@
 #include "bentuk.h"
 #include "awan.h"
 #include "polygon.h"
-#include "fill.h"
+#include "fill_scan.h"
 
 using namespace std;
 
