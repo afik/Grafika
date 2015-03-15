@@ -2,6 +2,10 @@
 #include <iostream>
 int fillScan::GetX(Garis G, int y){ return ((y - G.getPointP1().getY())*(G.getPointP2().getX() - G.getPointP1().getX())/(G.getPointP2().getY() - G.getPointP1().getY())) + G.getPointP1().getX(); }
 
+fillScan::fillScan() {
+	//numLine =0;
+}
+
 void fillScan::fill(int y0, int y1, Garis G1, Garis G2, Warna warna, Buffer buff){	
 	for(int j = y0; j < y1 ; j++){ 
 		Point Pi(GetX(G1,j) , j); 
@@ -101,6 +105,7 @@ void fillScan::fillPolygon(int x, int y, Warna warna, Buffer buff){
 		fill(P4a.getY(), P4d.getY(), G1ad, G2bc, warna, buff);
 		fill(P4a.getY(), P4d.getY(), G2ad, G23, warna, buff);
 	}
+
 void fillScan::fillRect(Point P, int w, int h, Warna warna, Buffer buff){	
 	Point Paa(P.getX(),P.getY());	Point Pab(P.getX(), P.getY()-h);
 	Point Pbb(P.getX()+w,P.getY()); Point Pba(P.getX()+w,P.getY()-h);
@@ -112,6 +117,8 @@ void fillScan::fillRect(Point P, int w, int h, Warna warna, Buffer buff){
 		Point Pj(GetX(G2,j) , j); 
 		Garis g(Pi, Pj); 
 		g.drawLine(buff,warna); 
+		//allLine[numLine] = g;
+		//numLine++;
 	}	
 }
 void fillScan::fillRect(int x, int y, int w, int h, Warna warna, Buffer buff){	
@@ -125,6 +132,8 @@ void fillScan::fillRect(int x, int y, int w, int h, Warna warna, Buffer buff){
 		Point Pj(GetX(G2,j) , j); 
 		Garis g(Pi, Pj); 
 		g.drawLine(buff,warna); 
+		//allLine[numLine] = g;
+		//numLine++;
 	}	
 }
 void fillScan::fillPattern(Point P, int h, Warna warna1, Warna warna2, Buffer buff){

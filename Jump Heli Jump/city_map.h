@@ -20,7 +20,7 @@ class city_map
 		void addBuilding(Buffer buf, int height);
 		void playCloud(int x,Buffer buf, int height);
 		void motion(int x, Buffer buf, int height);
-		Bentuk getBuilding();
+		Polygon getPoly();
 		Awan getCloud();
 		void setBuilding(int offset, Buffer buf, int height);
 		void clearBuilding(int x,Buffer buf, int height);
@@ -31,7 +31,6 @@ class city_map
 		static const int lebarBuilding = 75;
 
 		Polygon poly;
-		Bentuk b;
 		Awan awan;
 		int tempAwan, posAwan;
 		Point pBuild;
