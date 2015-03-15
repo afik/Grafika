@@ -87,11 +87,11 @@ int main() {
 
 	int heigth = 300;
 	Point* arrayPoint = poly.sortKumpulanPointHorizontal();
-	for (int i=0; i<6; i++) {
-		cout << "Absis point koordinat ke-" << i << " : " << arrayPoint[i].getX() << endl;
-		cout << "Ordinat point koordinat ke-" << i << " : " << arrayPoint[i].getY() << endl;
-	}
-	cout << "Critical ordinat : " << poly.getCriticalOrdinatPoint(arrayPoint[0], arrayPoint[3]) << endl;
+	// for (int i=0; i<6; i++) {
+	// 	cout << "Absis point koordinat ke-" << i << " : " << arrayPoint[i].getX() << endl;
+	// 	cout << "Ordinat point koordinat ke-" << i << " : " << arrayPoint[i].getY() << endl;
+	// }
+	// cout << "Critical ordinat : " << poly.getCriticalOrdinatPoint(arrayPoint[0], arrayPoint[3]) << endl;
 	
 	//poly.drawPolygon(buff, *Warna::putih());
 	poly.drawPolygon3D(buff, heigth, *Warna::putih());
