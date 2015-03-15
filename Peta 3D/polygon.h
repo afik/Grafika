@@ -6,6 +6,7 @@
 #include "warna.h"
 #include "buffer.h"
 #include "pixel.h"
+#include "clip.h"
 #include <vector>
 
 class Polygon {
@@ -13,7 +14,8 @@ class Polygon {
 private:
 	vector<Point> kumpulanPointAlas;
 	Point centrePolygon;
-
+	vector<Garis> sisiVisiblePolygon;
+	 
 	// Method Utama
 public:	
 	Polygon();
@@ -40,7 +42,7 @@ public:
 	int jumlahTitikPolygon();									// Hitung jumlah titik pembentuk polygon
 	Point getCentrePolygon();									// Ambil pusat dari alas 2D								 
 	void setCentrePolygon(Point centre);
+	Point getGarisPolygon(int indexGaris);						// Kembalikan salah satu sisi garis polygon
 };
 
 #endif
-

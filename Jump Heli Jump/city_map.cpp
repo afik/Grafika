@@ -4,8 +4,8 @@
 using namespace std;
 
 city_map::city_map() {
-	pBuild.setX(1000);
-	pBuild.setY(469);
+	pBuild.setX(1000+26);
+	pBuild.setY(467);
 	tempAwan = 1000;
 }
 
@@ -21,13 +21,14 @@ void city_map::addCloud(Buffer buf, int height){
 }
 
 void city_map::addBuilding(Buffer buf, int height) {
+	fillScan fill;
 	Point p(1025,457);
 	poly.setCentrePolygon(p);
 	vector<Point> alas;
 	Point p1(1000-25,467);
 	Point p2(1000,447);
-	Point p3(1000+lebarBuilding,467);
-	Point p4(1000+lebarBuilding-25,447);
+	Point p3(1000+lebarBuilding-22,467);
+	Point p4(1000+lebarBuilding-47,447);
 	alas.push_back(p1);
 	alas.push_back(p2);
 	alas.push_back(p3);
@@ -35,38 +36,25 @@ void city_map::addBuilding(Buffer buf, int height) {
 	poly.addPoint(alas);
 
 	poly.drawPolygon3D(buf,height, *Warna::putih());
+	fill.fillPattern(pBuild,height-10, *Warna::kuning(), *Warna::putih(), buf);
+}
 
+Polygon city_map::getPoly(){
+	return poly;
 }
 
 Awan city_map::getCloud(){
 	return awan;
 }
 
-Bentuk city_map::getBuilding() {
-
-	return b;
-}
-		
-void city_map::setBuilding(int offset, Buffer buf, int height) {
-	pBuild.setX(1000-offset);
-	pBuild.setY(469);
-	tempBuild = 1000-offset;
-	b.persegiB(pBuild, lebarBuilding, height, buf, *Warna::putih());
-}
-
 void city_map::clearCloud(Buffer buf){
 	awan.clear(buf);
 }
 
-void city_map::clearBuilding(int x,Buffer buf, int height) {
-	pBuild.setX(1000-x);
-	pBuild.setY(469);
-	b.persegiB(pBuild, lebarBuilding, height, buf, *Warna::hitam());
-
-}
-
 void city_map::clearAll(int flag, Buffer buf, int height) {
+	fillScan fill;
 	if (flag ==1 ) {
+		fill.fillRect(pBuild, 100, height, *Warna::hitam(), buf);
 		poly.clearPolygon(height);
 	}
 	else {
@@ -77,8 +65,14 @@ void city_map::clearAll(int flag, Buffer buf, int height) {
 
 	
 void city_map::motion(int x, Buffer buf, int height) {
+	fillScan fill;
+
+	fill.fillRect(pBuild, 100, height, *Warna::hitam(), buf);
 	poly.moveLeft(height);
+	pBuild.setX(1000+26-x);
+	pBuild.setY(467);
 	poly.drawPolygon3D(buf, height,*Warna::putih());
+	fill.fillPattern(pBuild,height-10, *Warna::kuning(), *Warna::putih(), buf);
 }
 
 void city_map::playCloud(int x, Buffer buf, int height){

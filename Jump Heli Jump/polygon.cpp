@@ -3,9 +3,11 @@
 Polygon::Polygon() {
 	centrePolygon.setX(200);
 	centrePolygon.setY(200);
+	numVisibleLine = 0;
 }
 
 Polygon::Polygon(Point centrePolygon) {
+	numVisibleLine = 0;
 	this->centrePolygon = centrePolygon;
 }								// assign point 2D alas
 
