@@ -184,6 +184,27 @@ void Bentuk::persegi(Point kiriatas, int panjang, int lebar, Buffer buf, Warna w
     Garis g2(P2,P4); g2.drawLine(buf, w);
     Garis g3(P4,P3); g3.drawLine(buf, w);
     Garis g4(P3,kiriatas); g4.drawLine(buf, w);
-    
+
+    allLine[0] = g1;
+    allLine[1] = g2;
+    allLine[2] = g3;
+    allLine[4] = g4;
+       
+}
+
+void Bentuk::persegiB(Point kiribawah, int panjang, int lebar, Buffer buf, Warna w){
+    Point P2(kiribawah.getX()+panjang, kiribawah.getY());
+    Point P3(kiribawah.getX(), kiribawah.getY()-lebar);
+    Point P4(kiribawah.getX()+panjang, kiribawah.getY()-lebar);
+
+    Garis g1(kiribawah,P2); g1.drawLine(buf, w);
+    Garis g2(P2,P4); g2.drawLine(buf, w);
+    Garis g3(P4,P3); g3.drawLine(buf, w);
+    Garis g4(P3,kiribawah); g4.drawLine(buf, w);
+
+    allLine[0] = g1;
+    allLine[1] = g2;
+    allLine[2] = g3;
+    allLine[4] = g4;
        
 }

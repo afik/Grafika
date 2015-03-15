@@ -1,21 +1,17 @@
-all: window peta main
+all:  main city pik
 
-clip: mainClip.o buffer.o window.o garis.o point.o warna.o pixel.o bentuk.o clip.o peta.o scanline.o fill.o
-	g++ -o clip mainClip.o buffer.o window.o garis.o point.o warna.o pixel.o bentuk.o clip.o peta.o scanline.o fill.o
-
-
-window: mainWindow.o buffer.o window.o garis.o point.o warna.o pixel.o bentuk.o
-	g++ -o window mainWindow.o buffer.o window.o garis.o point.o warna.o pixel.o bentuk.o
-
-peta: mainPeta.o buffer.o peta.o garis.o point.o warna.o pixel.o bentuk.o
-	g++ -o peta mainPeta.o buffer.o peta.o garis.o point.o warna.o pixel.o bentuk.o	
-
-main: main.o buffer.o window.o garis.o point.o warna.o pixel.o bentuk.o peta.o
-	g++ -o main main.o buffer.o window.o garis.o point.o warna.o pixel.o bentuk.o peta.o
+main: main.o buffer.o garis.o point.o warna.o pixel.o bentuk.o badanHeli.o ekorHeli.o helikopter.o city_map.o polygon.o awan.o clip.o fill.o pattern.o fill_scan.o
+	g++ -o main main.o buffer.o garis.o point.o warna.o pixel.o  bentuk.o badanHeli.o ekorHeli.o helikopter.o city_map.o polygon.o awan.o clip.o fill.o pattern.o fill_scan.o
 
 city: main_city.o buffer.o garis.o point.o warna.o pixel.o bentuk.o badanHeli.o ekorHeli.o helikopter.o city_map.o
 	g++ -o city main_city.o buffer.o garis.o point.o warna.o pixel.o bentuk.o badanHeli.o ekorHeli.o helikopter.o city_map.o
 
+pik: mainPicker.o buffer.o garis.o point.o warna.o pixel.o bentuk.o badanHeli.o ekorHeli.o helikopter.o baling.o picker.o
+	g++ -o pik mainPicker.o buffer.o garis.o point.o warna.o pixel.o bentuk.o badanHeli.o ekorHeli.o helikopter.o baling.o picker.o
+
+clean_pik:
+	rm *o pik
+	
 clean_city:
 	rm *o city
 

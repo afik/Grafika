@@ -78,14 +78,23 @@ void ekorHeli::drawekorHeli(Buffer buff, int v)
 			Garis g(ekor[i].getX()-v, ekor[i].getY(),
 					ekor[i+1].getX()-v, ekor[i+1].getY());
 			g.drawLine(buff, putih);
+			allLine[i] = g;
 		}
 		else
 		{
 			Garis g(ekor[i].getX()-v, ekor[i].getY(),
 					ekor[0].getX()-v, ekor[0].getY());
 			g.drawLine(buff, putih);
+			allLine[i] = g;
 		}
 	}
+
+	// for (int i = 1; i<n; i++) {
+	// 	printf("%d %d %d %d\n", allLine[i].getPointP1().getX(), 
+	// 							allLine[i].getPointP1().getY(),
+	// 							allLine[i].getPointP2().getX(),
+	// 							allLine[i].getPointP2().getY());
+	// }
 	/** end of ekor helikopter*/
 }
 
@@ -157,12 +166,14 @@ void ekorHeli::drawPecah(Buffer buff, Point P1, Point P2, int v)
 			Garis g(ekor[i].getX(), ekor[i].getY()+v,
 					ekor[i+1].getX(), ekor[i+1].getY()+v);
 			g.drawLine(buff, putih);
+			allLine[i] = g;
 		}
 		else
 		{
 			Garis g(ekor[i].getX(), ekor[i].getY()+v,
 					ekor[0].getX(), ekor[0].getY()+v);
 			g.drawLine(buff, putih);
+			allLine[i] = g;
 		}
 	}
 	/** end of ekor helikopter*/
@@ -236,12 +247,14 @@ void ekorHeli::ekorHeliUp(Buffer buff, int scale, int v) {
 			Garis g(ekor[i].getX(), ekor[i].getY()-v,
 					ekor[i+1].getX(), ekor[i+1].getY()-v);
 			g.drawLine(buff, putih);
+			allLine[i] = g;
 		}
 		else
 		{
 			Garis g(ekor[i].getX(), ekor[i].getY()-v,
 					ekor[0].getX(), ekor[0].getY()-v);
 			g.drawLine(buff, putih);
+			allLine[i] = g;
 		}
 	}
 

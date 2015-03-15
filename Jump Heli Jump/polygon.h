@@ -40,6 +40,9 @@ public:
 	int jumlahTitikPolygon();									// Hitung jumlah titik pembentuk polygon
 	Point getCentrePolygon();									// Ambil pusat dari alas 2D								 
 	void setCentrePolygon(Point centre);
+
+	int numVisibleLine;
+	Garis visibleLine[20];
 };
 
 #endif

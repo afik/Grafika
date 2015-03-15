@@ -44,6 +44,7 @@ void Polygon::drawPolygon(Buffer buff, Warna w) {
 }										
 
 void Polygon::drawPolygon3D(Buffer buff, int height, Warna w) {
+	numVisibleLine = 0;
 	// Sorting titik-titik pembentuk alas polygon setelah diproyeksikan terlebih dahulu (asumsi point identik absis maupun ordinat)
 	Point* hasilSortingPointSurface = sortKumpulanPointHorizontal();				
 	// Cari batas point teratas di mana point masih visible (setelah diurutkan terlebih dahulu)					
@@ -55,8 +56,8 @@ void Polygon::drawPolygon3D(Buffer buff, int height, Warna w) {
 	int indexAbsis = 1;
 	while (indexAbsis < kumpulanPointAlas.size()) {
 		if (hasilSortingPointSurface[indexAbsis].getY() >= batasOrdinatVisible) {	
-			cout << "Index Awal : " << indexAwal << endl;
-			cout << "Index Absis : " << indexAbsis << endl;					
+			//cout << "Index Awal : " << indexAwal << endl;
+			//cout << "Index Absis : " << indexAbsis << endl;					
 			Point alasAtasIndexAwal(hasilSortingPointSurface[indexAwal].getX(), 
 			        hasilSortingPointSurface[indexAwal].getY() - height);
 			Point alasAtasIndexAkhir(hasilSortingPointSurface[indexAbsis].getX(),
@@ -64,18 +65,26 @@ void Polygon::drawPolygon3D(Buffer buff, int height, Warna w) {
 			       
 			Garis sisiAlas(hasilSortingPointSurface[indexAwal], hasilSortingPointSurface[indexAbsis]); 		// Garis tepi alas bawah polygon 3D
 			sisiAlas.drawLine(buff, w); 
+			visibleLine[numVisibleLine] = sisiAlas;
+			numVisibleLine++;
 			Garis sisiTegakAwal(hasilSortingPointSurface[indexAwal], alasAtasIndexAwal);					// Garis tegak polygon 3D pertama
 			sisiTegakAwal.drawLine(buff, w);
+			visibleLine[numVisibleLine] = sisiTegakAwal;
+			numVisibleLine++;
 			Garis sisiTegakAbsis(hasilSortingPointSurface[indexAbsis], alasAtasIndexAkhir);					// Garis tegak polygon 3D kedua
 			sisiTegakAbsis.drawLine(buff, w);
+			visibleLine[numVisibleLine] = sisiTegakAbsis;
+			numVisibleLine++;
 			Garis sisiAlasAtas1(alasAtasIndexAwal, alasAtasIndexAkhir);										// Garis tepi alas atas polygon 3D
 			sisiAlasAtas1.drawLine(buff, w);
+			visibleLine[numVisibleLine] = sisiAlasAtas1;
+			numVisibleLine++;
 			
 			indexAwal = indexAbsis;
 		}
 		else {			
-			cout << "Index Hidden : " << indexAwalHidden << endl;
-			cout << "Index Absis : " << indexAbsis << endl;	
+			//cout << "Index Hidden : " << indexAwalHidden << endl;
+			//cout << "Index Absis : " << indexAbsis << endl;	
 			
 			Point alasAtasIndexAwalHidden(hasilSortingPointSurface[indexAwalHidden].getX(), 
 			        hasilSortingPointSurface[indexAwalHidden].getY() - height);
@@ -83,7 +92,9 @@ void Polygon::drawPolygon3D(Buffer buff, int height, Warna w) {
 			        hasilSortingPointSurface[indexAbsis].getY() - height);
 			Garis sisiAlasAtas2(alasAtasIndexAwalHidden, alasAtasIndexAkhirHidden);
 			sisiAlasAtas2.drawLine(buff, w);
-																				
+			visibleLine[numVisibleLine] = sisiAlasAtas2;
+			numVisibleLine++;
+																							
 			indexAwalHidden = indexAbsis;
 		}
 		indexAbsis++;
@@ -94,6 +105,9 @@ void Polygon::drawPolygon3D(Buffer buff, int height, Warna w) {
 			        hasilSortingPointSurface[kumpulanPointAlas.size()-1].getY() - height);
 	Garis sisiSisa(alasAtasIndexAwalHidden, alasAtasIndexAkhir);
 	sisiSisa.drawLine(buff, w);
+	visibleLine[numVisibleLine] = sisiSisa;
+	numVisibleLine++;
+			
 }
 
 int Polygon::getCriticalOrdinatPoint(Point terujungKiri, Point terujungKanan) {
