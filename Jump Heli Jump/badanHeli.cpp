@@ -175,14 +175,14 @@ void badanHeli::drawPecah(Buffer buff, Point P1, Point P2, int v)
 		{
 			Garis g(badan[i].getX()-v-0.5, badan[i].getY()+v,
 					badan[i+1].getX()-v-0.5, badan[i+1].getY()+v);
-			g.drawLine(buff, putih);
+			g.drawLine(buff, *Warna::merah());
 			allLine[i] = g;
 		}
 		else
 		{
 			Garis g(badan[i].getX()-v-0.5, badan[i].getY()+v,
 					badan[0].getX()-v-0.5, badan[0].getY()+v);
-			g.drawLine(buff, putih);
+			g.drawLine(buff, *Warna::merah());
 			allLine[i] = g;
 		}
 	}

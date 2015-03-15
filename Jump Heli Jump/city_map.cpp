@@ -76,9 +76,6 @@ void city_map::motion(int x, Buffer buf, int height) {
 	pBuild.setX(1000+26-x);
 	pBuild.setY(467);
 	poly.drawPolygon3D(buf, height,*Warna::putih());
-	//printf("%d %d %d\n", poly.getBoundary(height,467)[0], poly.getBoundary(height,467)[1], poly.getBoundary(height,467)[2]);
-	// pixel.putPixel(*Warna::merah(),poly.getBoundary(height,467)[0], poly.getBoundary(height,467)[1],buf);	
-	// pixel.putPixel(*Warna::merah(),poly.getBoundary(height,467)[0], poly.getBoundary(height,467)[2],buf);	
 	fill.fillPattern(pBuild,height-10, *Warna::kuning(), *Warna::putih(), buf);
 }
 
