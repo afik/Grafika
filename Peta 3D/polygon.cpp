@@ -74,8 +74,8 @@ void Polygon::drawPolygon3D(Buffer buff, int height, Warna w) {
 			indexAwal = indexAbsis;
 		}
 		else {			
-			cout << "Index Hidden : " << indexAwalHidden << endl;
-			cout << "Index Absis : " << indexAbsis << endl;	
+			// cout << "Index Hidden : " << indexAwalHidden << endl;
+			// cout << "Index Absis : " << indexAbsis << endl;	
 			
 			Point alasAtasIndexAwalHidden(hasilSortingPointSurface[indexAwalHidden].getX(), 
 			        hasilSortingPointSurface[indexAwalHidden].getY() - height);
