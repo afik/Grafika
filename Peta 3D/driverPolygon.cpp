@@ -35,22 +35,6 @@ int kbhit(void)
 
 int main() {
 	Polygon poly;
-	// cout << poly.getCentrePolygon().getY() << endl;
-	// cout << poly.getCentrePolygon().getX() << endl;
-
-	// Point p(400, 400);
-	// Polygon poly2(p); 
-	// cout << poly2.getCentrePolygon().getY() << endl;
-	// cout << poly2.getCentrePolygon().getX() << endl;
-
-	// Polygon poly3(poly2);
-	// cout << poly3.getCentrePolygon().getY() << endl;
-	// cout << poly3.getCentrePolygon().getX() << endl;
-
-	// Polygon poly4 = poly;	
-	// cout << poly4.getCentrePolygon().getY() << endl;
-	// cout << poly4.getCentrePolygon().getX() << endl;
-
 	vector<Point> lp;
 	Point p(100, 400);
 	Point p2(200, 300);
@@ -84,14 +68,7 @@ int main() {
 
 	Buffer buff;
 	char input;
-
 	int heigth = 300;
-	Point* arrayPoint = poly.sortKumpulanPointHorizontal();
-	// for (int i=0; i<6; i++) {
-	// 	cout << "Absis point koordinat ke-" << i << " : " << arrayPoint[i].getX() << endl;
-	// 	cout << "Ordinat point koordinat ke-" << i << " : " << arrayPoint[i].getY() << endl;
-	// }
-	// cout << "Critical ordinat : " << poly.getCriticalOrdinatPoint(arrayPoint[0], arrayPoint[3]) << endl;
 	
 	//poly.drawPolygon(buff, *Warna::putih());
 	poly.drawPolygon3D(buff, heigth, *Warna::putih());

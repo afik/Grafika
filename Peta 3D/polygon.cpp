@@ -63,13 +63,13 @@ void Polygon::drawPolygon3D(Buffer buff, int height, Warna w) {
 			        hasilSortingPointSurface[indexAbsis].getY() - height);
 			       
 			Garis sisiAlas(hasilSortingPointSurface[indexAwal], hasilSortingPointSurface[indexAbsis]); 		// Garis tepi alas bawah polygon 3D
-			sisiAlas.drawLine(buff, w); 
+			sisiAlas.drawLine(buff, w); sisiVisiblePolygon.push_back(sisiAlas);			
 			Garis sisiTegakAwal(hasilSortingPointSurface[indexAwal], alasAtasIndexAwal);					// Garis tegak polygon 3D pertama
-			sisiTegakAwal.drawLine(buff, w);
+			sisiTegakAwal.drawLine(buff, w); sisiVisiblePolygon.push_back(sisiTegakAwal);
 			Garis sisiTegakAbsis(hasilSortingPointSurface[indexAbsis], alasAtasIndexAkhir);					// Garis tegak polygon 3D kedua
-			sisiTegakAbsis.drawLine(buff, w);
+			sisiTegakAbsis.drawLine(buff, w); sisiVisiblePolygon.push_back(sisiTegakAbsis);
 			Garis sisiAlasAtas1(alasAtasIndexAwal, alasAtasIndexAkhir);										// Garis tepi alas atas polygon 3D
-			sisiAlasAtas1.drawLine(buff, w);
+			sisiAlasAtas1.drawLine(buff, w); sisiVisiblePolygon.push_back(sisiAlasAtas1);
 			
 			indexAwal = indexAbsis;
 		}
@@ -82,7 +82,7 @@ void Polygon::drawPolygon3D(Buffer buff, int height, Warna w) {
 			Point alasAtasIndexAkhirHidden(hasilSortingPointSurface[indexAbsis].getX(),
 			        hasilSortingPointSurface[indexAbsis].getY() - height);
 			Garis sisiAlasAtas2(alasAtasIndexAwalHidden, alasAtasIndexAkhirHidden);
-			sisiAlasAtas2.drawLine(buff, w);
+			sisiAlasAtas2.drawLine(buff, w); sisiVisiblePolygon.push_back(sisiAlasAtas2);
 																				
 			indexAwalHidden = indexAbsis;
 		}
@@ -93,7 +93,7 @@ void Polygon::drawPolygon3D(Buffer buff, int height, Warna w) {
 	Point alasAtasIndexAkhir(hasilSortingPointSurface[kumpulanPointAlas.size()-1].getX(),
 			        hasilSortingPointSurface[kumpulanPointAlas.size()-1].getY() - height);
 	Garis sisiSisa(alasAtasIndexAwalHidden, alasAtasIndexAkhir);
-	sisiSisa.drawLine(buff, w);
+	sisiSisa.drawLine(buff, w); sisiVisiblePolygon.push_back(sisiSisa);
 }
 
 int Polygon::getCriticalOrdinatPoint(Point terujungKiri, Point terujungKanan) {
@@ -192,4 +192,8 @@ void Polygon::setCentrePolygon(Point centrePolygon) {
 
 Point Polygon::getCentrePolygon() {
 	return centrePolygon;
+}
+
+Point Polygon::getGarisPolygon(int indexGaris) {
+	return sisiVisiblePolygon[indexGaris];
 }
