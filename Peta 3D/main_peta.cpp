@@ -10,6 +10,8 @@ int main(){
 	char x;
 	Peta peta;
 	Buffer buff;
+	Point awal(500,500);
+	peta.definePeta(awal);
 	peta.drawPeta(buff);
 	cin >> x;
 	return 0;

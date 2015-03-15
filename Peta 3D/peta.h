@@ -5,6 +5,7 @@
 #include "point.h"
 #include "buffer.h"
 #include "warna.h"
+#include <iostream>
 
 class Peta{
 	public:
