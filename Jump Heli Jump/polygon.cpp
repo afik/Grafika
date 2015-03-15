@@ -152,37 +152,36 @@ void Polygon::addPoint(vector<Point> listPoint) {
 	kumpulanPointAlas = listPoint;
 }
 
-void Polygon::clearPolygon(int height) {
-	Buffer buff;
+void Polygon::clearPolygon(int height, Buffer buff) {
 	drawPolygon3D(buff, height, *Warna::hitam());
 }										// Hapus polygon 
 
-void Polygon::moveUp(int height) {
-	clearPolygon(height);
+void Polygon::moveUp(int height, Buffer buff) {
+	clearPolygon(height, buff);
 	for(int i=0; i<kumpulanPointAlas.size(); i++) {
 		kumpulanPointAlas[i].setY(kumpulanPointAlas[i].getY()-10);
 	}
 	centrePolygon.setY(centrePolygon.getY()-10);
 }											// Geser polygon 2D/3D ke atas
 
-void Polygon::moveDown(int height) {
-	clearPolygon(height);
+void Polygon::moveDown(int height, Buffer buff) {
+	clearPolygon(height, buff);
 	for(int i=0; i<kumpulanPointAlas.size(); i++) {
 		kumpulanPointAlas[i].setY(kumpulanPointAlas[i].getY()+10);
 	}
 	centrePolygon.setY(centrePolygon.getY()+10);
 }											// Geser polygon 2D/3D ke bawah
 
-void Polygon::moveLeft(int height) {
-	clearPolygon(height);
+void Polygon::moveLeft(int height, Buffer buff) {
+	clearPolygon(height, buff);
 	for(int i=0; i<kumpulanPointAlas.size(); i++) {
 		kumpulanPointAlas[i].setX(kumpulanPointAlas[i].getX()-10);
 	}
 	centrePolygon.setX(centrePolygon.getX()-10);
 }											// Geser polygon 2D/3D ke kiri
 
-void Polygon::moveRight(int height) {
-	clearPolygon(height);
+void Polygon::moveRight(int height, Buffer buff) {
+	clearPolygon(height, buff);
 	for(int i=0; i<kumpulanPointAlas.size(); i++) {
 		kumpulanPointAlas[i].setX(kumpulanPointAlas[i].getX()+10);
 	}
@@ -200,4 +199,21 @@ void Polygon::setCentrePolygon(Point centrePolygon) {
 
 Point Polygon::getCentrePolygon() {
 	return centrePolygon;
+}
+
+int* Polygon::getBoundary(int height, int bawah){
+	int *bound = new int[3];
+	int terkiri=900, teratas=900;
+	for (int i = 0; i<kumpulanPointAlas.size(); i++) {
+		if (terkiri>kumpulanPointAlas[i].getX()) {
+			terkiri = kumpulanPointAlas[i].getX();
+		}
+		if (teratas > kumpulanPointAlas[i].getY()) {
+			teratas = kumpulanPointAlas[i].getY();
+		}
+	}
+	bound[0] = terkiri; //x (kiri awan)
+	bound[1] = teratas-height; //y atas
+	bound[2] = bawah; //y bawah
+	return bound;
 }

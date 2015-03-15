@@ -102,6 +102,7 @@ void badanHeli::drawbadanHeli(Buffer buff, int scale, int v)
 	
 }
 
+
 void badanHeli::clearbadanHeli(Buffer buff, int scale, int v)
 {
 	int i;

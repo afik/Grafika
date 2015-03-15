@@ -27,13 +27,14 @@ public:
 	Point* sortKumpulanPointHorizontal();											// Urutkan secara membesar point pembentuk alas berdasarkan sumbu X
 	int getCriticalOrdinatPoint(Point terujungKiri, Point terujungKanan);			// Fungsi untuk mendapatkan ordinat minimal dari kedua ujung point kiri dan kanan
 	void addPoint(vector<Point> listPoint);						// Tambah point-point ujung alas polygon  
-	void clearPolygon(int height);										// Hapus polygon 
-	void moveUp(int heigth);												// Geser polygon 2D/3D ke atas
-	void moveDown(int heigth);											// Geser polygon 2D/3D ke bawah
-	void moveLeft(int heigth);											// Geser polygon 2D/3D ke kiri
-	void moveRight(int heigth);											// Geser polygon 2D/3D ke kanan
+	void clearPolygon(int height, Buffer buff);										// Hapus polygon 
+	void moveUp(int heigth, Buffer buff);												// Geser polygon 2D/3D ke atas
+	void moveDown(int heigth, Buffer buff);											// Geser polygon 2D/3D ke bawah
+	void moveLeft(int heigth, Buffer buff);											// Geser polygon 2D/3D ke kiri
+	void moveRight(int heigth, Buffer buff);											// Geser polygon 2D/3D ke kanan
 	//void doAntiClipping;										// Membantu proses clipping garis yang invisible
-	
+	int* getBoundary(int height, int bawah);
+
 	// Setter dan getter
 	int jumlahTitikPolygon();									// Hitung jumlah titik pembentuk polygon
 	Point getCentrePolygon();									// Ambil pusat dari alas 2D								 

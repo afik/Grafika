@@ -21,6 +21,7 @@ void city_map::addCloud(Buffer buf, int height){
 }
 
 void city_map::addBuilding(Buffer buf, int height) {
+	Pixel pixel;
 	fillScan fill;
 	Point p(1025,457);
 	poly.setCentrePolygon(p);
@@ -37,6 +38,9 @@ void city_map::addBuilding(Buffer buf, int height) {
 
 	poly.drawPolygon3D(buf,height, *Warna::putih());
 	fill.fillPattern(pBuild,height-10, *Warna::kuning(), *Warna::putih(), buf);
+	pixel.putPixel(*Warna::kuning(),poly.getBoundary(height,467)[0], poly.getBoundary(height,467)[1],buf);	
+	pixel.putPixel(*Warna::kuning(),poly.getBoundary(height,467)[0], poly.getBoundary(height,467)[2],buf);	
+
 }
 
 Polygon city_map::getPoly(){
@@ -55,7 +59,7 @@ void city_map::clearAll(int flag, Buffer buf, int height) {
 	fillScan fill;
 	if (flag ==1 ) {
 		fill.fillRect(pBuild, 100, height, *Warna::hitam(), buf);
-		poly.clearPolygon(height);
+		poly.clearPolygon(height, buf);
 	}
 	else {
 		awan.setPosisi(tempAwan,height);
@@ -66,12 +70,15 @@ void city_map::clearAll(int flag, Buffer buf, int height) {
 	
 void city_map::motion(int x, Buffer buf, int height) {
 	fillScan fill;
-
+	Pixel pixel;
 	fill.fillRect(pBuild, 100, height, *Warna::hitam(), buf);
-	poly.moveLeft(height);
+	poly.moveLeft(height, buf);
 	pBuild.setX(1000+26-x);
 	pBuild.setY(467);
 	poly.drawPolygon3D(buf, height,*Warna::putih());
+	//printf("%d %d %d\n", poly.getBoundary(height,467)[0], poly.getBoundary(height,467)[1], poly.getBoundary(height,467)[2]);
+	// pixel.putPixel(*Warna::merah(),poly.getBoundary(height,467)[0], poly.getBoundary(height,467)[1],buf);	
+	// pixel.putPixel(*Warna::merah(),poly.getBoundary(height,467)[0], poly.getBoundary(height,467)[2],buf);	
 	fill.fillPattern(pBuild,height-10, *Warna::kuning(), *Warna::putih(), buf);
 }
 
