@@ -1,7 +1,7 @@
 all:  main city pik
 
-main: main.o buffer.o garis.o point.o warna.o pixel.o bentuk.o badanHeli.o ekorHeli.o helikopter.o city_map.o polygon.o awan.o clip.o fill.o pattern.o fill_scan.o
-	g++ -o main main.o buffer.o garis.o point.o warna.o pixel.o  bentuk.o badanHeli.o ekorHeli.o helikopter.o city_map.o polygon.o awan.o clip.o fill.o pattern.o fill_scan.o
+main: main.o buffer.o garis.o point.o warna.o pixel.o bentuk.o badanHeli.o ekorHeli.o helikopter.o city_map.o polygon.o awan.o clip.o fill_scan.o baling.o
+	g++ -o main main.o buffer.o garis.o point.o warna.o pixel.o  bentuk.o badanHeli.o ekorHeli.o helikopter.o city_map.o polygon.o awan.o clip.o fill_scan.o baling.o
 
 city: main_city.o buffer.o garis.o point.o warna.o pixel.o bentuk.o badanHeli.o ekorHeli.o helikopter.o city_map.o
 	g++ -o city main_city.o buffer.o garis.o point.o warna.o pixel.o bentuk.o badanHeli.o ekorHeli.o helikopter.o city_map.o
@@ -14,12 +14,6 @@ clean_pik:
 	
 clean_city:
 	rm *o city
-
-clean_win:
-	rm *o window
-
-clean_peta:
-	rm *o peta
 
 clean_main:
 	rm *o main

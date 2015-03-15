@@ -28,8 +28,6 @@ public:
 	int getCriticalOrdinatPoint(Point terujungKiri, Point terujungKanan);			// Fungsi untuk mendapatkan ordinat minimal dari kedua ujung point kiri dan kanan
 	void addPoint(vector<Point> listPoint);						// Tambah point-point ujung alas polygon  
 	void clearPolygon(int height);										// Hapus polygon 
-	void fillPolygonColor();									// Isi polygon dengan warna tertentu
-	void fillPolygonPattern();									// Isi polygon dengan pattern tertentu
 	void moveUp(int heigth);												// Geser polygon 2D/3D ke atas
 	void moveDown(int heigth);											// Geser polygon 2D/3D ke bawah
 	void moveLeft(int heigth);											// Geser polygon 2D/3D ke kiri

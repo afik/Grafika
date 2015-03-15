@@ -21,23 +21,21 @@ void city_map::addCloud(Buffer buf, int height){
 }
 
 void city_map::addBuilding(Buffer buf, int height) {
-	// vector<Point> alas;
-	// Point p1(1000-lebarBuilding,500);
-	// Point p2(1000,500);
-	// Point p3(1025,480);
-	// Point p4(1025-lebarBuilding,480);
-	// alas.push_back(p1);
-	// alas.push_back(p2);
-	// alas.push_back(p3);
-	// alas.push_back(p4);
-	// poly.addPoint(alas);
+	Point p(1025,457);
+	poly.setCentrePolygon(p);
+	vector<Point> alas;
+	Point p1(1000-25,467);
+	Point p2(1000,447);
+	Point p3(1000+lebarBuilding,467);
+	Point p4(1000+lebarBuilding-25,447);
+	alas.push_back(p1);
+	alas.push_back(p2);
+	alas.push_back(p3);
+	alas.push_back(p4);
+	poly.addPoint(alas);
 
-	// poly.drawPolygon3D(buf,height, *Warna::putih());
+	poly.drawPolygon3D(buf,height, *Warna::putih());
 
-	pBuild.setX(1000);
-	pBuild.setY(469);
-	tempBuild = 1000;
-	b.persegiB(pBuild, lebarBuilding, height, buf, *Warna::putih());	
 }
 
 Awan city_map::getCloud(){
@@ -69,9 +67,7 @@ void city_map::clearBuilding(int x,Buffer buf, int height) {
 
 void city_map::clearAll(int flag, Buffer buf, int height) {
 	if (flag ==1 ) {
-		pBuild.setX(posAwan-50);
-		pBuild.setY(469);
-		b.persegiB(pBuild, lebarBuilding, height, buf, *Warna::hitam());
+		poly.clearPolygon(height);
 	}
 	else {
 		awan.setPosisi(tempAwan,height);
@@ -81,8 +77,8 @@ void city_map::clearAll(int flag, Buffer buf, int height) {
 
 	
 void city_map::motion(int x, Buffer buf, int height) {
-	clearBuilding(1000-tempBuild,buf, height);
-	setBuilding(x, buf, height);
+	poly.moveLeft(height);
+	poly.drawPolygon3D(buf, height,*Warna::putih());
 }
 
 void city_map::playCloud(int x, Buffer buf, int height){

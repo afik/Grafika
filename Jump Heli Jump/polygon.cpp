@@ -155,44 +155,36 @@ void Polygon::clearPolygon(int height) {
 	drawPolygon3D(buff, height, *Warna::hitam());
 }										// Hapus polygon 
 
-void Polygon::fillPolygonColor() {
-
-}								// Isi polygon dengan warna tertentu
-
-void Polygon::fillPolygonPattern() {
-
-}									// Isi polygon dengan pattern tertentu
-
 void Polygon::moveUp(int height) {
 	clearPolygon(height);
 	for(int i=0; i<kumpulanPointAlas.size(); i++) {
-		kumpulanPointAlas[i].setY(kumpulanPointAlas[i].getY()-5);
+		kumpulanPointAlas[i].setY(kumpulanPointAlas[i].getY()-10);
 	}
-	centrePolygon.setY(centrePolygon.getY()-5);
+	centrePolygon.setY(centrePolygon.getY()-10);
 }											// Geser polygon 2D/3D ke atas
 
 void Polygon::moveDown(int height) {
 	clearPolygon(height);
 	for(int i=0; i<kumpulanPointAlas.size(); i++) {
-		kumpulanPointAlas[i].setY(kumpulanPointAlas[i].getY()+5);
+		kumpulanPointAlas[i].setY(kumpulanPointAlas[i].getY()+10);
 	}
-	centrePolygon.setY(centrePolygon.getY()+5);
+	centrePolygon.setY(centrePolygon.getY()+10);
 }											// Geser polygon 2D/3D ke bawah
 
 void Polygon::moveLeft(int height) {
 	clearPolygon(height);
 	for(int i=0; i<kumpulanPointAlas.size(); i++) {
-		kumpulanPointAlas[i].setX(kumpulanPointAlas[i].getX()-5);
+		kumpulanPointAlas[i].setX(kumpulanPointAlas[i].getX()-10);
 	}
-	centrePolygon.setX(centrePolygon.getX()-5);
+	centrePolygon.setX(centrePolygon.getX()-10);
 }											// Geser polygon 2D/3D ke kiri
 
 void Polygon::moveRight(int height) {
 	clearPolygon(height);
 	for(int i=0; i<kumpulanPointAlas.size(); i++) {
-		kumpulanPointAlas[i].setX(kumpulanPointAlas[i].getX()+5);
+		kumpulanPointAlas[i].setX(kumpulanPointAlas[i].getX()+10);
 	}
-	centrePolygon.setX(centrePolygon.getX()+5);
+	centrePolygon.setX(centrePolygon.getX()+10);
 }
 
 int Polygon::jumlahTitikPolygon() {
