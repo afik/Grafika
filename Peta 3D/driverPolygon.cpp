@@ -69,13 +69,13 @@ int main() {
 	Polygon poly2;
 	vector<Point> lp2;
 	Point p21(600, 400);
-	Point p22(700, 300);
+	//Point p22(700, 300);
 	Point p32(800, 300);
 	Point p42(1000, 400);
 	Point p52(900, 500);
 	Point p62(850, 500);
 	lp2.push_back(p21);
-	lp2.push_back(p22);
+	//lp2.push_back(p22);
 	lp2.push_back(p32);
 	lp2.push_back(p42);
 	lp2.push_back(p52);

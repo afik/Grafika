@@ -14,7 +14,7 @@ class Peta{
 		void drawPeta(Buffer buff);
 		void drawPeta3D(Buffer buff, int height);
 
-		void setPolygon(vector<Point> p);
+		void setPolygon(Point center, vector<Point> p);
 		Polygon getPolygon(int i);
 		int getNbPolygon();
 

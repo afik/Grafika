@@ -55,8 +55,8 @@ void Polygon::drawPolygon3D(Buffer buff, int height, Warna w) {
 	int indexAbsis = 1;
 	while (indexAbsis < kumpulanPointAlas.size()) {
 		if (hasilSortingPointSurface[indexAbsis].getY() >= batasOrdinatVisible) {	
-			cout << "Index Awal : " << indexAwal << endl;
-			cout << "Index Absis : " << indexAbsis << endl;					
+			// cout << "Index Awal : " << indexAwal << endl;
+			// cout << "Index Absis : " << indexAbsis << endl;					
 			Point alasAtasIndexAwal(hasilSortingPointSurface[indexAwal].getX(), 
 			        hasilSortingPointSurface[indexAwal].getY() - height);
 			Point alasAtasIndexAkhir(hasilSortingPointSurface[indexAbsis].getX(),
