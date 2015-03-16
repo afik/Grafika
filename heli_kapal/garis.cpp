@@ -64,20 +64,22 @@ void Garis::drawLine(Buffer b, Warna warna)
    	int err = dx+dy, e2;
    	int t1, t2;
    	Pixel p;
+   	Point tempP1 = P1;
+   	Point tempP2 = P2;
    	
 	for (;;){
-		p.putPixel(warna,P1,b);					// output ke screen berdasarkan location
+		p.putPixel(warna,tempP1,b);					// output ke screen berdasarkan location
 							  
 		e2 = 2*err;                                   
 		if (e2 >= dy) {                                         /* e_xy+e_x > 0 */
-			if (P1.getX() == P2.getX()) break;                       
+			if (tempP1.getX() == tempP2.getX()) break;                       
 			err += dy;
-			P1.setX(P1.getX() + sx);
+			tempP1.setX(tempP1.getX() + sx);
 		}                                             
 		if (e2 <= dx) {                                         /* e_xy+e_y < 0 */
-			if (P1.getY() == P2.getY()) break;
+			if (tempP1.getY() == tempP2.getY()) break;
 			err += dx;
-			P1.setY(P1.getY() + sy);
+			tempP1.setY(tempP1.getY() + sy);
 		}
 	}
 }

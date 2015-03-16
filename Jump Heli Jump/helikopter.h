@@ -35,6 +35,7 @@ class Helikopter{
 		void moveUp(Buffer buf, int scale, int v);
 		void moveDown(Buffer buf, int scale, int v);
 		
+		Garis allLine[9];
 	private:
 		int N;			// jumlah titik/garis
 		int velocity;	// kecepatan kapal

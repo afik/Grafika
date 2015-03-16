@@ -105,6 +105,20 @@ void Baling::baling(Buffer buf) {
 	Garis g24(atas4,jatas4); g24.drawLine(buf,putih);
 	Garis g34(bawah4,jbawah4); g34.drawLine(buf,putih);
 
+	allLine[0] = g11;
+	allLine[1] = g21;
+	allLine[2] = g31;
+	allLine[3] = g12;
+	allLine[4] = g22;
+	allLine[5] = g32;
+	allLine[6] = g13;
+	allLine[7] = g23;
+	allLine[8] = g33;
+	allLine[9] = g14;
+	allLine[10] = g24;
+	allLine[11] = g34;
+
+
 }
 void Baling::rotasiBaling(int sudut, Buffer buf){
 	circle(radius, buf, putih); 
@@ -142,6 +156,20 @@ void Baling::rotasiBaling(int sudut, Buffer buf){
 	Garis g14(rotasiTitik(atas4,sudut),rotasiTitik(bawah4,sudut)); g14.drawLine(buf,putih);
 	Garis g24(rotasiTitik(atas4,sudut),rotasiTitik(jatas4,sudut)); g24.drawLine(buf,putih);
 	Garis g34(rotasiTitik(bawah4,sudut),rotasiTitik(jbawah4,sudut)); g34.drawLine(buf,putih);
+
+	allLine[0] = g11;
+	allLine[1] = g21;
+	allLine[2] = g31;
+	allLine[3] = g12;
+	allLine[4] = g22;
+	allLine[5] = g32;
+	allLine[6] = g13;
+	allLine[7] = g23;
+	allLine[8] = g33;
+	allLine[9] = g14;
+	allLine[10] = g24;
+	allLine[11] = g34;
+
 }
 Point Baling::getCenter(){
 	return center;

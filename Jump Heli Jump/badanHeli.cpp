@@ -84,12 +84,14 @@ void badanHeli::drawbadanHeli(Buffer buff, int scale, int v)
 			Garis g(badan[i].getX()-v, badan[i].getY(),
 					badan[i+1].getX()-v, badan[i+1].getY());
 			g.drawLine(buff, putih);
+			allLine[i] = g;
 		}
 		else
 		{
 			Garis g(badan[i].getX()-v, badan[i].getY(),
 					badan[0].getX()-v, badan[0].getY());
 			g.drawLine(buff, putih);
+			allLine[i] = g;
 		}
 	}
 	/** end of badan badanHeli*/
@@ -99,6 +101,7 @@ void badanHeli::drawbadanHeli(Buffer buff, int scale, int v)
 	//S.drawScanline(900-v, 100, 990-v, 125, G1, G2, Biru);
 	
 }
+
 
 void badanHeli::clearbadanHeli(Buffer buff, int scale, int v)
 {
@@ -173,12 +176,14 @@ void badanHeli::drawPecah(Buffer buff, Point P1, Point P2, int v)
 			Garis g(badan[i].getX()-v-0.5, badan[i].getY()+v,
 					badan[i+1].getX()-v-0.5, badan[i+1].getY()+v);
 			g.drawLine(buff, putih);
+			allLine[i] = g;
 		}
 		else
 		{
 			Garis g(badan[i].getX()-v-0.5, badan[i].getY()+v,
 					badan[0].getX()-v-0.5, badan[0].getY()+v);
 			g.drawLine(buff, putih);
+			allLine[i] = g;
 		}
 	}
 	/** end of badan badanHeli*/
@@ -243,10 +248,10 @@ void badanHeli::badanHeliUp(Buffer buff, int scale, int v) {
 	badan[3].setX(220);
 	badan[3].setY(150);
 	
-	this->P1.setX(220-v);
-	this->P1.setY(100);
-	this->P2.setX(150-v);
-	this->P2.setY(150);
+	this->P1.setX(220);
+	this->P1.setY(100-v);
+	this->P2.setX(150);
+	this->P2.setY(150-v);
 	
 	badan[1] = badan[0].setWidth(scale, badan[1]);
 	badan[2] = badan[1].setHeight(scale, badan[2]);
@@ -260,12 +265,14 @@ void badanHeli::badanHeliUp(Buffer buff, int scale, int v) {
 			Garis g(badan[i].getX(), badan[i].getY()-v,
 					badan[i+1].getX(), badan[i+1].getY()-v);
 			g.drawLine(buff, putih);
+			allLine[i] = g;
 		}
 		else
 		{
 			Garis g(badan[i].getX(), badan[i].getY()-v,
 					badan[0].getX(), badan[0].getY()-v);
 			g.drawLine(buff, putih);
+			allLine[i] = g;
 		}
 	}
 	/** end of badan badanHeli*/
@@ -291,10 +298,10 @@ void badanHeli::clearHeliUp(Buffer buff, int scale, int v) {
 	badan[3].setX(220);
 	badan[3].setY(150);
 	
-	this->P1.setX(220-v);
-	this->P1.setY(100);
-	this->P2.setX(150-v);
-	this->P2.setY(150);
+	// this->P1.setX(220-v);
+	// this->P1.setY(100);
+	// this->P2.setX(150-v);
+	// this->P2.setY(150);
 	
 	badan[1] = badan[0].setWidth(scale, badan[1]);
 	badan[2] = badan[1].setHeight(scale, badan[2]);

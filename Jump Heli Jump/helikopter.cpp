@@ -60,11 +60,24 @@ Point Helikopter::getAnchorP2()
 void Helikopter::drawHeli(Buffer buff, int scale)
 {
 	badan.drawbadanHeli(buff, scale, this->getVelocity());
+	for (int i=0; i<4; i++) {
+		allLine[i] = badan.allLine[i];
+	}
 	//badan.zoom(buff, 2, this->getVelocity());
 	ekor.drawekorHeli(buff, this->getVelocity());
-	
+	for(int i = 0; i<5; i++) {
+		allLine[i+4] = ekor.allLine[i];
+	}
+
 	this->P1 = badan.getAnchorP1();
 	this->P2 = badan.getAnchorP2();
+
+	// for (int i = 0; i<9; i++) {
+	// 	printf("%d %d %d %d\n", allLine[i].getPointP1().getX(), 
+	// 							allLine[i].getPointP1().getY(),
+	// 							allLine[i].getPointP2().getX(),
+	// 							allLine[i].getPointP2().getY());
+	// }
 
 }
 
@@ -80,7 +93,13 @@ void Helikopter::clearHeli(Buffer buff, int scale)
 void Helikopter::pecahHeli(Buffer buff)
 {
 	badan.drawPecah(buff, P1, P2, this->getVelocity());
+	for (int i=0; i<4; i++) {
+		allLine[i] = badan.allLine[i];
+	}
 	ekor.drawPecah(buff, P1, P2, this->getVelocity());
+	for(int i = 0; i<5; i++) {
+		allLine[i+4] = ekor.allLine[i];
+	}
 }
 
 void Helikopter::clearpecahHeli(Buffer buff)
@@ -94,7 +113,17 @@ void Helikopter::moveUp(Buffer buf, int scale, int v) {
 	ekor.clearEkorUp(buf, scale, v-5);
 	badan.clearHeliUp(buf, scale, v-5);
 	ekor.ekorHeliUp(buf, scale, v);
+	for(int i = 0; i<5; i++) {
+		allLine[i+4] = ekor.allLine[i];
+	}
 	badan.badanHeliUp(buf, scale, v);
+	for (int i=0; i<4; i++) {
+		allLine[i] = badan.allLine[i];
+	}
+
+
+	this->P1 = badan.getAnchorP1();
+	this->P2 = badan.getAnchorP2();
 }
 
 void Helikopter::moveDown(Buffer buf, int scale, int v) {
@@ -102,6 +131,16 @@ void Helikopter::moveDown(Buffer buf, int scale, int v) {
 	ekor.clearEkorUp(buf, scale, v+5);
 	badan.clearHeliUp(buf, scale, v+5);
 	ekor.ekorHeliUp(buf, scale, v);
+	for(int i = 0; i<5; i++) {
+		allLine[i+4] = ekor.allLine[i];
+	}
 	badan.badanHeliUp(buf, scale, v);
+	for (int i=0; i<4; i++) {
+		allLine[i] = badan.allLine[i];
+	}
+
+	
+	this->P1 = badan.getAnchorP1();
+	this->P2 = badan.getAnchorP2();
 }
 

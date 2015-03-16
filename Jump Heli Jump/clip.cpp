@@ -40,8 +40,6 @@
 		return ymax;
 	}
 
-<<<<<<< HEAD
-=======
 
 	int clip::getViewSize(){
 		return viewSize;
@@ -51,7 +49,6 @@
 		return viewAnchor;
 	}
 
->>>>>>> bffce23450bbfddf7b78c74954a4014b87d8d24f
 	outcode clip::compute_outcode(int x, int y) {
 		outcode oc = 0;
 		if (y > ymax)
@@ -68,10 +65,6 @@
 	}
 
 
-<<<<<<< HEAD
-void clip::cohen_sutherland (double x1, double y1, double x2, double y2, Buffer buff) {
-
-=======
 	void clip::setViewSize(int vs){
 		viewSize = vs;
 	}
@@ -82,7 +75,6 @@ void clip::cohen_sutherland (double x1, double y1, double x2, double y2, Buffer 
 
 void clip::cohen_sutherland (double x1, double y1, double x2, double y2, Warna w, Buffer buff) {
 	//printf("%f %f %f %f \n", x1, y1, x2, y2);
->>>>>>> bffce23450bbfddf7b78c74954a4014b87d8d24f
 	bool accept;
 	bool done;
 	outcode outcode1, outcode2;
@@ -140,16 +132,6 @@ void clip::cohen_sutherland (double x1, double y1, double x2, double y2, Warna w
 	} while (!done);
 
 	if (accept) {
-<<<<<<< HEAD
-		int x1v = (100/(xmax-xmin)*(x1-xmin))+800;
-		int y1v = (100/(xmax-xmin)*(y1-ymin))+500;
-		int x2v = (100/(xmax-xmin)*(x2-xmin))+800;
-		int y2v = (100/(xmax-xmin)*(y2-ymin))+500;
-		
-		Point p1(x1v,y1v);Point p2(x2v,y2v);
-		Garis g(x1v,y1v,x2v,y2v);
-		g.drawLine(buff, *Warna::putih());
-=======
 		int x1v = (viewSize/(xmax-xmin)*(x1-xmin))+viewAnchor.getX();
 		int y1v = (viewSize/(xmax-xmin)*(y1-ymin))+viewAnchor.getY();
 		int x2v = (viewSize/(xmax-xmin)*(x2-xmin))+viewAnchor.getX();
@@ -159,6 +141,5 @@ void clip::cohen_sutherland (double x1, double y1, double x2, double y2, Warna w
 		Garis g(x1v,y1v,x2v,y2v);
 		g.drawLine(buff, w);
 
->>>>>>> bffce23450bbfddf7b78c74954a4014b87d8d24f
 	}
 }
