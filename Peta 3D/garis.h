@@ -24,7 +24,7 @@ class Garis{
 		Point getPointP2();
 		
 		void drawLine(Buffer b, Warna warna);
-		
+
 	private:
 		Point P1;		//titik awal
 		Point P2;		//titik akhir

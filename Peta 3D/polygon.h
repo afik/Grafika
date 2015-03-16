@@ -6,19 +6,15 @@
 #include "warna.h"
 #include "buffer.h"
 #include "pixel.h"
+#include "clip.h"
 #include <vector>
- 
-struct sisiPolygon {
-		Point p1;
-		Point p2;
-};
 
 class Polygon {
 	// Atribut kelas
 private:
 	vector<Point> kumpulanPointAlas;
 	Point centrePolygon;
-	vector<sisiPolygon> sisiVisiblePolygon;
+	vector<Garis> sisiVisiblePolygon;
 	// Method Utama
 public:	
 	Polygon();
@@ -45,6 +41,8 @@ public:
 	int jumlahTitikPolygon();									// Hitung jumlah titik pembentuk polygon
 	Point getCentrePolygon();									// Ambil pusat dari alas 2D								 
 	void setCentrePolygon(Point centre);
+	Garis getGarisVisiblePolygon(int indexGaris);						// Kembalikan salah satu sisi garis polygon yang visible
+	int banyakGarisVisiblePolygon();									// Kembalikan jumlah garis sisi polygon yang tergambar/visible
 };
 
 #endif
