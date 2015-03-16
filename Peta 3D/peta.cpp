@@ -22,7 +22,7 @@ void Peta::definePeta(Point p0){
 	okt1.push_back(okt16);
 	okt1.push_back(okt17);
 	okt1.push_back(okt18);
-	Point center1(p0.getX() + 11, p0.getY() + 10);
+	Point center1(p0.getX() + 43, p0.getY() + 20);
 	Polygon pol1(center1);
 	pol1.addPoint(okt1);
 	listPolygon.push_back(pol1);
