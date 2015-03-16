@@ -15,10 +15,6 @@ private:
 	vector<Point> kumpulanPointAlas;
 	Point centrePolygon;
 	vector<Garis> sisiVisiblePolygon;
-<<<<<<< HEAD
-=======
-	 
->>>>>>> bffce23450bbfddf7b78c74954a4014b87d8d24f
 	// Method Utama
 public:	
 	Polygon();
@@ -45,12 +41,8 @@ public:
 	int jumlahTitikPolygon();									// Hitung jumlah titik pembentuk polygon
 	Point getCentrePolygon();									// Ambil pusat dari alas 2D								 
 	void setCentrePolygon(Point centre);
-<<<<<<< HEAD
 	Garis getGarisVisiblePolygon(int indexGaris);						// Kembalikan salah satu sisi garis polygon yang visible
 	int banyakGarisVisiblePolygon();									// Kembalikan jumlah garis sisi polygon yang tergambar/visible
-=======
-	Point getGarisPolygon(int indexGaris);						// Kembalikan salah satu sisi garis polygon
->>>>>>> bffce23450bbfddf7b78c74954a4014b87d8d24f
 };
 
 #endif

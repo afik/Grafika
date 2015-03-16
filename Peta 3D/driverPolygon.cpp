@@ -71,11 +71,7 @@ int main() {
 
 	Buffer buff;
 	char input;
-<<<<<<< HEAD
 	int heigth = 10;
-=======
-	int heigth = 300;
->>>>>>> bffce23450bbfddf7b78c74954a4014b87d8d24f
 	
 	poly.drawPolygon3D(buff, heigth, *Warna::putih());
 	

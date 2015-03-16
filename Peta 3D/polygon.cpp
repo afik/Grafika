@@ -71,11 +71,7 @@ void Polygon::drawPolygon3D(Buffer buff, int height, Warna w) {
 			Garis sisiAlas(hasilSortingPointSurface[indexAwal], hasilSortingPointSurface[indexAbsis]); 		// Garis tepi alas bawah polygon 3D
 			sisiAlas.drawLine(buff, w); sisiVisiblePolygon.push_back(sisiAlas);			
 			Garis sisiTegakAwal(hasilSortingPointSurface[indexAwal], alasAtasIndexAwal);					// Garis tegak polygon 3D pertama
-<<<<<<< HEAD
 			sisiTegakAwal.drawLine(buff, w); 
-=======
-			sisiTegakAwal.drawLine(buff, w); sisiVisiblePolygon.push_back(sisiTegakAwal);
->>>>>>> bffce23450bbfddf7b78c74954a4014b87d8d24f
 			Garis sisiTegakAbsis(hasilSortingPointSurface[indexAbsis], alasAtasIndexAkhir);					// Garis tegak polygon 3D kedua
 			sisiTegakAbsis.drawLine(buff, w); sisiVisiblePolygon.push_back(sisiTegakAbsis);
 			Garis sisiAlasAtas1(alasAtasIndexAwal, alasAtasIndexAkhir);										// Garis tepi alas atas polygon 3D
@@ -84,21 +80,16 @@ void Polygon::drawPolygon3D(Buffer buff, int height, Warna w) {
 			indexAwal = indexAbsis;
 		}
 		else {			
-			// cout << "Index Hidden : " << indexAwalHidden << endl;
-			// cout << "Index Absis : " << indexAbsis << endl;	
+			cout << "Index Hidden : " << indexAwalHidden << endl;
+			cout << "Index Absis : " << indexAbsis << endl;	
 			
 			Point alasAtasIndexAwalHidden(hasilSortingPointSurface[indexAwalHidden].getX(), 
 			        hasilSortingPointSurface[indexAwalHidden].getY() - height); 
 			Point alasAtasIndexAkhirHidden(hasilSortingPointSurface[indexAbsis].getX(),
 			        hasilSortingPointSurface[indexAbsis].getY() - height);
-<<<<<<< HEAD
 			        
 			Garis sisiAlasAtas2Hidden(alasAtasIndexAwalHidden, alasAtasIndexAkhirHidden);
 			sisiAlasAtas2Hidden.drawLine(buff, w); sisiVisiblePolygon.push_back(sisiAlasAtas2Hidden);
-=======
-			Garis sisiAlasAtas2(alasAtasIndexAwalHidden, alasAtasIndexAkhirHidden);
-			sisiAlasAtas2.drawLine(buff, w); sisiVisiblePolygon.push_back(sisiAlasAtas2);
->>>>>>> bffce23450bbfddf7b78c74954a4014b87d8d24f
 																				
 			indexAwalHidden = indexAbsis;
 		}
@@ -210,7 +201,6 @@ Point Polygon::getCentrePolygon() {
 	return centrePolygon;
 }
 
-<<<<<<< HEAD
 Garis Polygon::getGarisVisiblePolygon(int indexGaris) {
 	return sisiVisiblePolygon[indexGaris];
 }
@@ -218,8 +208,3 @@ Garis Polygon::getGarisVisiblePolygon(int indexGaris) {
 int Polygon::banyakGarisVisiblePolygon() {
 	return sisiVisiblePolygon.size();
 }
-=======
-Point Polygon::getGarisPolygon(int indexGaris) {
-	return sisiVisiblePolygon[indexGaris];
-}
->>>>>>> bffce23450bbfddf7b78c74954a4014b87d8d24f
