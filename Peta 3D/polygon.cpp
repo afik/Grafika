@@ -53,6 +53,12 @@ void Polygon::drawPolygon3D(Buffer buff, int height, Warna w) {
 	int indexAwal = 0;
 	int indexAwalHidden = 0;
 	int indexAbsis = 1;
+	
+	Point alasAtasIndexAwal(hasilSortingPointSurface[0].getX(), 
+			        hasilSortingPointSurface[0].getY()-height);
+	Garis sisiTegakPertama(hasilSortingPointSurface[0], alasAtasIndexAwal);
+	sisiVisiblePolygon.push_back(sisiTegakPertama);
+	
 	while (indexAbsis < kumpulanPointAlas.size()) {
 		if (hasilSortingPointSurface[indexAbsis].getY() >= batasOrdinatVisible) {	
 			cout << "Index Awal : " << indexAwal << endl;
@@ -65,7 +71,7 @@ void Polygon::drawPolygon3D(Buffer buff, int height, Warna w) {
 			Garis sisiAlas(hasilSortingPointSurface[indexAwal], hasilSortingPointSurface[indexAbsis]); 		// Garis tepi alas bawah polygon 3D
 			sisiAlas.drawLine(buff, w); sisiVisiblePolygon.push_back(sisiAlas);			
 			Garis sisiTegakAwal(hasilSortingPointSurface[indexAwal], alasAtasIndexAwal);					// Garis tegak polygon 3D pertama
-			sisiTegakAwal.drawLine(buff, w); sisiVisiblePolygon.push_back(sisiTegakAwal);
+			sisiTegakAwal.drawLine(buff, w); 
 			Garis sisiTegakAbsis(hasilSortingPointSurface[indexAbsis], alasAtasIndexAkhir);					// Garis tegak polygon 3D kedua
 			sisiTegakAbsis.drawLine(buff, w); sisiVisiblePolygon.push_back(sisiTegakAbsis);
 			Garis sisiAlasAtas1(alasAtasIndexAwal, alasAtasIndexAkhir);										// Garis tepi alas atas polygon 3D
@@ -74,15 +80,16 @@ void Polygon::drawPolygon3D(Buffer buff, int height, Warna w) {
 			indexAwal = indexAbsis;
 		}
 		else {			
-			// cout << "Index Hidden : " << indexAwalHidden << endl;
-			// cout << "Index Absis : " << indexAbsis << endl;	
+			cout << "Index Hidden : " << indexAwalHidden << endl;
+			cout << "Index Absis : " << indexAbsis << endl;	
 			
 			Point alasAtasIndexAwalHidden(hasilSortingPointSurface[indexAwalHidden].getX(), 
-			        hasilSortingPointSurface[indexAwalHidden].getY() - height);
+			        hasilSortingPointSurface[indexAwalHidden].getY() - height); 
 			Point alasAtasIndexAkhirHidden(hasilSortingPointSurface[indexAbsis].getX(),
 			        hasilSortingPointSurface[indexAbsis].getY() - height);
-			Garis sisiAlasAtas2(alasAtasIndexAwalHidden, alasAtasIndexAkhirHidden);
-			sisiAlasAtas2.drawLine(buff, w); sisiVisiblePolygon.push_back(sisiAlasAtas2);
+			        
+			Garis sisiAlasAtas2Hidden(alasAtasIndexAwalHidden, alasAtasIndexAkhirHidden);
+			sisiAlasAtas2Hidden.drawLine(buff, w); sisiVisiblePolygon.push_back(sisiAlasAtas2Hidden);
 																				
 			indexAwalHidden = indexAbsis;
 		}
@@ -194,6 +201,10 @@ Point Polygon::getCentrePolygon() {
 	return centrePolygon;
 }
 
-Point Polygon::getGarisPolygon(int indexGaris) {
+Garis Polygon::getGarisVisiblePolygon(int indexGaris) {
 	return sisiVisiblePolygon[indexGaris];
+}
+
+int Polygon::banyakGarisVisiblePolygon() {
+	return sisiVisiblePolygon.size();
 }
