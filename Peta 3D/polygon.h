@@ -44,6 +44,7 @@ public:
 	void setCentrePolygon(Point centre);
 	Garis getGarisVisiblePolygon(int indexGaris);						// Kembalikan salah satu sisi garis polygon yang visible
 	int banyakGarisVisiblePolygon();									// Kembalikan jumlah garis sisi polygon yang tergambar/visible
+	// std::vector<Point> titikBerpotongan(int y, int gari);
 };
 
 #endif

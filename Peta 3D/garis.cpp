@@ -68,20 +68,22 @@ void Garis::drawLine(Buffer b, Warna warna, int** matriks)
    	Point tempP2 = P2;
    	
 	for (;;){
-		if(matriks[tempP1.getY()][tempP1.getX()] != 1){
-			matriks[tempP1.getY()][tempP1.getX()] = 1;		
-			p.putPixel(warna,tempP1,b);			// output ke screen berdasarkan location			  
-			e2 = 2*err;                                   
-			if (e2 >= dy) {                                         /* e_xy+e_x > 0 */
-				if (tempP1.getX() == tempP2.getX()) break;                       
-				err += dy;
-				tempP1.setX(tempP1.getX() + sx);
-			}                                             
-			if (e2 <= dx) {                                         /* e_xy+e_y < 0 */
-				if (tempP1.getY() == tempP2.getY()) break;
-				err += dx;
-				tempP1.setY(tempP1.getY() + sy);
-			}
+		// std::cout << "(" << tempP1.getX() << ", " << tempP1.getY() << ") ";
+		if(matriks[tempP1.getY()][tempP1.getX()] == 0){
+			// std::cout << "(" << tempP1.getX() << ", " << tempP1.getY() << ") ";
+			p.putPixel(warna,tempP1.getX(), tempP1.getY(),b);			// output ke screen berdasarkan location			  
+			matriks[tempP1.getY()][tempP1.getX()] = 1; 
+		}
+		e2 = 2*err;                                   
+		if (e2 >= dy) {                                         /* e_xy+e_x > 0 */
+			if (tempP1.getX() == tempP2.getX()) break;                       
+			err += dy;
+			tempP1.setX(tempP1.getX() + sx);
+		}                                             
+		if (e2 <= dx) {                                         /* e_xy+e_y < 0 */
+			if (tempP1.getY() == tempP2.getY()) break;
+			err += dx;
+			tempP1.setY(tempP1.getY() + sy);
 		}
 	}
 }

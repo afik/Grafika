@@ -69,10 +69,10 @@ int main() {
 
 	Polygon poly2;
 	vector<Point> lp2;
-	Point p21(560, 505);
-	Point p22(615, 510);
-	Point p23(590, 525);
-	Point p24(535, 520);
+	Point p21(570, 505);
+	Point p22(625, 510);
+	Point p23(600, 525);
+	Point p24(545, 520);
 	lp2.push_back(p21);
 	lp2.push_back(p22);
 	lp2.push_back(p23);
@@ -81,9 +81,9 @@ int main() {
 
 	Buffer buff;
 	char input;
-	int heigth = 10;
+	int heigth = 100;
+	poly2.drawPolygon3D(buff, heigth, *Warna::putih(), matriks);
 	poly.drawPolygon3D(buff, heigth, *Warna::putih(), matriks);
-	//poly2.drawPolygon3D(buff, heigth, *Warna::putih(), matriks);
 	
 	// for (int i=0; i<poly.banyakGarisVisiblePolygon(); i++) {
 	// 	cout << "Garis ke-" << i << " poin A : (" << poly.getGarisVisiblePolygon(i).getPointP1().getX() 
