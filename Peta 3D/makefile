@@ -3,8 +3,8 @@ all:  main polygon peta
 main: main.o buffer.o garis.o point.o warna.o pixel.o polygon.o clip.o peta.o
 	g++ -o main main.o buffer.o garis.o point.o warna.o pixel.o polygon.o clip.o peta.o
 
-polygon: driverPolygon.o buffer.o garis.o point.o warna.o pixel.o polygon.o clip.o peta.o
-	g++ -o polygon driverPolygon.o buffer.o garis.o point.o warna.o pixel.o polygon.o clip.o peta.o
+polygon: driverPolygon.o buffer.o garis.o point.o warna.o pixel.o polygon.o clip.o
+	g++ -o polygon driverPolygon.o buffer.o garis.o point.o warna.o pixel.o polygon.o clip.o
 
 peta: main_peta.o buffer.o garis.o point.o warna.o pixel.o polygon.o clip.o peta.o
 	g++ -o peta main_peta.o buffer.o garis.o point.o warna.o pixel.o polygon.o clip.o peta.o

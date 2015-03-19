@@ -1,4 +1,6 @@
 #include "polygon.h"
+#include "clip.h"
+#include "garis.h"
 #include <iostream>
 #include <ncurses.h>
 #include <termios.h>
@@ -34,7 +36,19 @@ int kbhit(void)
 }
 
 int main() {
+	int ukuranX = 1000;
+	int ukuranY = 600;
 	Polygon poly;
+	int **matriks;
+	matriks = (int**) malloc (ukuranY*sizeof(int*));
+	for (int i = 0; i < ukuranY; ++i){
+		matriks[i] = (int*) malloc (ukuranX*sizeof(int));
+	}
+	for (int i = 0; i < ukuranY; ++i){
+		for(int j = 0; j < ukuranX; j++){
+			matriks[i][j] = 0;
+		}
+	}
 	vector<Point> lp;
 	Point p(550, 495);
 	Point p2(605, 500);
@@ -47,43 +61,39 @@ int main() {
 	poly.addPoint(lp);
 	
 	Point* hasilSorting = poly.sortKumpulanPointHorizontal();
-	for (int i=0; i<4; i++) {
-		cout << "Hasil sorting absis point ke-" << i << " : " << hasilSorting[i].getX() << endl;
-		cout << "Hasil sorting ordinat point ke-" << i << " : " << hasilSorting[i].getY() << endl;
-	}
-	cout << "Critical ordinat : " << poly.getCriticalOrdinatPoint(hasilSorting[0], hasilSorting[3]) << endl;
-/*
+	// for (int i=0; i<4; i++) {
+	// 	cout << "Hasil sorting absis point ke-" << i << " : " << hasilSorting[i].getX() << endl;
+	// 	cout << "Hasil sorting ordinat point ke-" << i << " : " << hasilSorting[i].getY() << endl;
+	// }
+	// cout << "Critical ordinat : " << poly.getCriticalOrdinatPoint(hasilSorting[0], hasilSorting[3]) << endl;
+
 	Polygon poly2;
 	vector<Point> lp2;
-	Point p21(600, 400);
-	Point p22(700, 300);
-	Point p32(800, 300);
-	Point p42(1000, 400);
-	Point p52(900, 500);
-	Point p62(850, 500);
+	Point p21(560, 505);
+	Point p22(615, 510);
+	Point p23(590, 525);
+	Point p24(535, 520);
 	lp2.push_back(p21);
 	lp2.push_back(p22);
-	lp2.push_back(p32);
-	lp2.push_back(p42);
-	lp2.push_back(p52);
-	lp2.push_back(p62);
-	poly2.addPoint(lp2);*/
+	lp2.push_back(p23);
+	lp2.push_back(p24);
+	poly2.addPoint(lp2);
 
 	Buffer buff;
 	char input;
 	int heigth = 10;
+	poly.drawPolygon3D(buff, heigth, *Warna::putih(), matriks);
+	//poly2.drawPolygon3D(buff, heigth, *Warna::putih(), matriks);
 	
-	poly.drawPolygon3D(buff, heigth, *Warna::putih());
+	// for (int i=0; i<poly.banyakGarisVisiblePolygon(); i++) {
+	// 	cout << "Garis ke-" << i << " poin A : (" << poly.getGarisVisiblePolygon(i).getPointP1().getX() 
+	// 	     << "," << poly.getGarisVisiblePolygon(i).getPointP1().getY() << ")" << endl;
+	// 	cout << "Garis ke-" << i << " poin B : (" << poly.getGarisVisiblePolygon(i).getPointP2().getX() 
+	// 	     << "," << poly.getGarisVisiblePolygon(i).getPointP2().getY() << ")" << endl;
+	// 	cout << "=======================================================================" << endl;
+	// }
 	
-	for (int i=0; i<poly.banyakGarisVisiblePolygon(); i++) {
-		cout << "Garis ke-" << i << " poin A : (" << poly.getGarisVisiblePolygon(i).getPointP1().getX() 
-		     << "," << poly.getGarisVisiblePolygon(i).getPointP1().getY() << ")" << endl;
-		cout << "Garis ke-" << i << " poin B : (" << poly.getGarisVisiblePolygon(i).getPointP2().getX() 
-		     << "," << poly.getGarisVisiblePolygon(i).getPointP2().getY() << ")" << endl;
-		cout << "=======================================================================" << endl;
-	}
-	
-	poly.clearPolygon(heigth);
+	// poly.clearPolygon(heigth, matriks);
 	
 	// CLIPPING TEST
 	/*Bentuk gambarBatasClipping;
@@ -99,7 +109,7 @@ int main() {
 		double y1 = (double) poly.getGarisVisiblePolygon(i).getPointP1().getY();
 		double x2 = (double) poly.getGarisVisiblePolygon(i).getPointP2().getX();
 		double y2 = (double) poly.getGarisVisiblePolygon(i).getPointP2().getY();
-		clipping.cohen_sutherland(x1,y1,x2,y2,buff);
+		clipping.cohen_sutherland(x1,y1,x2,y2,*Warna::putih(),buff,matriks);
 	}
 	
 	//poly2.drawPolygon3D(buff, heigth, *Warna::putih());

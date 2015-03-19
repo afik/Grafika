@@ -23,7 +23,7 @@ class Garis{
 		Point getPointP1();
 		Point getPointP2();
 		
-		void drawLine(Buffer b, Warna warna);
+		void drawLine(Buffer b, Warna warna, int** matriks);
 
 	private:
 		Point P1;		//titik awal

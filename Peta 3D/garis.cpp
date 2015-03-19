@@ -56,7 +56,7 @@ Point Garis::getPointP2()
 	return P2;
 }
 
-void Garis::drawLine(Buffer b, Warna warna)
+void Garis::drawLine(Buffer b, Warna warna, int** matriks)
 {
 	// Figure out where in memory to put the pixel
 	int dx =  abs(P2.getX()-P1.getX()), sx = P1.getX()<P2.getX() ? 1 : -1;
@@ -68,18 +68,20 @@ void Garis::drawLine(Buffer b, Warna warna)
    	Point tempP2 = P2;
    	
 	for (;;){
-		p.putPixel(warna,tempP1,b);					// output ke screen berdasarkan location
-							  
-		e2 = 2*err;                                   
-		if (e2 >= dy) {                                         /* e_xy+e_x > 0 */
-			if (tempP1.getX() == tempP2.getX()) break;                       
-			err += dy;
-			tempP1.setX(tempP1.getX() + sx);
-		}                                             
-		if (e2 <= dx) {                                         /* e_xy+e_y < 0 */
-			if (tempP1.getY() == tempP2.getY()) break;
-			err += dx;
-			tempP1.setY(tempP1.getY() + sy);
+		if(matriks[tempP1.getY()][tempP1.getX()] != 1){
+			matriks[tempP1.getY()][tempP1.getX()] = 1;		
+			p.putPixel(warna,tempP1,b);			// output ke screen berdasarkan location			  
+			e2 = 2*err;                                   
+			if (e2 >= dy) {                                         /* e_xy+e_x > 0 */
+				if (tempP1.getX() == tempP2.getX()) break;                       
+				err += dy;
+				tempP1.setX(tempP1.getX() + sx);
+			}                                             
+			if (e2 <= dx) {                                         /* e_xy+e_y < 0 */
+				if (tempP1.getY() == tempP2.getY()) break;
+				err += dx;
+				tempP1.setY(tempP1.getY() + sy);
+			}
 		}
 	}
 }
