@@ -1,7 +1,7 @@
 all:  main city pik
 
-main: main.o buffer.o garis.o point.o warna.o pixel.o bentuk.o badanHeli.o ekorHeli.o baling.o helikopter.o city_map.o polygon.o awan.o clip.o fill_scan.o
-	g++ -o main main.o buffer.o garis.o point.o warna.o pixel.o  bentuk.o badanHeli.o ekorHeli.o baling.o helikopter.o city_map.o polygon.o awan.o clip.o fill_scan.o
+main: main.o buffer.o garis.o point.o warna.o pixel.o bentuk.o badanHeli.o ekorHeli.o baling.o helikopter.o city_map.o polygon.o awan.o clip.o fill_scan.o ledakan.o parasut.o
+	g++ -o main main.o buffer.o garis.o point.o warna.o pixel.o  bentuk.o badanHeli.o ekorHeli.o baling.o helikopter.o city_map.o polygon.o awan.o clip.o fill_scan.o ledakan.o parasut.o
 
 city: main_city.o buffer.o garis.o point.o warna.o pixel.o bentuk.o badanHeli.o ekorHeli.o helikopter.o city_map.o
 	g++ -o city main_city.o buffer.o garis.o point.o warna.o pixel.o bentuk.o badanHeli.o ekorHeli.o helikopter.o city_map.o

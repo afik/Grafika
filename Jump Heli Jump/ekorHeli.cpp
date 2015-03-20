@@ -126,14 +126,14 @@ void ekorHeli::clearekorHeli(Buffer buff, int v)
 	{
 		if(i<3)
 		{
-			Garis g(ekor[i].getX()-v, ekor[i].getY(),
-					ekor[i+1].getX()-v, ekor[i+1].getY());
+			Garis g(ekor[i].getX(), ekor[i].getY(),
+					ekor[i+1].getX(), ekor[i+1].getY());
 			g.drawLine(buff, putih);
 		}
 		else
 		{
-			Garis g(ekor[i].getX()-v, ekor[i].getY(),
-					ekor[0].getX()-v, ekor[0].getY());
+			Garis g(ekor[i].getX(), ekor[i].getY(),
+					ekor[0].getX(), ekor[0].getY());
 			g.drawLine(buff, putih);
 		}
 	}
