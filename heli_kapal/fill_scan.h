@@ -11,6 +11,7 @@ using namespace std;
 class fillScan{
 	public:
 	int GetX(Garis G, int y);
+	int GetY(Garis G, int x);
 
 	void fill(int y0, int y1, Garis G1, Garis G2, Warna warna, Buffer buff);
 	void fillPolygon(int x, int y, Warna warna, Buffer buff);
