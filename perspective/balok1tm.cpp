@@ -29,10 +29,12 @@ void Balok1TM::drawBalok(Point Pt, Point P, int w, int h, int lebar, Buffer buff
 	Garis GP2(Pt,P2);
 	Garis GP3(Pt,P3);
 	Garis GP4(Pt,P4);
+	/*
 	GP1.drawLine(buff, warna);
 	GP2.drawLine(buff, warna);
 	GP3.drawLine(buff, warna);
 	GP4.drawLine(buff, warna);
+	*/
 	
 	/** Bangun */
 	int j = P1.getY() - lebar;
@@ -98,10 +100,12 @@ void Balok1TM::drawBalok(Point Pt, int x, int y, int w, int h, int lebar, Buffer
 	Garis GP2(Pt,P2);
 	Garis GP3(Pt,P3);
 	Garis GP4(Pt,P4);
+	/*
 	GP1.drawLine(buff, warna);
 	GP2.drawLine(buff, warna);
 	GP3.drawLine(buff, warna);
 	GP4.drawLine(buff, warna);
+	*/
 	
 	/** Bangun */
 	int j = P1.getY() - lebar;
