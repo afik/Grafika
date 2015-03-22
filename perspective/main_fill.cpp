@@ -38,14 +38,16 @@ int main(){
 	Warna putih;
 	Buffer buff;
 	char input;
-	Point P(700,500);
-	Point Pt(900,300);
+	Point P(400,450);
+	Point Pt(300,300);
 	/*Point p(400,400);
 	Point p1(1000,700);
 	Warna biru(0,255,255);
 	f.fillPolygon(600, 450, putih, buff);
 	f.fillRect(p, 100, 200, putih, buff);
 	f.fillPattern(p1, 135, putih, biru, buff);*/
+	
+	system("clear");
 	Balok1TM B;
 	B.drawBalok(Pt, P, 100, 100, 20, buff, putih);
 	B.drawBalok(Pt, P.getX() + 100, P.getY(), 30, 40, 20, buff, putih);
@@ -63,6 +65,9 @@ int main(){
 		 		B.clear(Pt, P.getX() + 130, P.getY(), 20, 50, 20, buff, *Warna::hitam());
 
 		 		P.setX(P.getX()+10);
+		 		if(P.getX() == Pt.getX()) {
+		 			Pt.setX(Pt.getX()+1);
+		 		}
 		 		B.drawBalok(Pt, P, 100, 100, 20, buff, putih);
 				B.drawBalok(Pt, P.getX() + 100, P.getY(), 30, 40, 20, buff, putih);
 				B.drawBalok(Pt, P.getX() + 130, P.getY(), 20, 50, 20, buff, putih);
@@ -76,7 +81,7 @@ int main(){
 
 		 		P.setX(P.getX()-10);
 		 		if(P.getX() == Pt.getX()) {
-		 			Pt.setX(Pt.getX()+100);
+		 			Pt.setX(Pt.getX()-1);
 		 		}
 		 		B.drawBalok(Pt, P, 100, 100, 20, buff, putih);
 				B.drawBalok(Pt, P.getX() + 100, P.getY(), 30, 40, 20, buff, putih);
@@ -90,6 +95,9 @@ int main(){
 		 		B.clear(Pt, P.getX() + 130, P.getY(), 20, 50, 20, buff, *Warna::hitam());
 
 		 		P.setY(P.getY()-10);
+		 		if(P.getY() == Pt.getY()) {
+		 			Pt.setY(Pt.getY()-1);
+		 		}
 		 		B.drawBalok(Pt, P, 100, 100, 20, buff, putih);
 				B.drawBalok(Pt, P.getX() + 100, P.getY(), 30, 40, 20, buff, putih);
 				B.drawBalok(Pt, P.getX() + 130, P.getY(), 20, 50, 20, buff, putih);	
@@ -102,6 +110,9 @@ int main(){
 		 		B.clear(Pt, P.getX() + 130, P.getY(), 20, 50, 20, buff, *Warna::hitam());
 
 		 		P.setY(P.getY()+10);
+		 		if(P.getY() == Pt.getY()) {
+		 			Pt.setY(Pt.getY()+1);
+		 		}
 		 		B.drawBalok(Pt, P, 100, 100, 20, buff, putih);
 				B.drawBalok(Pt, P.getX() + 100, P.getY(), 30, 40, 20, buff, putih);
 				B.drawBalok(Pt, P.getX() + 130, P.getY(), 20, 50, 20, buff, putih);	
