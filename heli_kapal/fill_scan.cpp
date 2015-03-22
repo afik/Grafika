@@ -2,6 +2,8 @@
 #include <iostream>
 int fillScan::GetX(Garis G, int y){ return ((y - G.getPointP1().getY())*(G.getPointP2().getX() - G.getPointP1().getX())/(G.getPointP2().getY() - G.getPointP1().getY())) + G.getPointP1().getX(); }
 
+int fillScan::GetY(Garis G, int x){ return ((x - G.getPointP1().getX())*(G.getPointP2().getY() - G.getPointP1().getY())/(G.getPointP2().getX() - G.getPointP1().getX())) + G.getPointP1().getY(); }
+
 void fillScan::fill(int y0, int y1, Garis G1, Garis G2, Warna warna, Buffer buff){	
 	for(int j = y0; j < y1 ; j++){ 
 		Point Pi(GetX(G1,j) , j); 
@@ -106,7 +108,7 @@ void fillScan::fillRect(Point P, int w, int h, Warna warna, Buffer buff){
 	Point Pbb(P.getX()+w,P.getY()); Point Pba(P.getX()+w,P.getY()-h);
 	Garis G1(Paa,Pab);
 	Garis G2(Pbb,Pba);
-	//cout << G1.getPointP1().getX() <<endl;
+	cout << G1.getPointP1().getX() <<endl;
 	for(int j = Pab.getY(); j < Paa.getY(); j++){ 
 		Point Pi(GetX(G1,j) , j); 
 		Point Pj(GetX(G2,j) , j); 
@@ -119,7 +121,7 @@ void fillScan::fillRect(int x, int y, int w, int h, Warna warna, Buffer buff){
 	Point Pbb(x+w,y); Point Pba(x+w,y-h);
 	Garis G1(Paa,Pab);
 	Garis G2(Pbb,Pba);
-	//cout << G1.getPointP1().getX() <<endl;
+	cout << G1.getPointP1().getX() <<endl;
 	for(int j = Pab.getY(); j < Paa.getY(); j++){ 
 		Point Pi(GetX(G1,j) , j); 
 		Point Pj(GetX(G2,j) , j); 
@@ -157,3 +159,6 @@ void fillScan::fillPattern(Point P, int h, Warna warna1, Warna warna2, Buffer bu
 		fillRect(P.getX(), P.getY() - h, 75, 15, warna1, buff);
 	
 }
+
+
+

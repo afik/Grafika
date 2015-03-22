@@ -49,6 +49,7 @@
 		return viewAnchor;
 	}
 
+//>>>>>>> bffce23450bbfddf7b78c74954a4014b87d8d24f
 	outcode clip::compute_outcode(int x, int y) {
 		outcode oc = 0;
 		if (y > ymax)
@@ -64,7 +65,6 @@
 		return oc;
 	}
 
-
 	void clip::setViewSize(int vs){
 		viewSize = vs;
 	}
@@ -73,8 +73,9 @@
 		viewAnchor = p;
 	}
 
-void clip::cohen_sutherland (double x1, double y1, double x2, double y2, Warna w, Buffer buff) {
+void clip::cohen_sutherland (double x1, double y1, double x2, double y2, Warna w, Buffer buff, int** matriks) {
 	//printf("%f %f %f %f \n", x1, y1, x2, y2);
+//>>>>>>> bffce23450bbfddf7b78c74954a4014b87d8d24f
 	bool accept;
 	bool done;
 	outcode outcode1, outcode2;
@@ -139,7 +140,8 @@ void clip::cohen_sutherland (double x1, double y1, double x2, double y2, Warna w
 		
 		Point p1(x1v,y1v);Point p2(x2v,y2v);
 		Garis g(x1v,y1v,x2v,y2v);
-		g.drawLine(buff, w);
+		g.drawLine(buff, w, matriks);
 
+//>>>>>>> bffce23450bbfddf7b78c74954a4014b87d8d24f
 	}
 }

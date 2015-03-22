@@ -6,6 +6,7 @@
 #include <iostream>
 #include "garis.h"
 #include "bentuk.h"
+//>>>>>>> bffce23450bbfddf7b78c74954a4014b87d8d24f
 #include "buffer.h"
 #include <vector>
 
@@ -25,6 +26,7 @@ public:
 	double getYmax();
 	int getViewSize();
 	Point getViewAnchor();
+//>>>>>>> bffce23450bbfddf7b78c74954a4014b87d8d24f
 	void setXmin(int x);
 	void setXmax(int x);
 	void setYmin(int x);
@@ -32,7 +34,8 @@ public:
 	void setViewSize(int vs);
 	void setViewAnchor(Point p);
 	outcode compute_outcode(int x, int y);
-	void cohen_sutherland (double x1, double y1, double x2, double y2, Warna w, Buffer buff);
+	void cohen_sutherland (double x1, double y1, double x2, double y2, Warna w, Buffer buff, int** matriks);
+//>>>>>>> bffce23450bbfddf7b78c74954a4014b87d8d24f
 	std::vector<Garis> cekGaris(Garis* input); 
 
 private:
@@ -43,3 +46,4 @@ private:
 };
 
 #endif
+//>>>>>>> bffce23450bbfddf7b78c74954a4014b87d8d24f

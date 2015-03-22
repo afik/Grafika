@@ -22,7 +22,7 @@ void Peta::definePeta(Point p0){
 	okt1.push_back(okt16);
 	okt1.push_back(okt17);
 	okt1.push_back(okt18);
-	Point center1(p0.getX() + 11, p0.getY() + 10);
+	Point center1(p0.getX() + 43, p0.getY() + 20);
 	Polygon pol1(center1);
 	pol1.addPoint(okt1);
 	listPolygon.push_back(pol1);
@@ -102,9 +102,10 @@ int Peta::getNbPolygon(){
 }
 
 vector<Point> Peta::bentukPersegi(Point a1, Point a2){
+	// (550,495)(605,500)(580,515)(525,510)
 	vector<Point> listp;
-	Point b1(a2.getX()+25, a1.getY());
-	Point b2(a1.getX()-25, a2.getY());
+	Point b1(a2.getX()+25, a1.getY()-5);
+	Point b2(a1.getX()-25, a2.getY()-5);
 	listp.push_back(a1);
 	listp.push_back(b1);
 	listp.push_back(a2);
