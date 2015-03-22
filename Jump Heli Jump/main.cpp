@@ -409,7 +409,7 @@ int main(){
 							{
 								on = false;
 								tempx = baling.getCenter().getX()+500;
-								tempy = baling.getCenter().getY()-50;
+								tempy = baling.getCenter().getY()+100;
 								y = baling.getCenter().getY();
 								x = baling.getCenter().getX();
 
@@ -429,7 +429,7 @@ int main(){
 								
 								//ledakan
 								ledakan.setAbsisTitikPusatLedakan(600);
-								ledakan.setOrdinatTitikPusatLedakan(400);
+								ledakan.setOrdinatTitikPusatLedakan(500);
 								ledakan.meledak();
 
 								
@@ -441,7 +441,7 @@ int main(){
 							{
 								on = false;
 								tempx = baling.getCenter().getX()+500;
-								tempy = baling.getCenter().getY()-50;
+								tempy = baling.getCenter().getY()+100;
 								y = baling.getCenter().getY();
 								x = baling.getCenter().getX();
 
@@ -461,7 +461,7 @@ int main(){
 								
 								//ledakan
 								ledakan.setAbsisTitikPusatLedakan(600);
-								ledakan.setOrdinatTitikPusatLedakan(400);
+								ledakan.setOrdinatTitikPusatLedakan(500);
 								ledakan.meledak();
 
 								
@@ -502,7 +502,7 @@ int main(){
 			sudut+=10;
 
 			vj++;
-			usleep(10000);
+			usleep(5000);
 		}
 	
 	}
