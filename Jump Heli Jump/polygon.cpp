@@ -7,7 +7,6 @@ Polygon::Polygon() {
 }
 
 Polygon::Polygon(Point centrePolygon) {
-	numVisibleLine = 0;
 	this->centrePolygon = centrePolygon;
 }								// assign point 2D alas
 
@@ -26,7 +25,7 @@ Polygon::~Polygon() {
 
 }
 
-void Polygon::drawPolygon(Buffer buff, Warna w) {
+void Polygon::drawPolygon(Buffer buff, Warna w, int** matriks) {
 
 	for(int i=0; i<jumlahTitikPolygon(); i++)
 	{
@@ -34,19 +33,22 @@ void Polygon::drawPolygon(Buffer buff, Warna w) {
 		{
 			Garis g(kumpulanPointAlas[i].getX(), kumpulanPointAlas[i].getY(),
 					kumpulanPointAlas[i+1].getX(), kumpulanPointAlas[i+1].getY());
-			g.drawLine(buff, w);
+			g.drawLine(buff, w, matriks);
+			visibleLine[numVisibleLine] = g;
+			numVisibleLine++;
 		}
 		else
 		{
 			Garis g(kumpulanPointAlas[i].getX(), kumpulanPointAlas[i].getY(),
 					kumpulanPointAlas[0].getX(), kumpulanPointAlas[0].getY());
-			g.drawLine(buff, w);
+			g.drawLine(buff, w, matriks);
+			visibleLine[numVisibleLine] = g;
+			numVisibleLine++;
 		}
 	}
 }										
 
-void Polygon::drawPolygon3D(Buffer buff, int height, Warna w) {
-	numVisibleLine = 0;
+void Polygon::drawPolygon3D(Buffer buff, int height, Warna w, int** matriks) {
 	// Sorting titik-titik pembentuk alas polygon setelah diproyeksikan terlebih dahulu (asumsi point identik absis maupun ordinat)
 	Point* hasilSortingPointSurface = sortKumpulanPointHorizontal();				
 	// Cari batas point teratas di mana point masih visible (setelah diurutkan terlebih dahulu)					
@@ -56,47 +58,54 @@ void Polygon::drawPolygon3D(Buffer buff, int height, Warna w) {
 	int indexAwal = 0;
 	int indexAwalHidden = 0;
 	int indexAbsis = 1;
+	
+	Point alasAtasIndexAwal(hasilSortingPointSurface[0].getX(), 
+			        hasilSortingPointSurface[0].getY()-height);
+	Garis sisiTegakPertama(hasilSortingPointSurface[0], alasAtasIndexAwal);
+	sisiVisiblePolygon.push_back(sisiTegakPertama);
+	
 	while (indexAbsis < kumpulanPointAlas.size()) {
 		if (hasilSortingPointSurface[indexAbsis].getY() >= batasOrdinatVisible) {	
-			//cout << "Index Awal : " << indexAwal << endl;
-			//cout << "Index Absis : " << indexAbsis << endl;					
+			// cout << "Index Awal : " << indexAwal << endl;
+			// cout << "Index Absis : " << indexAbsis << endl;					
 			Point alasAtasIndexAwal(hasilSortingPointSurface[indexAwal].getX(), 
 			        hasilSortingPointSurface[indexAwal].getY() - height);
 			Point alasAtasIndexAkhir(hasilSortingPointSurface[indexAbsis].getX(),
 			        hasilSortingPointSurface[indexAbsis].getY() - height);
 			       
 			Garis sisiAlas(hasilSortingPointSurface[indexAwal], hasilSortingPointSurface[indexAbsis]); 		// Garis tepi alas bawah polygon 3D
-			sisiAlas.drawLine(buff, w); 
-			visibleLine[numVisibleLine] = sisiAlas;
-			numVisibleLine++;
+			sisiAlas.drawLine(buff, w, matriks); sisiVisiblePolygon.push_back(sisiAlas);			
+			// visibleLine[numVisibleLine] = sisiAlas;
+			// numVisibleLine++;
 			Garis sisiTegakAwal(hasilSortingPointSurface[indexAwal], alasAtasIndexAwal);					// Garis tegak polygon 3D pertama
-			sisiTegakAwal.drawLine(buff, w);
-			visibleLine[numVisibleLine] = sisiTegakAwal;
-			numVisibleLine++;
+			sisiTegakAwal.drawLine(buff, w, matriks); 
+			// visibleLine[numVisibleLine] = sisiTegakAwal;
+			// numVisibleLine++;
 			Garis sisiTegakAbsis(hasilSortingPointSurface[indexAbsis], alasAtasIndexAkhir);					// Garis tegak polygon 3D kedua
-			sisiTegakAbsis.drawLine(buff, w);
-			visibleLine[numVisibleLine] = sisiTegakAbsis;
-			numVisibleLine++;
+			sisiTegakAbsis.drawLine(buff, w, matriks); sisiVisiblePolygon.push_back(sisiTegakAbsis);
+			// visibleLine[numVisibleLine] = sisiTegakAbsis;
+			// numVisibleLine++;
 			Garis sisiAlasAtas1(alasAtasIndexAwal, alasAtasIndexAkhir);										// Garis tepi alas atas polygon 3D
-			sisiAlasAtas1.drawLine(buff, w);
-			visibleLine[numVisibleLine] = sisiAlasAtas1;
-			numVisibleLine++;
+			sisiAlasAtas1.drawLine(buff, w, matriks); sisiVisiblePolygon.push_back(sisiAlasAtas1);
+			// visibleLine[numVisibleLine] = sisiAlasAtas1;
+			// numVisibleLine++;
 			
 			indexAwal = indexAbsis;
 		}
 		else {			
-			//cout << "Index Hidden : " << indexAwalHidden << endl;
-			//cout << "Index Absis : " << indexAbsis << endl;	
+			// cout << "Index Hidden : " << indexAwalHidden << endl;
+			// cout << "Index Absis : " << indexAbsis << endl;	
 			
 			Point alasAtasIndexAwalHidden(hasilSortingPointSurface[indexAwalHidden].getX(), 
-			        hasilSortingPointSurface[indexAwalHidden].getY() - height);
+			        hasilSortingPointSurface[indexAwalHidden].getY() - height); 
 			Point alasAtasIndexAkhirHidden(hasilSortingPointSurface[indexAbsis].getX(),
 			        hasilSortingPointSurface[indexAbsis].getY() - height);
-			Garis sisiAlasAtas2(alasAtasIndexAwalHidden, alasAtasIndexAkhirHidden);
-			sisiAlasAtas2.drawLine(buff, w);
-			visibleLine[numVisibleLine] = sisiAlasAtas2;
-			numVisibleLine++;
-																							
+			        
+			Garis sisiAlasAtas2Hidden(alasAtasIndexAwalHidden, alasAtasIndexAkhirHidden);
+			sisiAlasAtas2Hidden.drawLine(buff, w, matriks); sisiVisiblePolygon.push_back(sisiAlasAtas2Hidden);
+			// visibleLine[numVisibleLine] = sisiAlasAtas2Hidden;
+			// numVisibleLine++;
+
 			indexAwalHidden = indexAbsis;
 		}
 		indexAbsis++;
@@ -106,10 +115,11 @@ void Polygon::drawPolygon3D(Buffer buff, int height, Warna w) {
 	Point alasAtasIndexAkhir(hasilSortingPointSurface[kumpulanPointAlas.size()-1].getX(),
 			        hasilSortingPointSurface[kumpulanPointAlas.size()-1].getY() - height);
 	Garis sisiSisa(alasAtasIndexAwalHidden, alasAtasIndexAkhir);
-	sisiSisa.drawLine(buff, w);
-	visibleLine[numVisibleLine] = sisiSisa;
-	numVisibleLine++;
-			
+	sisiSisa.drawLine(buff, w, matriks); sisiVisiblePolygon.push_back(sisiSisa);
+	// visibleLine[numVisibleLine] = sisiSisa;
+	// numVisibleLine++;
+
+	setBidang(matriks);
 }
 
 int Polygon::getCriticalOrdinatPoint(Point terujungKiri, Point terujungKanan) {
@@ -152,40 +162,86 @@ void Polygon::addPoint(vector<Point> listPoint) {
 	kumpulanPointAlas = listPoint;
 }
 
-void Polygon::clearPolygon(int height, Buffer buff) {
-	drawPolygon3D(buff, height, *Warna::hitam());
+void Polygon::clearPolygon(int height, int** matriks) {
+	Buffer buf;
+	drawPolygon3D(buf, height, *Warna::hitam(), matriks);
 }										// Hapus polygon 
 
-void Polygon::moveUp(int height, Buffer buff) {
-	clearPolygon(height, buff);
+void Polygon::fillPolygonColor() {
+
+}								// Isi polygon dengan warna tertentu
+
+void Polygon::fillPolygonPattern() {
+
+}									// Isi polygon dengan pattern tertentu
+
+void Polygon::moveUp(int height, int** matriks) {
+	clearPolygon(height, matriks);
 	for(int i=0; i<kumpulanPointAlas.size(); i++) {
-		kumpulanPointAlas[i].setY(kumpulanPointAlas[i].getY()-10);
+		kumpulanPointAlas[i].setY(kumpulanPointAlas[i].getY()-5);
 	}
-	centrePolygon.setY(centrePolygon.getY()-10);
+	centrePolygon.setY(centrePolygon.getY()-5);
 }											// Geser polygon 2D/3D ke atas
 
-void Polygon::moveDown(int height, Buffer buff) {
-	clearPolygon(height, buff);
+void Polygon::moveDown(int height, int** matriks) {
+	clearPolygon(height, matriks);
 	for(int i=0; i<kumpulanPointAlas.size(); i++) {
-		kumpulanPointAlas[i].setY(kumpulanPointAlas[i].getY()+10);
+		kumpulanPointAlas[i].setY(kumpulanPointAlas[i].getY()+5);
 	}
-	centrePolygon.setY(centrePolygon.getY()+10);
+	centrePolygon.setY(centrePolygon.getY()+5);
 }											// Geser polygon 2D/3D ke bawah
 
-void Polygon::moveLeft(int height, Buffer buff) {
-	clearPolygon(height, buff);
+void Polygon::moveLeft(int move, int height, int** matriks) {
 	for(int i=0; i<kumpulanPointAlas.size(); i++) {
 		kumpulanPointAlas[i].setX(kumpulanPointAlas[i].getX()-10);
 	}
 	centrePolygon.setX(centrePolygon.getX()-10);
 }											// Geser polygon 2D/3D ke kiri
 
-void Polygon::moveRight(int height, Buffer buff) {
-	clearPolygon(height, buff);
+void Polygon::moveRight(int height, int** matriks) {
+	clearPolygon(height, matriks);
 	for(int i=0; i<kumpulanPointAlas.size(); i++) {
-		kumpulanPointAlas[i].setX(kumpulanPointAlas[i].getX()+10);
+		kumpulanPointAlas[i].setX(kumpulanPointAlas[i].getX()+5);
 	}
-	centrePolygon.setX(centrePolygon.getX()+10);
+	centrePolygon.setX(centrePolygon.getX()+5);
+}
+
+void Polygon::setBidang(int** matriks){
+	int jumlahTitik = 0;
+	int i = 0;
+	while(i < 600){
+		Point temp;
+		temp.setY(i);
+		for(int j = 0; j < 999; j++){
+			if(matriks[i][j]==1 && matriks[i][j+1]==0 && jumlahTitik == 0) {
+				jumlahTitik++;
+			}
+			if(matriks[i][j]==1 && matriks[i][j+1]==0 && jumlahTitik != 0) {
+				jumlahTitik++;
+				temp.setX(j);
+			}
+			if(matriks[i][j]==0 && matriks[i][j+1]==1 && jumlahTitik != 0) {
+				jumlahTitik++;
+				temp.setX(j+1);
+			}
+		}
+		// if(jumlahTitik < 5) std::cout << jumlahTitik << std::endl;
+		if(jumlahTitik != 0 && jumlahTitik != 1){
+			int j = 0;
+			bool stop = false;
+			while(j < 1000 && !stop){
+				if(matriks[i][j]==0) j++;
+				else stop = true;
+			}
+			j++; stop = false;
+			while(j < 1000 && !stop){
+				if(matriks[i][j]==1 && j==temp.getX()) stop = true;
+				else matriks[i][j] = 1;
+				j++;
+			}
+		}
+		jumlahTitik = 0;i++;
+	}
 }
 
 int Polygon::jumlahTitikPolygon() {
@@ -199,6 +255,14 @@ void Polygon::setCentrePolygon(Point centrePolygon) {
 
 Point Polygon::getCentrePolygon() {
 	return centrePolygon;
+}
+
+Garis Polygon::getGarisVisiblePolygon(int indexGaris) {
+	return sisiVisiblePolygon[indexGaris];
+}
+
+int Polygon::banyakGarisVisiblePolygon() {
+	return sisiVisiblePolygon.size();
 }
 
 int* Polygon::getBoundary(int height, int bawah){

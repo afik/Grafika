@@ -137,32 +137,24 @@ void fillScan::fillRect(int x, int y, int w, int h, Warna warna, Buffer buff){
 	}	
 }
 void fillScan::fillPattern(Point P, int h, Warna warna1, Warna warna2, Buffer buff){
-	fillRect(P, 75, 30, warna1, buff);
+	fillRect(P, 50, 30, warna1, buff);
 	int j = 0;
-	h = h - 15;
+	h = h - 5;
 	bool baris =  false;
 	while(j < h - 15){
 		if(baris==false){
-			fillRect(P.getX()     , P.getY() - 30 - j, 15, 15, warna1, buff);
-			fillRect(P.getX() + 15, P.getY() - 30 - j, 15, 15, warna2, buff);
-			fillRect(P.getX() + 30, P.getY() - 30 - j, 15, 15, warna1, buff);
-			fillRect(P.getX() + 45, P.getY() - 30 - j, 15, 15, warna2, buff);
-			fillRect(P.getX() + 60, P.getY() - 30 - j, 15, 15, warna1, buff);
+			fillRect(P.getX()     , P.getY() - 10 - j, 5, 5, warna1, buff);
+			fillRect(P.getX() + 10, P.getY() - 10 - j, 5, 5, warna2, buff);
+			fillRect(P.getX() + 20, P.getY() - 10 - j, 5, 5, warna1, buff);
+			fillRect(P.getX() + 30, P.getY() - 10 - j, 5, 5, warna2, buff);
+			fillRect(P.getX() + 40, P.getY() - 10 - j, 5, 5, warna1, buff);
 			baris = true;			
 		}else{
-			/** pattern anyaman */
-/*			fillRect(P.getX()     , P.getY() - 30 - j, 15, 15, warna2, buff);
-			fillRect(P.getX() + 15, P.getY() - 30 - j, 15, 15, warna1, buff);
-			fillRect(P.getX() + 30, P.getY() - 30 - j, 15, 15, warna2, buff);
-			fillRect(P.getX() + 45, P.getY() - 30 - j, 15, 15, warna1, buff);
-			fillRect(P.getX() + 60, P.getY() - 30 - j, 15, 15, warna2, buff);
-*/			
-			/** pattern jendela */
-			fillRect(P.getX()     , P.getY() - 30 - j, 75, 15, warna1, buff);
+			fillRect(P.getX()     , P.getY() - 10 - j, 50, 10, warna1, buff);
 			baris = false;
 		}
-		j = j + 15;
+		j = j + 10;
 	}
-		fillRect(P.getX(), P.getY() - h, 75, 15, warna1, buff);
+		fillRect(P.getX(), P.getY() - h, 50, 15, warna1, buff);
 	
 }

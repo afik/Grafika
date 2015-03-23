@@ -360,7 +360,8 @@ int main(){
 						}
 
 						//change displacement for building and cloud
-						if(sp < 720) {
+						if(sp < 670
+							) {
 							sp+=10;
 						}
 						else {
@@ -369,7 +370,7 @@ int main(){
 
 						//move building and cloud
 						if (phase %2 == 0){
-							map.motion(sp+50, buf, check);
+							map.motion(sp, buf, check);
 							for (int i = 0; i<map.getPoly().numVisibleLine; i++){
 								ln[i+9][1] = map.getPoly().visibleLine[i].getPointP1().getX();
 								ln[i+9][2] = map.getPoly().visibleLine[i].getPointP1().getY();
@@ -379,7 +380,7 @@ int main(){
 							}
 						}
 						else {
-							map.playCloud(sp,buf,check-100);
+							map.playCloud(sp+5,buf,check-100);
 							for (int i = 0; i<12; i++){
 								ln[i+9][1] = map.getCloud().allLine[i].getPointP1().getX();
 								ln[i+9][2] = map.getCloud().allLine[i].getPointP1().getY();
@@ -404,7 +405,7 @@ int main(){
 
 						//check collision
 						if (phase%2 == 0 ) {
-							if (map.getPoly().getBoundary(check,batasBawah)[0] <= falcon.getAnchorP1().getX()+25 && 
+							if (map.getPoly().getBoundary(check,batasBawah)[0] <= falcon.getAnchorP1().getX()+30 && 
 								 map.getPoly().getBoundary(check,batasBawah)[1] <= falcon.getAnchorP2().getY()+10)  
 							{
 								on = false;
@@ -436,7 +437,7 @@ int main(){
 							}
 						}
 						else {
-							if (map.getCloud().getBoundary()[0] <= falcon.getAnchorP1().getX()+25 && 
+							if (map.getCloud().getBoundary()[0] <= falcon.getAnchorP1().getX()+60 && 
 								 map.getCloud().getBoundary()[2] >= falcon.getAnchorP1().getY()-25)  
 							{
 								on = false;
@@ -467,6 +468,7 @@ int main(){
 								
 							}
 						}
+						
 						usleep(50000);	
 					}
 

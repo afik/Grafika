@@ -30,11 +30,16 @@ class city_map
 	private:
 		static const int lebarBuilding = 75;
 
-		Polygon poly;
+		Polygon poly, poly2;
 		Awan awan;
 		int tempAwan, posAwan;
-		Point pBuild;
+		Point pBuild, pPoly;
 		int tempBuild, posBuild;
+
+		int ukuranX;
+		int ukuranY;
+		int **matriks;
+	
 };
 
 #endif
