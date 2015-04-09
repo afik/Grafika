@@ -34,10 +34,21 @@ void Polygon::drawPolygon() {
 	Garis line;
 	Buffer b;
 	Warna w;
-
-	for(int i=0; i<vertice.size()-1; i++) {
-		line.setPointP1(vertice[i]);
-		line.setPointP2(vertice[i+1]);
-		line.drawLine(b, w);
+	if(vertice.size()!=0){
+		for(int i=0; i<vertice.size()-1; i++) {
+			line.setPointP1(vertice[i]);
+			line.setPointP2(vertice[i+1]);
+			line.drawLine(b, w);
+		}
 	}
 }
+
+// void Polygon::closedPolygon(){
+// 	Garis line;
+// 	Buffer b;
+// 	Warna w;
+
+// 	line.setPointP1(vertice.back());
+// 	line.setPointP2(vertice.front());
+// 	line.drawLine(b, w);
+// }
