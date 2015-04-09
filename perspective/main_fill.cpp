@@ -39,7 +39,7 @@ int main(){
 	Buffer buff;
 	char input;
 	Point P(700,500);
-	Point Pt(900,300);
+	Point Pt(600,300);
 	/*Point p(400,400);
 	Point p1(1000,700);
 	Warna biru(0,255,255);
@@ -63,6 +63,10 @@ int main(){
 		 		B.clear(Pt, P.getX() + 130, P.getY(), 20, 50, 20, buff, *Warna::hitam());
 
 		 		P.setX(P.getX()+10);
+		 		cout << P.getX() << endl;
+		 		if(P.getX()+150 == Pt.getX()) {
+		 			P.setX(P.getX()+300);
+		 		}
 		 		B.drawBalok(Pt, P, 100, 100, 20, buff, putih);
 				B.drawBalok(Pt, P.getX() + 100, P.getY(), 30, 40, 20, buff, putih);
 				B.drawBalok(Pt, P.getX() + 130, P.getY(), 20, 50, 20, buff, putih);
@@ -76,7 +80,7 @@ int main(){
 
 		 		P.setX(P.getX()-10);
 		 		if(P.getX() == Pt.getX()) {
-		 			Pt.setX(Pt.getX()+100);
+		 			P.setX(P.getX()-300);
 		 		}
 		 		B.drawBalok(Pt, P, 100, 100, 20, buff, putih);
 				B.drawBalok(Pt, P.getX() + 100, P.getY(), 30, 40, 20, buff, putih);
