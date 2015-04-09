@@ -12,7 +12,7 @@ Persegi::~Persegi(){
 
 }
 
-void Persegi::drawPersegi(Warna warna, Buffer buff){
+void Persegi::drawPersegi(Buffer buff){
 	Point P1(KiriAtas.getX(), KiriAtas.getY());
 	Point P2(KiriAtas.getX() + Panjang, KiriAtas.getY());
 	Point P3(KiriAtas.getX() + Panjang, KiriAtas.getY() + Lebar);
@@ -29,7 +29,7 @@ void Persegi::drawPersegi(Warna warna, Buffer buff){
 	P14.drawLine(buff, warna);
 }
 void Persegi::clearPersegi(Buffer buff){
-	Warna warna(0,0,0);
+	Warna hitam(0,0,0);
 
 	Point P1(KiriAtas.getX(), KiriAtas.getY());
 	Point P2(KiriAtas.getX() + Panjang, KiriAtas.getY());
@@ -41,10 +41,10 @@ void Persegi::clearPersegi(Buffer buff){
 	Garis P34(P3, P4);
 	Garis P14(P1, P4);
 
-	P12.drawLine(buff, warna);
-	P23.drawLine(buff, warna);
-	P34.drawLine(buff, warna);
-	P14.drawLine(buff, warna);
+	P12.drawLine(buff, hitam);
+	P23.drawLine(buff, hitam);
+	P34.drawLine(buff, hitam);
+	P14.drawLine(buff, hitam);
 }
 void Persegi::setPanjang(int p){
 	Panjang = p;
@@ -54,4 +54,8 @@ void Persegi::setLebar(int l){
 }
 void Persegi::setKiriAtas(Point P){
 	KiriAtas = P;
+}
+
+void Persegi::setWarna(Warna w) {
+	warna = w;
 }

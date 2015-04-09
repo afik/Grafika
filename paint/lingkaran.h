@@ -14,15 +14,17 @@ class Lingkaran{
 	public:
 		Lingkaran();
 		~Lingkaran();
-		void drawLingkaran(Warna w, Buffer buf); // titik mata diatas bangun, masukan point sisi depan, bangun di bawah
+		void drawLingkaran(Buffer buf); // titik mata diatas bangun, masukan point sisi depan, bangun di bawah
 		void clearLingkaran(Buffer buf);
 		void setRadius(int r);
 		void setCenter(Point p);
+		void setWarna(Warna w);
 	
 
 	private:
 		int Radius;
 		Point center;
+		Warna warna;
 
 };
 #endif

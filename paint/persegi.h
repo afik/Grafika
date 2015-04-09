@@ -14,15 +14,17 @@ class Persegi{
 	public:
 		Persegi();
 		~Persegi();
-		void drawPersegi(Warna warna, Buffer buff); // titik mata diatas bangun, masukan point sisi depan, bangun di bawah
+		void drawPersegi(Buffer buff); // titik mata diatas bangun, masukan point sisi depan, bangun di bawah
 		void clearPersegi(Buffer buff);
 		void setPanjang(int p);
 		void setLebar(int l);
 		void setKiriAtas(Point P);
+		void setWarna(Warna w);
 
 	private:
 		int Panjang;
 		int Lebar;
 		Point KiriAtas;
+		Warna warna;
 };
 #endif

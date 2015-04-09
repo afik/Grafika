@@ -11,7 +11,7 @@ Lingkaran::~Lingkaran(){
 
 }
 
-void Lingkaran::drawLingkaran(Warna w, Buffer buf){
+void Lingkaran::drawLingkaran(Buffer buf){
 	Pixel p;
 	int iCntr, x, y,p0;
     x=0;
@@ -21,14 +21,14 @@ void Lingkaran::drawLingkaran(Warna w, Buffer buf){
 
     p0=(5/4)-Radius;
 
-    p.putPixel(w,xCenter+x,yCenter+y,buf);
-    p.putPixel(w,xCenter-x,yCenter+y,buf);
-    p.putPixel(w,xCenter+x,yCenter-y,buf);
-    p.putPixel(w,xCenter-x,yCenter-y,buf);
-    p.putPixel(w,xCenter+y,yCenter+x,buf);
-    p.putPixel(w,xCenter-y,yCenter+x,buf);
-    p.putPixel(w,xCenter+y,yCenter-x,buf);
-    p.putPixel(w,xCenter-y,yCenter-x,buf);
+    p.putPixel(warna,xCenter+x,yCenter+y,buf);
+    p.putPixel(warna,xCenter-x,yCenter+y,buf);
+    p.putPixel(warna,xCenter+x,yCenter-y,buf);
+    p.putPixel(warna,xCenter-x,yCenter-y,buf);
+    p.putPixel(warna,xCenter+y,yCenter+x,buf);
+    p.putPixel(warna,xCenter-y,yCenter+x,buf);
+    p.putPixel(warna,xCenter+y,yCenter-x,buf);
+    p.putPixel(warna,xCenter-y,yCenter-x,buf);
 
 
     while(x<=y)
@@ -44,14 +44,14 @@ void Lingkaran::drawLingkaran(Warna w, Buffer buf){
             x=x+1;
             y=y-1;
         }
-	    p.putPixel(w,xCenter+x,yCenter+y,buf);
-	    p.putPixel(w,xCenter-x,yCenter+y,buf);
-	    p.putPixel(w,xCenter+x,yCenter-y,buf);
-	    p.putPixel(w,xCenter-x,yCenter-y,buf);
-	    p.putPixel(w,xCenter+y,yCenter+x,buf);
-	    p.putPixel(w,xCenter-y,yCenter+x,buf);
-	    p.putPixel(w,xCenter+y,yCenter-x,buf);
-	    p.putPixel(w,xCenter-y,yCenter-x,buf);
+	    p.putPixel(warna,xCenter+x,yCenter+y,buf);
+	    p.putPixel(warna,xCenter-x,yCenter+y,buf);
+	    p.putPixel(warna,xCenter+x,yCenter-y,buf);
+	    p.putPixel(warna,xCenter-x,yCenter-y,buf);
+	    p.putPixel(warna,xCenter+y,yCenter+x,buf);
+	    p.putPixel(warna,xCenter-y,yCenter+x,buf);
+	    p.putPixel(warna,xCenter+y,yCenter-x,buf);
+	    p.putPixel(warna,xCenter-y,yCenter-x,buf);
     }
 
 
@@ -107,4 +107,8 @@ void Lingkaran::setRadius(int r){
 }
 void Lingkaran::setCenter(Point p){
 	center = p;
+}
+
+void Lingkaran::setWarna(Warna w){
+    warna = w;
 }

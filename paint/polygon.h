@@ -12,6 +12,7 @@ class Polygon {
 	// Atribut kelas
 private:
 	vector<Point> vertice;
+	Warna warna;
 	// Method Utama
 public:	
 	Polygon();
@@ -19,6 +20,7 @@ public:
 	bool isStop();
 	bool isAround(Point p);
 	void addPoint(Point p);
+	void setWarna(Warna w);
 	void drawPolygon();
 };
 
