@@ -121,8 +121,9 @@ main(){
                 }
                 // polygon.drawPolygon();
 
-                lb0 = lb;
+        lb0 = lb;
 
-        }
-        fclose(fmouse);
+    }
+    fclose(fmouse);
+    buff.closeBuffer();
 }
