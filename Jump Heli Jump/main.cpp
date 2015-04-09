@@ -14,6 +14,11 @@
 #include "clip.h"
 #include "bentuk.h"
 #include "fill_scan.h"
+#include "baling.h"
+#include "picker.h"
+#include "ledakan.h"
+#include "parasut.h"
+
 
 using namespace std;
 
@@ -44,6 +49,99 @@ int kbhit(void)
   return 0;
 }
 
+
+Warna picker(Buffer buff) {
+	int pil;
+	Picker pick;
+	Warna warna;
+	Helikopter falcon;
+	Baling baling;	
+	Point center;
+	
+	do {
+	  
+	  system("clear");
+	  /** menggambar kotak pilihan */
+	  pick.drawPicker(buff);
+	  
+	  /** memilih pilihan warna */
+	  switch(pil){
+	    case 0: 
+	      warna = pick.getColour(415+(pil*80), 425, buff);
+	      break;
+	    case 1: 
+	      warna = pick.getColour(415+(pil*80), 425, buff);
+	      break;
+	    case 2: 
+	      warna = pick.getColour(415+(pil*80), 425, buff);
+	      break;
+	    case 3: 
+	      warna = pick.getColour(415+(pil*80), 425, buff);
+	      break;
+	    case 4: 
+	      warna = pick.getColour(415+(pil*80), 425, buff);
+	      break;
+	    case 5: 
+	      warna = pick.getColour(415+(pil*80), 425, buff);
+	      break;
+	    case 6: 
+	      warna = pick.getColour(415+(pil*80), 425, buff);
+	      break;
+	    case 7: 
+	      warna = pick.getColour(415+(pil*80), 425, buff);
+	      break;
+	    case 8: 
+	      warna = pick.getColour(415+((pil-8)*80), 505, buff);
+	      break;
+	    case 9: 
+	      warna = pick.getColour(415+((pil-8)*80), 505, buff);
+	      break;
+	    case 10: 
+	      warna = pick.getColour(415+((pil-8)*80), 505, buff);
+	      break;
+	    case 11: 
+	      warna = pick.getColour(415+((pil-8)*80), 505, buff);
+	      break;
+	    case 12: 
+	      warna = pick.getColour(415+((pil-8)*80), 505, buff);
+	      break;
+	    case 13: 
+	      warna = pick.getColour(415+((pil-8)*80), 505, buff);
+	      break;
+	    case 14: 
+	      warna = pick.getColour(415+((pil-8)*80), 505, buff);
+	      break;
+	    case 15: 
+	      warna = pick.getColour(415+((pil-8)*80), 505, buff);
+	      break;
+	    default: break;
+	  }	
+	  
+	  /** menggambar helikopter */
+	  falcon.drawHeli(buff,1);
+	  falcon.setVelocity(1);
+	  
+	  /** mewarnai helikopter */
+	  Point kiribawah(falcon.getAnchorP1().getX(),falcon.getAnchorP2().getY());
+	  int lebar = falcon.getAnchorP2().getX() - falcon.getAnchorP1().getX();
+	  int panjang = falcon.getAnchorP2().getY() - falcon.getAnchorP1().getY();
+	  fillScan fill;
+	  fill.fillRect(kiribawah, lebar, panjang, warna, buff);
+	  
+	  /** menggambar baling-baling */
+	  center.setX((falcon.getAnchorP1().getX()+falcon.getAnchorP2().getX())/2);
+	  center.setY(falcon.getAnchorP1().getY()-20);
+	  baling.setCenter(center);
+	  baling.rotasiBaling(0,buff);
+	  
+	  cout << "Masukkan -1 untuk keluar" << endl;
+	  cout << "Pilih warna dari 0 sampe 15: ";
+	  cin >> pil;
+	}while (pil != -1);
+
+	return warna;
+}
+
 int main(){
 	const int batasAtas = 70;
 	const int batasBawah = 470;
@@ -62,7 +160,12 @@ int main(){
 	city_map map;
 	Buffer buf; 
 	Pixel pixel;
-	Helikopter falcon;
+	Helikopter falcon, falconDestroy;
+	Baling baling;
+	fillScan fill;
+	Point centerHeli, posPara;
+	Ledakan ledakan;
+	Parasut para;
 	
 	clip clip;
 	Point va(windowKiri,windowAtas);
@@ -71,156 +174,341 @@ int main(){
 	
 	int radiusAwan, yAwan;
 	int sp, check;
-	bool move, on;
+	int sudut = 0;
+	bool move;
 	char input;
 	int ln[100][4];
 	Warna wr[100];
 	
 	int v = 0;
+	int vj = 1;
 	int phase = 1;
-	on = true;
+	bool on = true;
+	bool pilihWarna = true;
+	bool play = true;
 
-	system("clear");
+	Warna warnaHeli;
 
-	//Garis boundary dan window
-	static Garis batasA(batasKiri,batasAtas,batasKanan,batasAtas); batasA.drawLine(buf,*Warna::hijau());
-	static Garis batasB(batasKiri,batasBawah,batasKanan,batasBawah); batasB.drawLine(buf,*Warna::hijau());
-	static Garis batasKa(batasKanan,batasAtas, batasKanan, batasBawah); batasKa.drawLine(buf, *Warna::hijau());
-	static Garis batasKi(batasKiri, batasAtas, batasKiri, batasBawah); batasKi.drawLine(buf, *Warna::hijau());
-	static Garis windowA(windowKiri,windowAtas,windowKanan,windowAtas); windowA.drawLine(buf,*Warna::merah());
-	static Garis windowB(windowKiri,windowBawah,windowKanan,windowBawah); windowB.drawLine(buf,*Warna::merah());
-	static Garis windowKa(windowKanan,windowAtas, windowKanan, windowBawah); windowKa.drawLine(buf, *Warna::merah());
-	static Garis windowKi(windowKiri, windowAtas, windowKiri, windowBawah); windowKi.drawLine(buf, *Warna::merah());
+	Point kiribawah;
+	int panjang = 69;
+	int lebar = 49;
 
-	falcon.drawHeli(buf, 1);
-	for (int i = 0; i<9; i++) {
-		ln[i][1] = falcon.allLine[i].getPointP1().getX();
-		ln[i][2] = falcon.allLine[i].getPointP1().getY();
-		ln[i][3] = falcon.allLine[i].getPointP2().getX();
-		ln[i][4] = falcon.allLine[i].getPointP2().getY();
-		wr[i] = pixel.getPixel(falcon.allLine[i].getPointP1(),buf);
-	}
-	pixel.putPixel(*Warna::merah(), falcon.getAnchorP1().getX()-clipBack, falcon.getAnchorP1().getY(), buf);
-	pixel.putPixel(*Warna::merah(), falcon.getAnchorP2().getX()+clipFront, falcon.getAnchorP2().getY(), buf);
-	clip.setXmin(falcon.getAnchorP1().getX()-clipBack);
- 	clip.setXmax(falcon.getAnchorP2().getX()+clipFront);
- 	clip.setYmin(falcon.getAnchorP1().getY()-clipVert);
- 	clip.setYmax(falcon.getAnchorP2().getY()+clipVert);
+	int x, y, tempx, tempy;
+	int t= 300, c = 1;
 
-	while (on) {
-		check = rand()%tinggi + 50;
-		if (phase %2 == 0){
-			map.addBuilding(buf, check);
-			for (int i = 0; i<4; i++){
-				ln[i+9][1] = map.getBuilding().allLine[i].getPointP1().getX();
-				ln[i+9][2] = map.getBuilding().allLine[i].getPointP1().getY();
-				ln[i+9][3] = map.getBuilding().allLine[i].getPointP2().getX();
-				ln[i+9][4] = map.getBuilding().allLine[i].getPointP2().getY();
-				wr[i+9] = pixel.getPixel(map.getBuilding().allLine[i].getPointP1(),buf);
+	while (play)
+	{
+		if (on) {	
+			if (pilihWarna) {
+				warnaHeli = picker(buf);
+				pilihWarna = false;
 			}
-		}
-		else {
-			map.addCloud(buf,check-100);
-			for (int i = 0; i<12; i++){
-				ln[i+9][1] = map.getCloud().allLine[i].getPointP1().getX();
-				ln[i+9][2] = map.getCloud().allLine[i].getPointP1().getY();
-				ln[i+9][3] = map.getCloud().allLine[i].getPointP2().getX();
-				ln[i+9][4] = map.getCloud().allLine[i].getPointP2().getY();
-				wr[i+9] = pixel.getPixel(map.getCloud().allLine[i].getPointP1(),buf);
-			}
-		}
-		move = true;
-		sp = 0;
-		
-		while (move) {
-			if(kbhit()){
-				pixel.putPixel(*Warna::hitam(), falcon.getPosition(), buf);
-				input = getchar();
-				if (input == 'i'){
-					if (falcon.getAnchorP1().getY()>batasAtas+10){
-						v+=5;
-						falcon.moveUp(buf,1,v);
-					}
-					for (int i = 0; i<9; i++) {
-						ln[i][1] = falcon.allLine[i].getPointP1().getX();
-						ln[i][2] = falcon.allLine[i].getPointP1().getY();
-						ln[i][3] = falcon.allLine[i].getPointP2().getX();
-						ln[i][4] = falcon.allLine[i].getPointP2().getY();
-						wr[i] = pixel.getPixel(falcon.allLine[i].getPointP1(),buf);
-					}
-			 	}
-			 	else if (input == 'k') {
-			 		if (falcon.getAnchorP2().getY() < batasBawah-10){
-			 			v-=5;
-						falcon.moveDown(buf,1,v);
-					}
-					for (int i = 0; i<9; i++) {
-						ln[i][1] = falcon.allLine[i].getPointP1().getX();
-						ln[i][2] = falcon.allLine[i].getPointP1().getY();
-						ln[i][3] = falcon.allLine[i].getPointP2().getX();
-						ln[i][4] = falcon.allLine[i].getPointP2().getY();		
-						wr[i] = pixel.getPixel(falcon.allLine[i].getPointP1(),buf);
-					}	
-			 	}
-				pixel.putPixel(*Warna::merah(), falcon.getAnchorP1().getX()-clipBack, falcon.getAnchorP1().getY(), buf);
-				pixel.putPixel(*Warna::merah(), falcon.getAnchorP2().getX()+clipFront, falcon.getAnchorP2().getY(), buf);
+			else {
+				system("clear");
+
+				//Garis boundary dan window
+				static Garis batasA(batasKiri,batasAtas,batasKanan,batasAtas); batasA.drawLine(buf,*Warna::hijau());
+				static Garis batasB(batasKiri,batasBawah,batasKanan,batasBawah); batasB.drawLine(buf,*Warna::hijau());
+				static Garis batasKa(batasKanan,batasAtas, batasKanan, batasBawah); batasKa.drawLine(buf, *Warna::hijau());
+				static Garis batasKi(batasKiri, batasAtas, batasKiri, batasBawah); batasKi.drawLine(buf, *Warna::hijau());
+				static Garis windowA(windowKiri,windowAtas,windowKanan,windowAtas); windowA.drawLine(buf,*Warna::merah());
+				static Garis windowB(windowKiri,windowBawah,windowKanan,windowBawah); windowB.drawLine(buf,*Warna::merah());
+				static Garis windowKa(windowKanan,windowAtas, windowKanan, windowBawah); windowKa.drawLine(buf, *Warna::merah());
+				static Garis windowKi(windowKiri, windowAtas, windowKiri, windowBawah); windowKi.drawLine(buf, *Warna::merah());
+				Point pW(windowKiri,windowBawah);
+
+				//draw and fill heli
+				falcon.drawHeli(buf, 1);
+				for (int i = 0; i<9; i++) {
+					ln[i][1] = falcon.allLine[i].getPointP1().getX();
+					ln[i][2] = falcon.allLine[i].getPointP1().getY();
+					ln[i][3] = falcon.allLine[i].getPointP2().getX();
+					ln[i][4] = falcon.allLine[i].getPointP2().getY();
+					wr[i] = pixel.getPixel(falcon.allLine[i].getPointP1(),buf);
+				}
+				kiribawah.setX(falcon.getAnchorP2().getX());
+				kiribawah.setY(falcon.getAnchorP2().getY());
+		  		fill.fillRect(kiribawah, panjang, lebar, warnaHeli, buf);
+				
+				//set clipping area
 				clip.setXmin(falcon.getAnchorP1().getX()-clipBack);
 			 	clip.setXmax(falcon.getAnchorP2().getX()+clipFront);
- 				clip.setYmin(falcon.getAnchorP1().getY()-clipVert);
- 				clip.setYmax(falcon.getAnchorP2().getY()+clipVert);
-			 	//cout << v;	
-			}
+			 	clip.setYmin(falcon.getAnchorP1().getY()-clipVert);
+			 	clip.setYmax(falcon.getAnchorP2().getY()+clipVert);
+
+			 	//set parasut size
+			 	para.setRadius(30);
+
+				while (on) {
+					check = rand()%tinggi + 50;
+					if (phase %2 == 0){
+						map.addBuilding(buf, check);
+						for (int i = 0; i<map.getPoly().numVisibleLine; i++){
+							ln[i+9][1] = map.getPoly().visibleLine[i].getPointP1().getX();
+							ln[i+9][2] = map.getPoly().visibleLine[i].getPointP1().getY();
+							ln[i+9][3] = map.getPoly().visibleLine[i].getPointP2().getX();
+							ln[i+9][4] = map.getPoly().visibleLine[i].getPointP2().getY();
+							wr[i+9] = pixel.getPixel(map.getPoly().visibleLine[i].getPointP1(),buf);
+						}
+					}
+					else {
+						map.addCloud(buf,check-100);
+						for (int i = 0; i<12; i++){
+							ln[i+9][1] = map.getCloud().allLine[i].getPointP1().getX();
+							ln[i+9][2] = map.getCloud().allLine[i].getPointP1().getY();
+							ln[i+9][3] = map.getCloud().allLine[i].getPointP2().getX();
+							ln[i+9][4] = map.getCloud().allLine[i].getPointP2().getY();
+							wr[i+9] = pixel.getPixel(map.getCloud().allLine[i].getPointP1(),buf);
+						}
+					}
+					move = true;
+					sp = 0;
+					
+					while (move) {
+						//setup frame
+						fill.fillRect(pW, windowKanan-windowKiri, windowBawah-windowAtas, *Warna::hitam(), buf);
+						windowA.drawLine(buf,*Warna::merah());
+						windowB.drawLine(buf,*Warna::merah());
+						windowKa.drawLine(buf,*Warna::merah());
+						windowKi.drawLine(buf,*Warna::merah());
+						batasA.drawLine(buf,*Warna::hijau());
+						kiribawah.setX(falcon.getAnchorP2().getX());
+						kiribawah.setY(falcon.getAnchorP2().getY());
+				  		fill.fillRect(kiribawah, panjang, lebar, warnaHeli, buf);
+						
+						//baling
+						centerHeli.setX((falcon.getAnchorP1().getX()+falcon.getAnchorP2().getX())/2);
+						centerHeli.setY(falcon.getAnchorP1().getY());
+						baling.clearBaling(sudut-100,buf);
+						centerHeli.setX(centerHeli.getX()-1);
+						centerHeli.setY(centerHeli.getY());
+						baling.setCenter(centerHeli);
+						baling.rotasiBaling(sudut,buf);
+						sudut+=100;
+			
+						//get line for clipping baling
+						if (phase%2==0) { //building
+							for (int i=0; i<12; i++){
+								ln[i+9+map.getPoly().numVisibleLine][1] = baling.allLine[i].getPointP1().getX();
+								ln[i+9+map.getPoly().numVisibleLine][2] = baling.allLine[i].getPointP1().getY();
+								ln[i+9+map.getPoly().numVisibleLine][3] = baling.allLine[i].getPointP2().getX();
+								ln[i+9+map.getPoly().numVisibleLine][4] = baling.allLine[i].getPointP2().getY();
+								wr[i+9+map.getPoly().numVisibleLine] = pixel.getPixel(baling.allLine[i].getPointP1(),buf);
+							}
+						}
+						else  {
+							for (int i=0; i<12; i++){
+								ln[i+21][1] = baling.allLine[i].getPointP1().getX();
+								ln[i+21][2] = baling.allLine[i].getPointP1().getY();
+								ln[i+21][3] = baling.allLine[i].getPointP2().getX();
+								ln[i+21][4] = baling.allLine[i].getPointP2().getY();
+								wr[i+21] = pixel.getPixel(baling.allLine[i].getPointP1(),buf);
+							}
+						}
+						
+						//on key press
+						if(kbhit()){
+							input = getchar();
+							//move heli up
+							if (input == 'i'){
+								if (falcon.getAnchorP1().getY()>batasAtas+30){
+									v+=5;
+									kiribawah.setX(falcon.getAnchorP2().getX());
+									kiribawah.setY(falcon.getAnchorP2().getY());
+									fill.fillRect(kiribawah, panjang, lebar, *Warna::hitam(), buf);
+									falcon.moveUp(buf,1,v);
+									kiribawah.setX(falcon.getAnchorP2().getX());
+									kiribawah.setY(falcon.getAnchorP2().getY());
+									fill.fillRect(kiribawah, panjang, lebar, warnaHeli, buf);
+		
+								}
+								for (int i = 0; i<9; i++) {
+									ln[i][1] = falcon.allLine[i].getPointP1().getX();
+									ln[i][2] = falcon.allLine[i].getPointP1().getY();
+									ln[i][3] = falcon.allLine[i].getPointP2().getX();
+									ln[i][4] = falcon.allLine[i].getPointP2().getY();
+									wr[i] = pixel.getPixel(falcon.allLine[i].getPointP1(),buf);
+								}
+						 	}
+						 	//move heli down
+						 	else if (input == 'k') {
+						 		if (falcon.getAnchorP2().getY() < batasBawah-10){
+						 			v-=5;
+									kiribawah.setX(falcon.getAnchorP2().getX());
+									kiribawah.setY(falcon.getAnchorP2().getY());
+									fill.fillRect(kiribawah, panjang, lebar, *Warna::hitam(), buf);
+									falcon.moveDown(buf,1,v);
+									kiribawah.setX(falcon.getAnchorP2().getX());
+									kiribawah.setY(falcon.getAnchorP2().getY());
+									fill.fillRect(kiribawah, panjang, lebar, warnaHeli, buf);
+									}
+								for (int i = 0; i<9; i++) {
+									ln[i][1] = falcon.allLine[i].getPointP1().getX();
+									ln[i][2] = falcon.allLine[i].getPointP1().getY();
+									ln[i][3] = falcon.allLine[i].getPointP2().getX();
+									ln[i][4] = falcon.allLine[i].getPointP2().getY();		
+									wr[i] = pixel.getPixel(falcon.allLine[i].getPointP1(),buf);
+								}	
+						 	}
+
+						 	//move clipping window follow heli
+							clip.setXmin(falcon.getAnchorP1().getX()-clipBack);
+						 	clip.setXmax(falcon.getAnchorP2().getX()+clipFront);
+			 				clip.setYmin(falcon.getAnchorP1().getY()-clipVert);
+			 				clip.setYmax(falcon.getAnchorP2().getY()+clipVert);
+						 	
+						}
+
+						//change displacement for building and cloud
+						if(sp < 670
+							) {
+							sp+=10;
+						}
+						else {
+							move = false;
+						}
+
+						//move building and cloud
+						if (phase %2 == 0){
+							map.motion(sp, buf, check);
+							for (int i = 0; i<map.getPoly().numVisibleLine; i++){
+								ln[i+9][1] = map.getPoly().visibleLine[i].getPointP1().getX();
+								ln[i+9][2] = map.getPoly().visibleLine[i].getPointP1().getY();
+								ln[i+9][3] = map.getPoly().visibleLine[i].getPointP2().getX();
+								ln[i+9][4] = map.getPoly().visibleLine[i].getPointP2().getY();
+								wr[i+9] = pixel.getPixel(map.getPoly().visibleLine[i].getPointP1(),buf);
+							}
+						}
+						else {
+							map.playCloud(sp+5,buf,check-100);
+							for (int i = 0; i<12; i++){
+								ln[i+9][1] = map.getCloud().allLine[i].getPointP1().getX();
+								ln[i+9][2] = map.getCloud().allLine[i].getPointP1().getY();
+								ln[i+9][3] = map.getCloud().allLine[i].getPointP2().getX();
+								ln[i+9][4] = map.getCloud().allLine[i].getPointP2().getY();
+								wr[i+9] = pixel.getPixel(map.getCloud().allLine[i].getPointP1(), buf);
+							}			
+						}
+
+						//do clipping
+						if (phase%2==0) { //building 
+							for (int i = 0; i < 25; i++){
+								clip.cohen_sutherland (ln[i][1], ln[i][2], ln[i][3], ln[i][4], wr[i], buf);
+							}
+						}
+						else { //cloud
+							for (int i = 0; i < 33; i++){
+								clip.cohen_sutherland (ln[i][1], ln[i][2], ln[i][3], ln[i][4], wr[i], buf);
+							}
+						}
 
 
-			if(sp < 720) {
-				sp+=10;
-			}
-			else {
-				move = false;
-			}
+						//check collision
+						if (phase%2 == 0 ) {
+							if (map.getPoly().getBoundary(check,batasBawah)[0] <= falcon.getAnchorP1().getX()+30 && 
+								 map.getPoly().getBoundary(check,batasBawah)[1] <= falcon.getAnchorP2().getY()+10)  
+							{
+								on = false;
+								tempx = baling.getCenter().getX()+500;
+								tempy = baling.getCenter().getY()+100;
+								y = baling.getCenter().getY();
+								x = baling.getCenter().getX();
 
-			if (phase %2 == 0){
-				map.motion(sp+50, buf, check);
-				for (int i = 0; i<4; i++){
-					ln[i+9][1] = map.getBuilding().allLine[i].getPointP1().getX();
-					ln[i+9][2] = map.getBuilding().allLine[i].getPointP1().getY();
-					ln[i+9][3] = map.getBuilding().allLine[i].getPointP2().getX();
-					ln[i+9][4] = map.getBuilding().allLine[i].getPointP2().getY();
-					wr[i+9] = pixel.getPixel(map.getBuilding().allLine[i].getPointP1(),buf);
+								// hapus helikopter
+								Point pp1(600,300);
+								Point pp2(670,350);
+								falconDestroy.setP1(pp1);
+								falconDestroy.setP2(pp2);
+								
+								// hapus baling-baling
+								baling.clearBaling(sudut-100,buf);
+
+								//set parasut
+								posPara.setX(600);
+								posPara.setY(300);
+								para.setPosition(posPara);
+								
+								//ledakan
+								ledakan.setAbsisTitikPusatLedakan(600);
+								ledakan.setOrdinatTitikPusatLedakan(500);
+								ledakan.meledak();
+
+								
+							}
+						}
+						else {
+							if (map.getCloud().getBoundary()[0] <= falcon.getAnchorP1().getX()+60 && 
+								 map.getCloud().getBoundary()[2] >= falcon.getAnchorP1().getY()-25)  
+							{
+								on = false;
+								tempx = baling.getCenter().getX()+500;
+								tempy = baling.getCenter().getY()+100;
+								y = baling.getCenter().getY();
+								x = baling.getCenter().getX();
+
+								// hapus helikopter
+								Point pp1(600,300);
+								Point pp2(670,350);
+								falconDestroy.setP1(pp1);
+								falconDestroy.setP2(pp2);
+								
+								// hapus baling-baling
+								baling.clearBaling(sudut-100,buf);
+
+								//set parasut
+								posPara.setX(600);
+								posPara.setY(300);
+								para.setPosition(posPara);
+								
+								//ledakan
+								ledakan.setAbsisTitikPusatLedakan(600);
+								ledakan.setOrdinatTitikPusatLedakan(500);
+								ledakan.meledak();
+
+								
+							}
+						}
+						
+						usleep(50000);	
+					}
+
+					//clear building and cloud in the end of every phase
+					if (phase%2 == 0)
+						map.clearAll(1,buf, check);
+					else 
+						map.clearAll(2,buf,check-100);
+					phase++;
 				}
 			}
-			else {
-				map.playCloud(sp,buf,check-100);
-				for (int i = 0; i<12; i++){
-					ln[i+9][1] = map.getCloud().allLine[i].getPointP1().getX();
-					ln[i+9][2] = map.getCloud().allLine[i].getPointP1().getY();
-					ln[i+9][3] = map.getCloud().allLine[i].getPointP2().getX();
-					ln[i+9][4] = map.getCloud().allLine[i].getPointP2().getY();
-					wr[i+9] = pixel.getPixel(map.getCloud().allLine[i].getPointP1(), buf);
-				}			
-			}
-
-			if (phase%2==0) {
-				for (int i = 0; i < 13; i++){
-					clip.cohen_sutherland (ln[i][1], ln[i][2], ln[i][3], ln[i][4], wr[i], buf);
-				}
-			}
-			else {
-				for (int i = 0; i < 21; i++){
-					clip.cohen_sutherland (ln[i][1], ln[i][2], ln[i][3], ln[i][4], wr[i], buf);
-				}
-			}
-
-			usleep(50000);	
 		}
+		else{
+			falconDestroy.clearpecahHeli(buf);
+			falconDestroy.setVelocity(vj);
+			falconDestroy.pecahHeli(buf);
 
-		if (phase%2 == 0)
-			map.clearAll(1,buf, check);
-		else 
-			map.clearAll(2,buf,check-100);
-		phase++;
+			/** Parasut */
+			para.clearParasut(buf);
+			para.setVelocity((vj*0.5));
+			para.drawParasut(buf);
+			/** end of parasut */
+							
+			/** Baling-baling */
+			centerHeli.setX((600)-vj);
+			centerHeli.setY(500+(vj*2));
+			
+			baling.clearBaling(sudut-10,buf);
+			centerHeli.setX(centerHeli.getX());
+			centerHeli.setY(centerHeli.getY());
+			baling.setCenter(centerHeli);
+			baling.rotasiBaling(sudut,buf);
+			sudut+=10;
+
+			vj++;
+			usleep(5000);
+		}
+	
 	}
-
+	system("clear");
 	buf.closeBuffer();
 	return 0;
 }

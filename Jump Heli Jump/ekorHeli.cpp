@@ -165,14 +165,14 @@ void ekorHeli::drawPecah(Buffer buff, Point P1, Point P2, int v)
 		{
 			Garis g(ekor[i].getX(), ekor[i].getY()+v,
 					ekor[i+1].getX(), ekor[i+1].getY()+v);
-			g.drawLine(buff, putih);
+			g.drawLine(buff, *Warna::merah());
 			allLine[i] = g;
 		}
 		else
 		{
 			Garis g(ekor[i].getX(), ekor[i].getY()+v,
 					ekor[0].getX(), ekor[0].getY()+v);
-			g.drawLine(buff, putih);
+			g.drawLine(buff, *Warna::merah());
 			allLine[i] = g;
 		}
 	}

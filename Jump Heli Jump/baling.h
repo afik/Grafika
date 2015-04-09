@@ -24,6 +24,8 @@ class Baling{
 		
 		void setRadius(int radius);
 		int getRadius();
+
+		Garis allLine[12];
 	private:
 		Point rotasiTitik(Point p, int sudut);
 		int convertToInt(float f);

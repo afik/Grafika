@@ -27,7 +27,7 @@ class ekorHeli{
 		void clearPecah(Buffer buff, Point P1, Point P2, int v);
 		void ekorHeliUp(Buffer buff, int scale, int v);
 		void clearEkorUp(Buffer buff, int scale, int v);
-
+		
 		Garis allLine[5];
 
 	private:
