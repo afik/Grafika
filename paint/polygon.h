@@ -17,6 +17,7 @@ public:
 	Polygon();
 	bool isClosed();
 	bool isStop();
+	bool isAround(Point p);
 	void addPoint(Point p);
 	void drawPolygon();
 };

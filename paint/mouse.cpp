@@ -7,10 +7,47 @@
 #include "pointer.h"
 #include "polygon.h"
 #include "bentuk.h"
+#include <iostream>
+#include <cstdio>
+#include <cstdlib>
+#include <ncurses.h>
+#include <termios.h>
+#include <unistd.h>
+#include <fcntl.h>
+
+using namespace std;
+
+int kbhit(void)
+{
+  struct termios oldt, newt;
+  int ch;
+  int oldf;
+ 
+  tcgetattr(STDIN_FILENO, &oldt);
+  newt = oldt;
+  newt.c_lflag &= ~(ICANON | ECHO);
+  tcsetattr(STDIN_FILENO, TCSANOW, &newt);
+  oldf = fcntl(STDIN_FILENO, F_GETFL, 0);
+  fcntl(STDIN_FILENO, F_SETFL, oldf | O_NONBLOCK);
+ 
+  ch = getchar();
+ 
+  tcsetattr(STDIN_FILENO, TCSANOW, &oldt);
+  fcntl(STDIN_FILENO, F_SETFL, oldf);
+ 
+  if(ch != EOF)
+  {
+    ungetc(ch, stdin);
+    return 1;
+  }
+ 
+  return 0;
+}
 
 main(){
         FILE *fmouse;
         char b[3];
+        char input;
         fmouse = fopen("/dev/input/mice","r");
         int xd=0,yd=0; //x/y movement delta
         int xo=0,yo=0; //x/y overflow (out of range -255 to +255)
@@ -32,6 +69,7 @@ main(){
         Point P0;
 
         vector<Bentuk> list_bentuk;
+        vector<Polygon> list_polygon;
 
         int x = 100;
         int y = 100;
@@ -80,33 +118,37 @@ main(){
                 kursor.setPosisi(x+1,y+1);
                 kursor.drawPointer(buff);
 
-                // printf("%d, %d\n", x, y);
+                //printf("%d, %d\n", x, y);
+            
                 if((lb0==0) && (lb==1)){
-                     //   kursor.putPixel(warna, buff);
+                       //kursor.putPixel(warna, buff);
 
-                    // if(!polygon.isStop()){
-                    //     Point p(x-1,y-1);
-                    //     polygon.addPoint(p);
+                    if(!polygon.isStop()){
+                        Point p(x-1,y-1);
+                        polygon.addPoint(p);
 
-                    // }
+                    }
+                    else {
+                        list_polygon.push_back(polygon);
+                    }
 
-                    P1 = Point(x,y);
+                    //P1 = Point(x,y);
                 }
                 else if((lb0==1) && (lb==1)){
-                    bentuk.persegi(P0, panjang, lebar, buff, hitam);
-                    P0 = Point(min(x,P1.getX()), min(y,P1.getY()));
+                    // bentuk.persegi(P0, panjang, lebar, buff, hitam);
+                    // P0 = Point(min(x,P1.getX()), min(y,P1.getY()));
 
-                    panjang = abs(x-P1.getX());
-                    lebar = abs(y-P1.getY());
+                    // panjang = abs(x-P1.getX());
+                    // lebar = abs(y-P1.getY());
                     
-                    bentuk.persegi(P0, panjang, lebar, buff, putih);
+                    // bentuk.persegi(P0, panjang, lebar, buff, putih);
                 }
                 else if((lb0==1) && (lb==0)){
                     //list_bentuk.push_back(bentuk);
                 }
-                // polygon.drawPolygon();
-
+                polygon.drawPolygon();
                 lb0 = lb;
+                
 
         }
         fclose(fmouse);

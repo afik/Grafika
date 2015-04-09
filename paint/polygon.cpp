@@ -26,7 +26,15 @@ bool Polygon::isStop() {
 
 void Polygon::addPoint(Point p) {
 
-	vertice.push_back(p);
+	if (!isAround(p)) {
+		cout<<"2"<<endl;
+		vertice.push_back(p);	
+	}
+	else {
+		cout<<"3"<<endl;
+		vertice.push_back(vertice[0]);
+	}
+	
 }
 
 void Polygon::drawPolygon() {
@@ -43,6 +51,20 @@ void Polygon::drawPolygon() {
 	}
 }
 
+bool Polygon::isAround(Point p) {
+
+	bool around = false;
+
+	if (vertice.size()!=0) {
+		if((p.getX() < vertice[0].getX()+5) && (p.getX() > vertice[0].getX()-5)) {
+			if((p.getY() < vertice[0].getY()+5) && (p.getY() > vertice[0].getY()-5)) {
+				cout << "1" << endl;	
+				around = true;
+			}
+		}
+	}
+	return around;
+}
 // void Polygon::closedPolygon(){
 // 	Garis line;
 // 	Buffer b;
